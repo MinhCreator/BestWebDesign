@@ -1,0 +1,211 @@
+/* Tận dụng biến màu sẵn có trong global.css, bổ sung thêm nếu cần */
+:root {
+  --color-black: #000;
+  --color-dimgray-100: #6b6565;
+  --color-white: #fff;
+  --color-green: #6ace56;
+  --color-red: #ff5252;
+  --border-color: #d9d9d9;
+  --bg-table-header: #e6e6e6;
+  --font-primary: 'IBM Plex Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* Container giúp bóp nội dung lại ở giữa màn hình Full HD (1920px) */
+.container {
+  max-width: 1440px; /* Chiều rộng tối ưu cho màn Full HD */
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Typography --- */
+.breadcrumb {
+  font-size: 1.5rem;
+  color: var(--color-dimgray-100);
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+.breadcrumb strong { font-weight: 600; color: var(--color-black); }
+
+.page-title {
+  text-align: center;
+  font-size: clamp(3rem, 5vw, 5rem); /* Tự động scale chữ theo màn hình */
+  color: var(--color-dimgray-100);
+  font-weight: 700;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+
+/* --- Podium (Top 3) --- */
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Căn đáy ảnh ngang nhau */
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.podium-card {
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background: var(--bg-table-header); /* Khung xám nhẹ bao ngoài */
+  padding: 15px; /* Giả viền theo ảnh design */
+}
+
+.podium-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.place-1 { width: 350px; height: 450px; }
+.place-2, .place-3 { width: 280px; height: 350px; }
+
+/* --- Leaderboard Table (CSS Grid) --- */
+.leaderboard {
+  margin-bottom: 100px;
+}
+
+.board-header, .board-row {
+  display: grid;
+  /* Chia 4 cột: Cột 1 (1.5 phần), Cột 2 (3 phần), Cột 3 (2 phần), Cột 4 (1 phần) */
+  grid-template-columns: 1.5fr 3fr 2fr 1fr; 
+  align-items: center;
+  padding: 20px 0;
+  font-size: 1.5rem;
+}
+
+.board-header {
+  background-color: var(--bg-table-header);
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--color-white);
+  text-align: center;
+}
+
+/* Tạo đường gạch dọc cho Header giống ảnh */
+.board-header div:not(:first-child) {
+  border-left: 2px solid var(--color-dimgray-100);
+}
+
+.board-row {
+  border-bottom: 2px solid var(--border-color);
+  color: var(--color-dimgray-100);
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.board-row:hover { background-color: rgba(0,0,0,0.02); }
+
+/* Chỉnh align cho từng cột để giống design nhất */
+.col-rank { display: flex; justify-content: center; align-items: center; gap: 15px; }
+.col-name { 
+  text-align: center; 
+  color: var(--color-black); 
+}
+
+/* Container chứa chữ và cờ */
+.col-nation { 
+  display: flex; 
+  justify-content: center; /* Căn giữa toàn bộ cụm quốc gia + cờ vào giữa cột */
+  align-items: center; 
+}
+
+/* Chữ hiển thị quốc gia */
+.nation-name {
+  width: 100px; 
+  text-align: right; /* Căn chữ sang lề phải */
+  margin-right: 15px; /* Khoảng cách giữa chữ và cờ */
+}
+.col-points { 
+  font-weight: 500; 
+}
+
+.rank-num { 
+  font-size: 2rem; 
+  font-weight: 700; 
+  color: var(--color-black); 
+}
+.trend { 
+  font-size: 1.2rem; 
+  font-weight: 600; 
+}
+.trend.up { 
+  color: var(--color-green); 
+}
+.trend.down { 
+  color: var(--color-red); 
+}
+
+.flag {
+  width: 45px; 
+  height: auto;
+  border-radius: 4px;
+  flex-shrink: 0; /* Giúp cờ không bị bóp méo hình dạng */
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 60px 0 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
+.footer-brand { flex: 1; }
+.footer-brand h2 { color: #ffb814; font-family: 'Racing Sans One', sans-serif; }
+.footer-brand p { font-size: 1rem; line-height: 1.6; color: #ccc; }
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.footer-links h3 { font-size: 1.2rem; margin-bottom: 20px; }
+.footer-links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer-links li { color: #ccc; cursor: pointer; }
+.footer-links li:hover { color: #ffb814; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Responsive cho màn hình nhỏ hơn nếu cần */
+@media screen and (max-width: 1024px) {
+  .podium { gap: 20px; }
+  .place-1 { width: 300px; height: 400px; }
+  .place-2, .place-3 { width: 220px; height: 300px; }
+  .footer-content { flex-direction: column; }
+  .footer-links { flex-wrap: wrap; }
+}
+
+@media screen and (max-width: 768px) {
+  .board-header, .board-row {
+    font-size: 1.1rem;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+  }
+  .col-name { padding-left: 10px; }
+  .podium { flex-direction: column; align-items: center; }
+}
