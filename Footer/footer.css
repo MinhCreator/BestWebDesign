@@ -1,0 +1,177 @@
+:root {
+  --color-black: #000;
+  --color-dimgray-100: #6b6565;
+  --color-white: #fff;
+  --color-green: #6ace56;
+  --color-red: #ff5252;
+  --border-color: #d9d9d9;
+  --bg-table-header: #e6e6e6;
+  --font-primary: 'IBM Plex Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+.container {
+  max-width: 1440px; /* Chiều rộng tối ưu cho màn Full HD */
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 60px 0 30px;
+}
+
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
+.footer-brand { flex: 1; }
+.footer-brand h2 { 
+  color: #ffb814; 
+  font-family: 
+  'Racing Sans One', 
+  sans-serif; 
+}
+
+
+.footer-brand p { font-size: 1rem; line-height: 1.6; color: #ccc; }
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.footer-links h3 { 
+  font-size: 1.2rem; 
+  margin-bottom: 20px; 
+}
+.footer-links ul { list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+}
+.footer-links li { 
+  color: #ccc; 
+  cursor: pointer; 
+}
+.footer-links li:hover { 
+  color: #ffb814; 
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* --- Social Media Icons --- */
+/* --- Danh sách Social Media --- */
+.social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Khoảng cách các dòng */
+}
+
+.social-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Khoảng cách giữa icon và chữ */
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.social-list li:hover {
+  color: #ffb814;
+}
+
+/* --- Chỉnh kích thước chung cho Facebook, Youtube, Github --- */
+.social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0; /* Không bị bóp méo icon */
+}
+
+/* Tinh chỉnh riêng Github nếu file PNG có viền mờ xung quanh cần làm to lên một chút */
+.github-icon {
+  width: 26px;
+  height: 26px;
+  margin-left: -1px; /* Căn bù lại cho khớp với trục thẳng đứng của các icon khác */
+}
+
+/* --- Xếp chồng 3 Vector cho Instagram --- */
+.insta-group {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.insta-layer-1, 
+.insta-layer-2, 
+.insta-layer-3 {
+  position: absolute;
+}
+
+/* Vector 1: Khung vuông viền bo tròn */
+.insta-layer-1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Vector 2: Vòng tròn giữa (Top, Left, Right, Bottom khoảng 24.5%) */
+.insta-layer-2 {
+  top: 24.46%;
+  left: 24.46%;
+  width: 51.5%;
+  height: 51.5%;
+}
+
+/* Vector 3: Dấu chấm nhỏ (Top, Right khoảng 17%) */
+.insta-layer-3 {
+  top: 17.17%;
+  right: 17.17%;
+  width: 12.02%;
+  height: 12.02%;
+}
+
+/* Responsive cho màn hình nhỏ hơn nếu cần */
+@media screen and (max-width: 1024px) {
+  .podium { gap: 20px; }
+  .place-1 { width: 300px; height: 400px; }
+  .place-2, .place-3 { width: 220px; height: 300px; }
+  .footer-content { flex-direction: column; }
+  .footer-links { flex-wrap: wrap; }
+}
+
+@media screen and (max-width: 768px) {
+  .board-header, .board-row {
+    font-size: 1.1rem;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+  }
+  .col-name { padding-left: 10px; }
+  .podium { flex-direction: column; align-items: center; }
+}
