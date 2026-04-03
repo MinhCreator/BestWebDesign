@@ -108,8 +108,25 @@ body {
 
 .board-row:hover { background-color: rgba(0,0,0,0.02); }
 
-/* Chỉnh align cho từng cột để giống design nhất */
-.col-rank { display: flex; justify-content: center; align-items: center; gap: 15px; }
+.col-rank { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+.rank-group {
+  display: flex;
+  align-items: center;
+  width: 90px; /* Chiều rộng cố định cho cả cụm */
+
+}
+.rank-num { 
+  width: 35px; /* Cố định chiều rộng để dù 1 chữ số hay 2 chữ số (10, 11) vẫn thẳng hàng */
+  text-align: right; /* Ép số sát về lề phải để đứng cạnh trend */
+  font-size: 2rem; 
+  font-weight: 700; 
+  color: var(--color-black); 
+}
+
 .col-name { 
   text-align: center; 
   color: var(--color-white); 
@@ -136,12 +153,10 @@ body {
   font-weight: 500; 
 }
 
-.rank-num { 
-  font-size: 2rem; 
-  font-weight: 700; 
-  color: var(--color-black); 
-}
 .trend { 
+  width: 55px; 
+  text-align: left; 
+  padding-left: 10px; 
   font-size: 1.2rem; 
   font-weight: 600; 
 }
@@ -194,6 +209,83 @@ body {
   padding-top: 20px;
   font-size: 0.9rem;
   color: #888;
+}
+
+/* --- Social Media Icons --- */
+/* --- Danh sách Social Media --- */
+.social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Khoảng cách các dòng */
+}
+
+.social-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Khoảng cách giữa icon và chữ */
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.social-list li:hover {
+  color: #ffb814;
+}
+
+/* --- Chỉnh kích thước chung cho Facebook, Youtube, Github --- */
+.social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0; /* Không bị bóp méo icon */
+}
+
+/* Tinh chỉnh riêng Github nếu file PNG có viền mờ xung quanh cần làm to lên một chút */
+.github-icon {
+  width: 26px;
+  height: 26px;
+  margin-left: -1px; /* Căn bù lại cho khớp với trục thẳng đứng của các icon khác */
+}
+
+/* --- Xếp chồng 3 Vector cho Instagram --- */
+.insta-group {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.insta-layer-1, 
+.insta-layer-2, 
+.insta-layer-3 {
+  position: absolute;
+}
+
+/* Vector 1: Khung vuông viền bo tròn */
+.insta-layer-1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Vector 2: Vòng tròn giữa (Top, Left, Right, Bottom khoảng 24.5%) */
+.insta-layer-2 {
+  top: 24.46%;
+  left: 24.46%;
+  width: 51.5%;
+  height: 51.5%;
+}
+
+/* Vector 3: Dấu chấm nhỏ (Top, Right khoảng 17%) */
+.insta-layer-3 {
+  top: 17.17%;
+  right: 17.17%;
+  width: 12.02%;
+  height: 12.02%;
 }
 
 /* Responsive cho màn hình nhỏ hơn nếu cần */
