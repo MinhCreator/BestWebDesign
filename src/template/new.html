@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Endurance Hub Leaderboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/src/style/globalQ.css" />
-    <link rel="stylesheet" href="/src/style/Rank.css" />
-    <link rel="stylesheet" href="/src/style/sellbag.css">
+<head>
+  <meta charset="utf-8" />
+  <title>Bố cục trang tin tức</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="/src/style/sellbag.css">
+      <link rel="stylesheet" href="/src/style/footer.css">
+      <link rel="stylesheet" href="/src/style/globalQ.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css"
@@ -25,10 +23,11 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" type="text/css" href="/src/style/global.css" />
-  </head>
-  <body>
-    <header
+    <link rel="stylesheet" type="text/css" href="../style/global.css" />
+  <link rel="stylesheet" href="/src/style/new.css" />
+</head>
+<body>
+      <header
       class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50"
     >
       <div class="flex flex-wrap items-center justify-between gap-5 w-full">
@@ -274,94 +273,88 @@
       });
     </script>
 
-    <main class="container">
-      <div class="breadcrumb">
-        <span>Menus /</span> <strong>Leaderboard</strong>
+  <div class="site">
+    <main class="news-container">
+      
+      <div class="main-column">
+        
+        <section class="featured-news">
+          <button class="featured-news-btn">
+          <div class="featured-img">
+            <img src="https://placehold.co/800x500/cccccc/ffffff?" alt="Ảnh minh họa">
+          </div>
+          <div class="featured-text">
+            <h2>Tiêu đề bài viết chính nổi bật trên trang chủ</h2>
+            <p>Đây là đoạn mô tả tóm tắt nội dung của bài viết chính. Đoạn văn này cung cấp thông tin khái quát để người đọc nắm bắt được ý chính trước khi click vào xem chi tiết bài viết...</p>
+          </div>
+          </button>
+        </section>
+
+        <section class="sub-news-row">
+          <article class="sub-item">
+            <button>
+            <h3>Tiêu đề bài viết phụ số một</h3>
+            <p>Đoạn mô tả ngắn gọn cho bài viết phụ số một, tóm tắt các sự kiện nổi bật nhất...</p>
+            </button>
+          </article>
+          
+          <article class="sub-item">
+            <button>
+              <h3>Tiêu đề bài viết phụ số hai</h3>
+              <p>Đoạn mô tả ngắn gọn cho bài viết phụ số hai, cung cấp thông tin cơ bản để thu hút người đọc...</p>
+            </button>
+          </article>
+          
+          <article class="sub-item">
+            <button>
+              <h3>Tiêu đề bài viết phụ số ba</h3>
+              <p>Đoạn mô tả ngắn gọn cho bài viết phụ số ba</p>
+            </button>
+          </article>
+        </section>
+
       </div>
 
-      <h1 class="page-title">ENDURACE HUB LEADERBOARD</h1>
-
-      <section class="podium">
-        <div class="podium-card place-2">
-          <img src="/src/public/Avatar/NguyenVanThang.png" alt="Hạng 2" />
-        </div>
-        <div class="podium-card place-1">
-          <img src="/src/public/Avatar/NgoMinhQuan.png" alt="Hạng 1" />
-        </div>
-        <div class="podium-card place-3">
-          <img src="/src/public/Avatar/BuiVoNhatMinh.png" alt="Hạng 3" />
-        </div>
-      </section>
-
-      <section class="leaderboard"> 
-        <div class="board-header">
-          <div class="col-rank">Rank</div>
-          <div class="col-name">Name</div>
-          <div class="col-nation">Nation</div>
-          <div class="col-point">Points</div>
-        </div>
-
-        <div class="board-row">
-          <div class="col-rank"><span class="rank-num">1</span> <span class="trend up">↑ 3</span></div>
-          <div class="col-fullname">Ngô Minh Quân</div>
-          <div class="col-nation">
-            <span class="nation-name">VietNam</span> 
-            <img src="/src/public/Flags/Vietnam.png" alt="VN" class="flag" />
+      <aside class="sidebar-column">
+        <div class="sidebar-box">
+          
+          <div class="sidebar-tabs">
+            <div class="tab active">Tin mới</div>
+            <div class="tab">Đọc nhiều</div>
           </div>
-          <div class="col-numpoints">999</div>
-        </div>
 
-        <div class="board-row">
-          <div class="col-rank"><span class="rank-num">2</span> <span class="trend up">↑ 1</span></div>
-          <div class="col-fullname">Nguyễn Văn Thắng</div>
-          <div class="col-nation">
-            <span class="nation-name">LGBT</span> 
-            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+          <div class="sidebar-content">
+            <article class="sidebar-item">
+              <img src="https://placehold.co/150x100/eeeeee/999999?" alt="Ảnh nhỏ">
+              <h4>Tiêu đề tin tức hiển thị trong danh sách cột bên phải</h4>
+            </article>
+            <article class="sidebar-item">
+              <img src="https://placehold.co/150x100/eeeeee/999999?" alt="Ảnh nhỏ">
+              <h4 class="highlight">Tiêu đề tin tức có màu đỏ nổi bật trong danh sách</h4>
+            </article>
+            <article class="sidebar-item">
+              <img src="https://placehold.co/150x100/eeeeee/999999?" alt="Ảnh nhỏ">
+              <h4>Tiêu đề tin tức hiển thị trong danh sách cột bên phải</h4>
+            </article>
+            <article class="sidebar-item">
+              <img src="https://placehold.co/150x100/eeeeee/999999?" alt="Ảnh nhỏ">
+              <h4>Tiêu đề tin tức hiển thị trong danh sách cột bên phải</h4>
+            </article>
+            <article class="sidebar-item">
+              <img src="https://placehold.co/150x100/eeeeee/999999?" alt="Ảnh nhỏ">
+              <h4>Tiêu đề tin tức hiển thị trong danh sách cột bên phải</h4>
+            </article>
           </div>
-          <div class="col-numpoints">666</div>
-        </div>
 
-        <div class="board-row">
-          <div class="col-rank"><span class="rank-num">3</span> <span class="trend down">↓ 2</span></div>
-          <div class="col-fullname">Bùi Võ Nhật Minh</div>
-          <div class="col-nation">
-            <span class="nation-name">LGBT</span> 
-            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+          <div class="sidebar-footer">
+            <button class="btn-more">Xem thêm</button>
           </div>
-          <div class="col-numpoints">333</div>
-        </div>
 
-        <div class="board-row">
-          <div class="col-rank"><span class="rank-num">4</span> <span class="trend down">↓ 2</span></div>
-          <div class="col-fullname">Đặng Đại Khiêm</div>
-          <div class="col-nation">
-            <span class="nation-name">Thailand</span> 
-            <img src="/src/public/Flags/Thailand.png" alt="TH" class="flag" />
-          </div>
-          <div class="col-numpoints">300</div>
         </div>
+      </aside>
 
-        <div class="board-row">
-          <div class="col-rank"><span class="rank-num">5</span> <span class="trend up">↑ 36</span></div>
-          <div class="col-fullname">Lê Đăng Anh Tuấn</div>
-          <div class="col-nation">
-            <span class="nation-name">LGBT</span> 
-            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
-          </div>
-          <div class="col-numpoints">236</div>
-        </div>
-
-        <div class="board-row">
-          <div class="col-rank"><span class="rank-num">6</span> <span class="trend down">↓ 1</span></div>
-          <div class="col-fullname">Nguyễn Tiến Trường</div>
-          <div class="col-nation">
-            <span class="nation-name">LGBT</span> 
-            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
-          </div>
-          <div class="col-numpoints">222</div>
-        </div>
-      </section>
     </main>
+  </div>
 
     <footer class="footer">
       <div class="container footer-content">
@@ -447,6 +440,5 @@
         </div>
       </div>
     </footer>
-
-  </body>
+</body>
 </html>
