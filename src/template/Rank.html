@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Endurance Hub Leaderboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style/globalQ.css" />
+    <link rel="stylesheet" href="/src/style/Rank.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="/src/style/global.css" />
+  </head>
+  <body>
+    <header
+      class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50"
+    >
+      <div class="flex flex-wrap items-center justify-between gap-5 w-full">
+        <a href="javascript:void(0)" class="max-sm:hidden"
+          ><img src="../public/icon/logo_full.svg" alt="logo" class="w-50"
+        /></a>
+        <a
+          href="javascript:void(0)"
+          class="sm:hidden md:hidden lg:hidden max-sm:block"
+          ><img src="../public/icon/logo-lite.svg" alt="logo" class="w-20"
+        /></a>
+
+        <!-- collapse menu -->
+        <div
+          id="collapseMenu"
+          class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50"
+        >
+          <button
+            id="toggleClose"
+            class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border border-gray-200 cursor-pointer"
+          >
+            <img src="../public/icon/cross.svg" alt="" />
+          </button>
+
+          <ul
+            class="lg:flex gap-x-2 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50"
+          >
+            <li class="mb-6 md:hidden lg:hidden max-lg:block">
+              <a href="javascript:void(0)"
+                ><img
+                  src="../public/icon/logo_full.svg"
+                  alt="logo"
+                  class="w-40"
+                />
+              </a>
+            </li>
+
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/home.html"
+                class="hover:text-blue-700 text-blue-700 block font-medium text-[15px]"
+                >Home</a
+              >
+            </li>
+
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="javascript:void(0)"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >News</a
+              >
+            </li>
+
+            <!-- Dropdown menu -->
+            <li
+              class="relative list-none max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3"
+            >
+              <a
+                onclick="toggleMenu()"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px] inline-flex items-center justify-center"
+              >
+                Shop
+                <img src="../public/icon/narrowDown.svg" alt="" />
+              </a>
+
+              <!-- Hidden by default -->
+              <ul
+                id="dropdown-menu"
+                class="absolute hidden bg-white shadow-lg mt-2 w-40 z-10 rounded-md"
+              >
+                <li class="p-2 rounded-md">
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                    >Jogging</a
+                  >
+                </li>
+                <li class="p-2 rounded-md">
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                    >Cycling</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="javascript:void(0)"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >Tracking</a
+              >
+            </li>
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/Rank.html"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >Leaderboard</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex max-lg:ml-auto space-x-4">
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="../public/icon/search.svg" alt="" />
+          </button>
+          <button
+            onclick="window.location.href='bill.html'"
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="../public/icon/cart.svg" alt="Cart" />
+          </button>
+
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="../public/icon/user.svg" alt="" />
+          </button>
+
+          <button id="toggleOpen" class="lg:hidden cursor-pointer">
+            <svg
+              class="w-7 h-7"
+              fill="#000"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <script src="../script/navbar.js"></script>
+
+    <main class="container">
+      <div class="breadcrumb">
+        <span>Menus /</span> <strong>Leaderboard</strong>
+      </div>
+
+      <h1 class="page-title">ENDURACE HUB LEADERBOARD</h1>
+
+      <section class="podium">
+        <div class="podium-card place-2">
+          <img src="/src/public/Avatar/NguyenVanThang.png" alt="Hạng 2" />
+        </div>
+        <div class="podium-card place-1">
+          <img src="/src/public/Avatar/NgoMinhQuan.png" alt="Hạng 1" />
+        </div>
+        <div class="podium-card place-3">
+          <img src="/src/public/Avatar/BuiVoNhatMinh.png" alt="Hạng 3" />
+        </div>
+      </section>
+
+      <section class="leaderboard"> 
+        <div class="board-header">
+          <div class="col-rank">Rank</div>
+          <div class="col-name">Name</div>
+          <div class="col-nation">Nation</div>
+          <div class="col-point">Points</div>
+        </div>
+
+        <div class="board-row">
+          <div class="col-rank"><span class="rank-num">1</span> <span class="trend up">↑ 3</span></div>
+          <div class="col-fullname">Ngô Minh Quân</div>
+          <div class="col-nation">
+            <span class="nation-name">VietNam</span> 
+            <img src="/src/public/Flags/Vietnam.png" alt="VN" class="flag" />
+          </div>
+          <div class="col-numpoints">999</div>
+        </div>
+
+        <div class="board-row">
+          <div class="col-rank"><span class="rank-num">2</span> <span class="trend up">↑ 1</span></div>
+          <div class="col-fullname">Nguyễn Văn Thắng</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+          </div>
+          <div class="col-numpoints">666</div>
+        </div>
+
+        <div class="board-row">
+          <div class="col-rank"><span class="rank-num">3</span> <span class="trend down">↓ 2</span></div>
+          <div class="col-fullname">Bùi Võ Nhật Minh</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+          </div>
+          <div class="col-numpoints">333</div>
+        </div>
+
+        <div class="board-row">
+          <div class="col-rank"><span class="rank-num">4</span> <span class="trend down">↓ 2</span></div>
+          <div class="col-fullname">Đặng Đại Khiêm</div>
+          <div class="col-nation">
+            <span class="nation-name">Thailand</span> 
+            <img src="/src/public/Flags/Thailand.png" alt="TH" class="flag" />
+          </div>
+          <div class="col-numpoints">300</div>
+        </div>
+
+        <div class="board-row">
+          <div class="col-rank"><span class="rank-num">5</span> <span class="trend up">↑ 36</span></div>
+          <div class="col-fullname">Lê Đăng Anh Tuấn</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+          </div>
+          <div class="col-numpoints">236</div>
+        </div>
+
+        <div class="board-row">
+          <div class="col-rank"><span class="rank-num">6</span> <span class="trend down">↓ 1</span></div>
+          <div class="col-fullname">Nguyễn Tiến Trường</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+          </div>
+          <div class="col-numpoints">222</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">
+          <h2>
+            <img src="/src/public/icon/Logo-Lite.png" width="15%" alt="" />
+            ENDURANCE HUB
+          </h2>
+          <p>
+            Founded in 2026, we focus on delivering the latest news and insights
+            on walking and cycling, bringing you updates, tips, and trends from
+            around the world to support your fitness journey and active
+            lifestyle.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h3>About Us</h3>
+            <ul>
+              <li>Careers</li>
+              <li><a href="/src/template/team.html">Partnerships</a></li>
+              <li>Terms & Conditions</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Help</h3>
+            <ul>
+              <li>FAQ</li>
+              <li>Size Guide</li>
+              <li>Delivery & Returns</li>
+              <li>Orders & Payments</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Account</h3>
+            <ul>
+              <li>Profile</li>
+              <li>Coupons</li>
+              <li>Wish List</li>
+              <li>Notifications</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Social Media</h3>
+            <ul class="social-list">
+              <li>
+                <img
+                  src="/src/public/icon/facebook.svg"
+                  alt="Facebook"
+                  class="social-icon"
+                />
+                <span><a href="https://www.facebook.com/minh.quan.ngo.932383">Facebook</a></span>
+              </li>
+              <li>
+                <img src="/src/public/icon/instagram.svg" alt="" class="social-icon" />
+                <span>Instagram</span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/youtube.svg"
+                  alt="Youtube"
+                  class="social-icon"
+                />
+                <span><a href="https://www.youtube.com/channel/UChYwzphrJLJKzu_tmLtxM2Q">Youtube</a></span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/github.svg"
+                  alt="Github"
+                  class="social-icon github-icon"
+                />
+                <span><a href="https://github.com/QuannmGIT">Github</a></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>Copyright © 2026 Endurance Hub®. All rights reserved.</p>
+        <div class="legal">
+          <span>Privacy Policy</span> • <span>Sitemap</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
