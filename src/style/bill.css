@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    width: 900px;
+    padding: 30px;
+    border: 2px solid #00aaff;
+    border-radius: 8px;
+}
+
+.checkout-layout {
+    display: flex;
+    gap: 50px;
+}
+
+/* Billing Section */
+.billing-section { flex: 1; }
+.billing-section h2 { margin-bottom: 20px; }
+
+form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Order Section */
+.order-section { flex: 1; }
+
+.order-table .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 0.9em;
+}
+
+.grand-total { font-size: 1.2em; margin-top: 10px; }
+
+/* Payment Method */
+.method-box {
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.option { margin-bottom: 15px; }
+
+.card-details {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.card-details input {
+    background: #e0e0e0;
+    border: none;
+    padding: 8px;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+.card-details .full { width: 90%; margin-bottom: 10px; }
+
+/* Button */
+.place-order-btn {
+    width: 100%;
+    padding: 15px;
+    background: #ffe082;
+    border: 2px solid #333;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.place-order-btn:hover { background: #ffd54f; }
