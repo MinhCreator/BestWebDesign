@@ -1,4 +1,107 @@
-/* Tận dụng biến màu sẵn có trong global.css, bổ sung thêm nếu cần */
+/* global variables */
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* Common Style Variables */
+
+  /* Color */
+  --color-black: #000;
+  --color-dimgray-100: #6b6565;
+  --color-dimgray-200: rgba(107, 101, 101, 0.18);
+  --color-gainsboro-100: #e6e6e6;
+  --color-gainsboro-200: #d9d9d9;
+  --color-khaki: #ffd470;
+  --color-lightgreen: #6ace56;
+  --color-orange: #ffb814;
+  --color-tomato: #ff5252;
+  --color-white: #fff;
+
+  /* Gap */
+  --gap-18: 18px;
+  --gap-20: 20px;
+  --gap-26: 26px;
+  --gap-36: 36px;
+  --gap-41: 41px;
+  --gap-6_6: 6.6px;
+  --gap-7_2: 7.2px;
+
+  /* Padding */
+  --padding-0: 0px;
+  --padding-1: 1px;
+  --padding-2: 2px;
+  --padding-3: 3px;
+  --padding-4: 4px;
+  --padding-5: 5px;
+  --padding-6: 6px;
+  --padding-15: 15px;
+  --padding-20: 20px;
+  --padding-32: 32px;
+  --padding-36: 36px;
+  --padding-73: 73px;
+
+  /* BorderRadius */
+  --br-126: 126px;
+
+  /* Font */
+  --font-ibm-plex-sans: IBM Plex Sans;
+  --font-racing-sans-one: Racing Sans One;
+
+  /* FontSize */
+  --fs-19: 19px;
+  --fs-23: 23px;
+  --fs-27: 27px;
+  --fs-30: 30px;
+  --fs-32: 32px;
+  --fs-36: 36px;
+  --fs-40: 40px;
+  --fs-42: 42px;
+  --fs-45: 45px;
+  --fs-50: 50px;
+  --fs-56: 56px;
+  --fs-70: 70px;
+  --fs-23_3: 23.3px;
+  --fs-29_1: 29.1px;
+  --fs-5_6: 5.6px;
+  --fs-6_5: 6.5px;
+  --fs-6_7: 6.7px;
+  --fs-8_2: 8.2px;
+
+  /* Borders */
+  --border-1: 1.1px solid var(--color-gainsboro-200);
+
+  /* Shadows */
+  --text-shadow-1:
+    1px 0 0 var(--color-white), 0 1px 0 var(--color-white),
+    -1px 0 0 var(--color-white), 0 -1px 0 var(--color-white);
+
+  /* WidthHeights */
+  --height-30: 30px;
+  --height-34: 34px;
+  --height-45: 45px;
+  --min-w-690: 690px;
+  --width-45: 45px;
+  --width-67: 67px;
+  --width-111: 111px;
+  --width-160: 160px;
+  --width-294: 294px;
+  --width-511: 511px;
+  --width-530: 530px;
+  --width-1014: 1014px;
+  --width-29_5: 29.5px;
+  --width-51_5: 51.5px;
+
+  /* LetterSpacings */
+  --ls-0_01: 0.01;
+
+  --left-0: 0px;
+  --left--20: -20px;
+  --top-0: 0px;
+}
+
+
 :root {
   --color-black: #000;
   --color-dimgray-100: #6b6565;
