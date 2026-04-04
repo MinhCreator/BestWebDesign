@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #07070732;
     display: flex;
     justify-content: center;
     padding: 20px;
@@ -17,6 +17,14 @@ body {
 .checkout-layout {
     display: flex;
     gap: 50px;
+}
+.back-btn{
+    top: 20px;
+    left: 20px;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 /* Billing Section */
@@ -80,6 +88,50 @@ form input, form select {
     cursor: pointer;
     margin-top: 20px;
     border-radius: 8px;
+    transition: 0.4s;
 }
 
-.place-order-btn:hover { background: #ffd54f; }
+.place-order-btn:hover { 
+    background: #ffd54f;
+    box-shadow: 7px 5px 56px -14px #ffe082;
+ }
+
+ .place-order-btn:active {
+    transform: scale(0.97);
+    box-shadow: 7px 5px 56px -10px #ffe082;
+}
+
+
+/* From Uiverse.io by Jedi-hongbin */
+.goBack-btn {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    font-weight: 700;
+}
+
+.goBack-btn>svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+}
+
+.goBack-btn:hover>svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+}
+
+.goBack-btn:hover {
+    box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+    transform: translateY(-2px);
+}
