@@ -162,9 +162,9 @@
 .j-add-btn {
     width: 100%;
     padding: 10px;
-    background-color: #fbd38d; /* Màu vàng cam */
+    background-color: #5b46f9; 
     border: 1px solid #111827;
-    color: #111827;
+    color: #ffffff;
     font-weight: 600;
     font-size: 13px;
     border-radius: 4px;
@@ -174,7 +174,7 @@
     transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 .j-add-btn:hover {
-    background-color: #f6ad55;
+    background-color: #4a39cc;
 }
 
 /* Hiển thị nút khi hover thẻ */
