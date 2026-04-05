@@ -6,8 +6,273 @@
     <title>Nike Alpha All-Purpose Gen Z</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/style/shoes/shoes_Nike_Air_Zoom.css">
+    <link rel="stylesheet" href="/src/style/sellbag.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/src/style/footer.css" />
+    <link rel="stylesheet" type="text/css" href="/src/style/global.css" />
 </head>
 <body>
+
+    <header
+      class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50"
+    >
+      <div class="flex flex-wrap items-center justify-between gap-5 w-full">
+        <a href="javascript:void(0)" class="max-sm:hidden"
+          ><img src="/src/public/icon/logo_full.svg" alt="logo" class="w-50"
+        /></a>
+        <a
+          href="javascript:void(0)"
+          class="sm:hidden md:hidden lg:hidden max-sm:block"
+          ><img src="/src/public/icon/logo-lite.svg" alt="logo" class="w-20"
+        /></a>
+
+        <div
+          id="collapseMenu"
+          class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50"
+        >
+          <button
+            id="toggleClose"
+            class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border border-gray-200 cursor-pointer"
+          >
+            <img src="/src/public/icon/cross.svg" alt="" />
+          </button>
+
+          <ul
+            class="lg:flex gap-x-2 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50"
+          >
+            <li class="mb-6 md:hidden lg:hidden max-lg:block">
+              <a href="javascript:void(0)"
+                ><img
+                  src="/src/public/icon/logo_full.svg"
+                  alt="logo"
+                  class="w-40"
+                />
+              </a>
+            </li>
+
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/home.html"
+                class="hover:text-blue-700 text-blue-700 block font-medium text-[15px]"
+                >Home</a
+              >
+            </li>
+
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/new.html"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >News</a
+              >
+            </li>
+
+            <li
+              class="relative list-none max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3"
+            >
+              <a
+                onclick="toggleMenu()"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px] inline-flex items-center justify-center"
+              >
+                Shop
+                <img src="../public/icon/narrowDown.svg" alt="" />
+              </a>
+
+              <ul
+                id="dropdown-menu"
+                class="absolute hidden bg-white shadow-lg mt-2 w-40 z-10 rounded-md"
+              >
+                <li class="p-2 rounded-md">
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                    >Jogging</a
+                  >
+                </li>
+                <li class="p-2 rounded-md">
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                    >Cycling</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="javascript:void(0)"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >Tracking</a
+              >
+            </li>
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/Rank.html"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >Leaderboard</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex max-lg:ml-auto space-x-4">
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="/src/public/icon/search.svg" alt="Search" />
+          </button>
+
+          <div class="cart-wrapper" id="cart-wrapper">
+            <button id="cart-toggle-btn" class="cart-btn">
+              <img src="/src/public/icon/cart.svg" alt="Cart" />
+              <span class="cart-badge">2</span>
+            </button>
+
+            <div id="cart-dropdown" class="cart-dropdown hidden">
+              <div class="cart-header">
+                <h3>Giỏ hàng của bạn <span>(2 sản phẩm)</span></h3>
+              </div>
+
+              <div class="cart-items">
+                <div class="cart-item">
+                  <img src="/src/public/cyrene.jpg" alt="Geforce Now" class="item-img" />
+                  <div class="item-info">
+                    <h4>Anta Skate x Cyrene</h4>
+                    <p class="item-desc-blue">Cyrene Collab Skateboarding</p>
+                    <p class="item-desc-gray"></p>
+                    <div class="item-price">2140.000đ</div>
+                  </div>
+                  <div class="item-actions">
+                    <button class="delete-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-trash" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <div class="qty-control">
+                      <button class="qty-btn">−</button>
+                      <input type="text" value="1" class="qty-input" readonly />
+                      <button class="qty-btn">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cart-item">
+                  <img src="/src/public/Nike_Air_Zoom.webp" alt="Giày Nike" class="item-img" />
+                  <div class="item-info">
+                    <h4>Giày Nike Air Zoom</h4>
+                    <p class="item-desc-blue">Giày chạy bộ thể thao</p>
+                    <div class="item-price">1.500.000đ</div>
+                  </div>
+                  <div class="item-actions">
+                    <button class="delete-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-trash" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <div class="qty-control">
+                      <button class="qty-btn">−</button>
+                      <input type="text" value="1" class="qty-input" readonly />
+                      <button class="qty-btn">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-footer">
+                <button onclick="window.location.href='bill.html'" class="checkout-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-card" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+                  Thanh toán
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="/src/public/icon/user.svg" alt="User" />
+          </button>
+
+          <button id="toggleOpen" class="lg:hidden cursor-pointer">
+            <svg
+              class="w-7 h-7"
+              fill="#000"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <script src="../script/navbar.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cartToggleBtn = document.getElementById('cart-toggle-btn');
+        const cartDropdown = document.getElementById('cart-dropdown');
+
+        if(cartToggleBtn && cartDropdown) {
+            // Bấm vào icon để bật/tắt giỏ hàng
+            cartToggleBtn.addEventListener('click', function(event) {
+              event.stopPropagation(); 
+              cartDropdown.classList.toggle('hidden');
+            });
+
+            // Tự động tắt
+            document.addEventListener('click', function(event) {
+              if (!cartDropdown.contains(event.target) && !cartToggleBtn.contains(event.target)) {
+                cartDropdown.classList.add('hidden');
+              }
+            });
+
+            // Ngăn giỏ hàng đóng lại khi click vào bên trong nó
+            cartDropdown.addEventListener('click', function(event) {
+              event.stopPropagation();
+            });
+
+            // Tăng giảm số lượng sản phẩm trong giỏ hàng
+            // Tìm tất cả các cụm chứa nút cộng/trừ
+            const qtyControls = document.querySelectorAll('.qty-control');
+            
+            qtyControls.forEach(control => {
+              // Lấy ra nút trừ, ô nhập số và nút cộng trong từng cụm
+              const btnMinus = control.children[0];
+              const inputQty = control.children[1];
+              const btnPlus = control.children[2];
+
+              // Trừ
+              btnMinus.addEventListener('click', function() {
+                let currentValue = parseInt(inputQty.value);
+                // Chỉ giảm nếu số lượng đang lớn hơn 1
+                if (currentValue > 1) {
+                  inputQty.value = currentValue - 1;
+                }
+              });
+
+              // Cộng
+              btnPlus.addEventListener('click', function() {
+                let currentValue = parseInt(inputQty.value);
+                inputQty.value = currentValue + 1;
+              });
+            });
+        }
+      });
+    </script>
 
     <main class="container">
         <nav class="breadcrumb">
@@ -164,6 +429,89 @@
             </div>
         </section>
     </main>
-
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">
+          <h2>
+            <img src="/src/public/icon/Logo-Lite.png" width="15%" alt="" />
+            ENDURANCE HUB
+          </h2>
+          <p>
+            Founded in 2026, we focus on delivering the latest news and insights
+            on walking and cycling, bringing you updates, tips, and trends from
+            around the world to support your fitness journey and active
+            lifestyle.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h3>About Us</h3>
+            <ul>
+              <li>Careers</li>
+              <li><a href="/src/template/team.html">Partnerships</a></li>
+              <li>Terms & Conditions</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Help</h3>
+            <ul>
+              <li>FAQ</li>
+              <li>Size Guide</li>
+              <li>Delivery & Returns</li>
+              <li>Orders & Payments</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Account</h3>
+            <ul>
+              <li>Profile</li>
+              <li>Coupons</li>
+              <li>Wish List</li>
+              <li>Notifications</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Social Media</h3>
+            <ul class="social-list">
+              <li>
+                <img
+                  src="/src/public/icon/facebook.svg"
+                  alt="Facebook"
+                  class="social-icon"
+                />
+                <span><a href="https://www.facebook.com/minh.quan.ngo.932383">Facebook</a></span>
+              </li>
+              <li>
+                <img src="/src/public/icon/instagram.svg" alt="" class="social-icon" />
+                <span>Instagram</span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/youtube.svg"
+                  alt="Youtube"
+                  class="social-icon"
+                />
+                <span><a href="https://www.youtube.com/channel/UChYwzphrJLJKzu_tmLtxM2Q">Youtube</a></span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/github.svg"
+                  alt="Github"
+                  class="social-icon github-icon"
+                />
+                <span><a href="https://github.com/QuannmGIT">Github</a></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>Copyright © 2026 Endurance Hub®. All rights reserved.</p>
+        <div class="legal">
+          <span>Privacy Policy</span> • <span>Sitemap</span>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>

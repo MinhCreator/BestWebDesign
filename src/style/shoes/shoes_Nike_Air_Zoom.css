@@ -17,6 +17,7 @@ body {
     color: #6b7280;
     font-size: 14px;
     margin-bottom: 24px;
+    margin-top: 24px;
 }
 .breadcrumb strong {
     color: #111827;
@@ -138,7 +139,13 @@ body {
     margin-bottom: 24px;
 }
 .product-stats .dot { color: #d1d5db; margin: 0 8px; }
-.review-count { color: #6b7280; font-weight: 400; }
+.review-count { 
+    background-color: white;
+    color: #6b6565;
+    width: 200px;
+    padding-left: 20px;
+    font-weight: 400; 
+}
 
 .price-section {
     display: flex;
