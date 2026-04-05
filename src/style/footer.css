@@ -24,8 +24,8 @@ body {
 }
 
 .footer {
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--bg-table-header);
+  color: var(--color-black);
   padding: 60px 0 30px;
 }
 
@@ -46,7 +46,7 @@ body {
 }
 
 
-.footer-brand p { font-size: 1rem; line-height: 1.6; color: #ccc; }
+.footer-brand p { font-size: 1rem; line-height: 1.6; color: #000000; }
 
 .footer-links {
   display: flex;
@@ -54,7 +54,7 @@ body {
 }
 
 .footer-links h3 { 
-  color: #ffffff;
+  color: #000000;
   font-size: 1.2rem; 
   margin-bottom: 20px; 
 }
@@ -66,7 +66,7 @@ body {
   gap: 10px; 
 }
 .footer-links li { 
-  color: #ccc; 
+  color: #000000; 
   cursor: pointer; 
 }
 .footer-links li:hover { 
@@ -79,7 +79,7 @@ body {
   border-top: 1px solid #333;
   padding-top: 20px;
   font-size: 0.9rem;
-  color: #888;
+  color: #000000;
 }
 
 /* --- Social Media Icons --- */
@@ -97,7 +97,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px; /* Khoảng cách giữa icon và chữ */
-  color: #ccc;
+  color: #000000;
   cursor: pointer;
   transition: color 0.2s ease;
 }

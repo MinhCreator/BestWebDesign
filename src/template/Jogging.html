@@ -1,30 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AERO|EDGE - Push Your Limits</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- load tailwind library -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- load daisyui library and theme -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-
-    <style type="text/tailwindcss">
-      @theme {
-        --color-brand-cyan: #06b6d4;
-        --color-brand-orange: #f97316;
-        --color-brand-dark: #0f1219;
-        --color-brand-light: #f8fafc;
-      }
-    </style>
+    <title>Jogging</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style/globalQ.css" />
+    <link rel="stylesheet" href="/src/style/Rank.css" />
     <link rel="stylesheet" href="/src/style/sellbag.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
@@ -42,14 +25,12 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" type="text/css" href="../style/global.css" />
-
-    <link rel="stylesheet" href="/src/style/home.css" />
-    <link rel="stylesheet" href="/src/style/footer.css" />
-  </head>
-  <body class="antialiased selection:bg-brand-cyan selection:text-white">
     
-    <!-- Navbar -->
+    <link rel="stylesheet" href="/src/style/global.css" />
+    <link rel="stylesheet" href="/src/style/footer.css" />
+    <link rel="stylesheet" href="/src/style/Jogging.css" />
+</head>
+<body class="bg-white">
     <header
       class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50"
     >
@@ -296,133 +277,151 @@
       });
     </script>
 
-    
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center hero-bg">
-      <div class="absolute inset-0 hero-overlay-gradient"></div>
-      
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
-        <div class="max-w-2xl">
-          <div class="inline-block px-4 py-1.5 rounded-full border border-gray-200 bg-white/70 backdrop-blur-sm mb-6">
-            <span class="text-sm font-semibold tracking-wider text-brand-cyan uppercase">New Collection 2026</span>
-          </div>
-          <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black outfit-font leading-tight mb-6 tracking-tight text-gray-900 drop-shadow-sm">
-            PUSH YOUR <br />
-            <span class="text-gradient">LIMITS.</span>
-          </h1>
-          <p class="text-xl sm:text-2xl text-gray-600 mb-10 font-light leading-relaxed max-w-xl">
-            Engineered for elite performance. Premium cycling gear and high-tech footwear designed to break records.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-5">
-            <button class="btn btn-lg rounded-full px-10 btn-primary-custom outfit-font font-bold text-lg">Explore Gear</button>
-            <button class="btn btn-lg rounded-full px-10 btn-outline-glow outfit-font font-bold text-lg">Join Us</button>
-          </div>
-          
-          <div class="mt-16 flex items-center gap-8">
-            <div>
-              <p class="text-3xl font-bold outfit-font text-gray-900">50k+</p>
-              <p class="text-sm text-gray-500">Active Athletes</p>
-            </div>
-            <div class="w-px h-10 bg-gray-300"></div>
-            <div>
-              <p class="text-3xl font-bold outfit-font text-gray-900">120+</p>
-              <p class="text-sm text-gray-500">Premium Products</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Categories / Features Section -->
-    <section class="py-24 bg-white relative z-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center mb-16">
-          <h2 class="text-4xl sm:text-5xl font-black outfit-font mb-4 text-gray-900">ENGINEERED <span class="text-brand-cyan">CATEGORIES</span></h2>
-          <p class="text-gray-600 max-w-2xl mx-auto text-lg">Discover our specialized collections built for maximum aerodynamic efficiency, endurance, and comfort.</p>
+    <main class="jogging-container">
+        <div class="j-breadcrumb">
+            Shop / <strong>Jogging</strong>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          <!-- Cycling Card -->
-          <div class="card card-hover shadow-lg overflow-hidden rounded-2xl group cursor-pointer border border-gray-100">
-            <div class="card-zoom h-64 w-full relative">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10"></div>
-              <img src="../public/image/cycling.png" alt="Cycling Gear" class="w-full h-full object-cover" />
-              <div class="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur-md p-2 rounded-full border border-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-              </div>
-            </div>
-            <div class="card-body p-8 relative z-20 bg-white">
-              <h3 class="card-title text-2xl outfit-font font-bold text-gray-900 mb-2 group-hover:text-brand-cyan transition-colors">Aero Cycling</h3>
-              <p class="text-gray-600 text-sm mb-6 leading-relaxed">Carbon fiber frames, aerodynamic apparel, and accessories built for the pursuit of pure velocity.</p>
-              <div class="card-actions justify-start">
-                <button class="text-brand-cyan font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-sm tracking-wider">
-                  Shop Cycling <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </button>
-              </div>
-            </div>
-          </div>
+        <div class="j-page-header">
+            <h1 class="j-title">Jogging Shoes</h1>
+            <span class="j-count">(57)</span>
+        </div>
 
-          <!-- Jogging Card -->
-          <div class="card card-hover orange-accent shadow-lg overflow-hidden rounded-2xl group cursor-pointer border border-gray-100">
-            <div class="card-zoom h-64 w-full relative">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10"></div>
-              <img src="../public/image/jogging.png" alt="Jogging Apparel" class="w-full h-full object-cover" />
-              <div class="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur-md p-2 rounded-full border border-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              </div>
+        <div class="j-filter-bar">
+            <div class="j-filter-left">
+                <button class="j-filter-btn">Price <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button class="j-filter-btn">Size <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button class="j-filter-btn">Sale <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button class="j-filter-btn">Brand <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button class="j-filter-btn">Color <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
             </div>
-            <div class="card-body p-8 relative z-20 bg-white">
-              <h3 class="card-title text-2xl outfit-font font-bold text-gray-900 mb-2 group-hover:text-brand-orange transition-colors">Endurance Run</h3>
-              <p class="text-gray-600 text-sm mb-6 leading-relaxed">Moisture-wicking, ultra-lightweight running gear that adapts to your environment and movement.</p>
-              <div class="card-actions justify-start">
-                <button class="text-brand-orange font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-sm tracking-wider">
-                  Shop Running <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </button>
-              </div>
+            <div class="j-filter-right">
+                <button class="j-filter-btn font-medium">Newest <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
             </div>
-          </div>
+        </div>
 
-          <!-- Footwear Card -->
-          <div class="card card-hover shadow-lg overflow-hidden rounded-2xl group cursor-pointer border border-gray-100">
-            <div class="card-zoom h-64 w-full relative">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10"></div>
-              <img src="../public/image/footwear.png" alt="Premium Footwear" class="w-full h-full object-cover" />
-              <div class="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur-md p-2 rounded-full border border-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
-              </div>
+        <div class="j-product-grid">
+            
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeMaxfly2_BrightCrimson_LimeBlast_MintFoam_WashedCoral.html'">
+                <div class="j-badge">NEW</div>
+                <button class="j-heart-btn filled"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Maxfly 2 (Athletics Sprinting Spikes)/Bright Crimson_Lime Blast_Mint Foam_Washed Coral/AIR+ZOOM+MAXFLY+2 (1).avif" alt="Nike Maxfly 2" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Maxfly 2 (Bright Crimson)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 180.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
             </div>
-            <div class="card-body p-8 relative z-20 bg-white">
-              <h3 class="card-title text-2xl outfit-font font-bold text-gray-900 mb-2 group-hover:text-brand-cyan transition-colors">Next-Gen Footwear</h3>
-              <p class="text-gray-600 text-sm mb-6 leading-relaxed">Responsive cushioning and unparalleled grip. The ultimate foundation for your athletic journey.</p>
-              <div class="card-actions justify-start">
-                <button class="text-brand-cyan font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase text-sm tracking-wider">
-                  Shop Footwear <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </button>
-              </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeMaxfly2_White_Bright Crimson_Hyper Turquoise_Obsidian.html'">
+                <button class="j-heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Maxfly 2 (Athletics Sprinting Spikes)/White_Bright Crimson_Hyper Turquoise_Obsidian/AIR+ZOOM+MAXFLY+2 (2).avif" alt="Nike Maxfly 2 White" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Maxfly 2 (White)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 180.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
             </div>
-          </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeStructure26(Men\'sRoadRunningShoes)Black_CoolGrey_MetallicSilver_White.html'">
+                <div class="j-badge">15% OFF</div>
+                <button class="j-heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Cool Grey_Metallic Silver_White/NIKE+STRUCTURE+26 (1).avif" alt="Nike Structure 26" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Structure 26 (Black/Cool Grey)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 110.00</span>
+                    <span class="j-old-price">$ 130.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeStructure26(Men\'sRoadRunningShoes)Black_Iron Grey_Black.html'">
+                <button class="j-heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (2).avif" alt="Nike Structure 26" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Structure 26 (Black/Iron Grey)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 130.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
+
+             <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeStructure26(Men\'sRoadRunningShoes)White_MineralSlate_HyperPink_Black.html'">
+                <div class="j-badge">SALE</div>
+                <button class="j-heart-btn filled"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/White_Mineral Slate_Hyper Pink_Black/NIKE+STRUCTURE+26 (2).avif" alt="Nike Structure 26" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Structure 26 (White/Hyper Pink)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 105.00</span>
+                    <span class="j-old-price">$ 130.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeWinflo12(Women\'sRoadRunningShoes)Black_Dark Smoke Grey_White.html'">
+                <button class="j-heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Winflo 12 (Women's Road Running Shoes)/Black_Dark Smoke Grey_White/W+NIKE+AIR+WINFLO+12 .avif" alt="Nike Winflo 12" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Winflo 12 (Women's Black)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 95.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeWinflo12(Women\'sRoadRunningShoes)Off-White_BarelyGreen_LightSilver_MetallicSilver.html'">
+                <button class="j-heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Winflo 12 (Women's Road Running Shoes)/Off-White_Barely Green_Light Silver_Metallic Silver/W+NIKE+AIR+WINFLO+12 (2).avif" alt="Nike Winflo 12" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Winflo 12 (Off-White/Barely Green)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 95.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeZoomRivalFly4(RoadRacingShoes)CitronPulse_VoltIce_HyperViolet_IndigoBurst.html'">
+                <div class="j-badge">NEW</div>
+                <button class="j-heart-btn filled"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Zoom Rival Fly 4 (Road Racing Shoes)/Citron Pulse_Volt Ice_Hyper Violet_Indigo Burst/NIKE+AIR+ZOOM+RIVAL+FLY+4 (1).avif" alt="Nike Zoom Rival Fly 4" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Zoom Rival Fly 4 (Citron Pulse)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 100.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
+
+            <div class="j-card hover:border-gray-900 transition-colors" onclick="window.location.href='Shoes/NikeZoomRivalFly4(RoadRacingShoes)White_PurePlatinum_ObsidianMist_Gridiron.html'">
+                <button class="j-heart-btn"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                <img src="/src/public/Shoes/Jogging/Nike Zoom Rival Fly 4 (Road Racing Shoes)/White_Pure Platinum_Obsidian Mist_Gridiron/NIKE+AIR+ZOOM+RIVAL+FLY+4 (2).avif" alt="Nike Zoom Rival Fly 4" class="j-product-img">
+                <div class="j-brand">Nike</div>
+                <div class="j-name">Nike Zoom Rival Fly 4 (White/Platinum)</div>
+                <div class="j-price-row">
+                    <span class="j-price">$ 100.00</span>
+                </div>
+                <button class="j-add-btn">View Details</button>
+            </div>
 
         </div>
-      </div>
-    </section>
 
-    <!-- Promotional / Stats Banner -->
-    <section class="py-20 relative overflow-hidden">
-      <!-- Background elements -->
-      <div class="absolute top-0 left-0 w-full h-full bg-[#f1f5f9]"></div>
-      <div class="absolute -top-[50%] -left-[10%] w-[50%] h-[150%] bg-brand-cyan/10 blur-[120px] rounded-full transform rotate-12"></div>
-      <div class="absolute -bottom-[50%] -right-[10%] w-[50%] h-[150%] bg-brand-orange/10 blur-[120px] rounded-full transform -rotate-12"></div>
-      
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <h2 class="text-3xl md:text-5xl font-black outfit-font text-gray-900 mb-8">READY TO DEFY GRAVITY?</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10 font-light">Join thousands of athletes who have upgraded their performance with ENDURANCE|HUB advanced gear.</p>
-        <button class="btn btn-lg rounded-full px-12 btn-primary-custom outfit-font font-bold text-lg border-0 shadow-[0_4px_20px_rgba(6,182,212,0.3)] hover:shadow-[0_4px_30px_rgba(6,182,212,0.5)]">Unlock Your Potential</button>
-      </div>
-    </section>
+        <div class="j-pagination">
+            <button class="j-page-nav">&lt; Previous</button>
+            <div class="j-page-numbers">
+                <span class="j-page-num active">1</span>
+                <span class="j-page-num">2</span>
+                <span class="j-page-dots">...</span>
+                <span class="j-page-num">3</span>
 
-    <!-- Footer -->
+            </div>
+            <button class="j-page-nav">Next &gt;</button>
+        </div>
+    </main>
+
     <footer class="footer">
       <div class="container footer-content">
         <div class="footer-brand">
@@ -506,8 +505,6 @@
           <span>Privacy Policy</span> • <span>Sitemap</span>
         </div>
       </div>
-    </footer>    
-
-    
-  </body>
+    </footer>
+</body>
 </html>

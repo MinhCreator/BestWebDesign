@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <title>Bố cục trang tin tức</title>
+  <title>News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="/src/style/sellbag.css">
       <link rel="stylesheet" href="/src/style/footer.css">
@@ -27,17 +27,17 @@
   <link rel="stylesheet" href="/src/style/new.css" />
 </head>
 <body>
-      <header
+    <header
       class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50"
     >
       <div class="flex flex-wrap items-center justify-between gap-5 w-full">
         <a href="javascript:void(0)" class="max-sm:hidden"
-          ><img src="../public/icon/logo_full.svg" alt="logo" class="w-50"
+          ><img src="/src/public/icon/logo_full.svg" alt="logo" class="w-50"
         /></a>
         <a
           href="javascript:void(0)"
           class="sm:hidden md:hidden lg:hidden max-sm:block"
-          ><img src="../public/icon/logo-lite.svg" alt="logo" class="w-20"
+          ><img src="/src/public/icon/logo-lite.svg" alt="logo" class="w-20"
         /></a>
 
         <div
@@ -48,7 +48,7 @@
             id="toggleClose"
             class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border border-gray-200 cursor-pointer"
           >
-            <img src="../public/icon/cross.svg" alt="" />
+            <img src="/src/public/icon/cross.svg" alt="" />
           </button>
 
           <ul
@@ -57,7 +57,7 @@
             <li class="mb-6 md:hidden lg:hidden max-lg:block">
               <a href="javascript:void(0)"
                 ><img
-                  src="../public/icon/logo_full.svg"
+                  src="/src/public/icon/logo_full.svg"
                   alt="logo"
                   class="w-40"
                 />
@@ -97,14 +97,14 @@
               >
                 <li class="p-2 rounded-md">
                   <a
-                    href="javascript:void(0)"
+                    href="/src/template/Jogging.html"
                     class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
                     >Jogging</a
                   >
                 </li>
                 <li class="p-2 rounded-md">
                   <a
-                    href="javascript:void(0)"
+                    href="/src/template/Cycling.html"
                     class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
                     >Cycling</a
                   >
@@ -132,12 +132,12 @@
           <button
             class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
           >
-            <img src="../public/icon/search.svg" alt="Search" />
+            <img src="/src/public/icon/search.svg" alt="Search" />
           </button>
 
           <div class="cart-wrapper" id="cart-wrapper">
             <button id="cart-toggle-btn" class="cart-btn">
-              <img src="../public/icon/cart.svg" alt="Cart" />
+              <img src="/src/public/icon/cart.svg" alt="Cart" />
               <span class="cart-badge">2</span>
             </button>
 
@@ -153,7 +153,7 @@
                     <h4>Anta Skate x Cyrene</h4>
                     <p class="item-desc-blue">Cyrene Collab Skateboarding</p>
                     <p class="item-desc-gray"></p>
-                    <div class="item-price">2140.000đ</div>
+                    <div class="item-price">$ 120.00</div>
                   </div>
                   <div class="item-actions">
                     <button class="delete-btn">
@@ -168,11 +168,11 @@
                 </div>
 
                 <div class="cart-item">
-                  <img src="/src/public/Nike_Air_Zoom.webp" alt="Giày Nike" class="item-img" />
+                  <img src="/src/public/Shoes/Jogging/Nike Maxfly 2 (Athletics Sprinting Spikes)/Bright Crimson_Lime Blast_Mint Foam_Washed Coral/AIR+ZOOM+MAXFLY+2 (1).avif" alt="Giày Nike" class="item-img" />
                   <div class="item-info">
-                    <h4>Giày Nike Air Zoom</h4>
-                    <p class="item-desc-blue">Giày chạy bộ thể thao</p>
-                    <div class="item-price">1.500.000đ</div>
+                    <h4>Nike Maxfly 2 </h4>
+                    <p class="item-desc-blue">(Athletics Sprinting Spikes)</p>
+                    <div class="item-price">$ 90.00</div>
                   </div>
                   <div class="item-actions">
                     <button class="delete-btn">
@@ -198,7 +198,7 @@
           <button
             class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
           >
-            <img src="../public/icon/user.svg" alt="User" />
+            <img src="/src/public/icon/user.svg" alt="User" />
           </button>
 
           <button id="toggleOpen" class="lg:hidden cursor-pointer">
@@ -279,13 +279,13 @@
       <div class="main-column">
         
         <section class="featured-news">
-          <button class="featured-news-btn" onclick="window.location.href='/src/template/Shoes/shoes_Nike_Air_Zoom.html'">
+          <button class="featured-news-btn" onclick="window.location.href='/src/template/Shoes/NikeMaxfly2_BrightCrimson_LimeBlast_MintFoam_WashedCoral.html'">
           <div class="featured-img">
-            <img src="https://placehold.co/800x500/cccccc/ffffff?" alt="Ảnh minh họa">
+            <img src="/src/public/Shoes/Jogging/Nike Maxfly 2 (Athletics Sprinting Spikes)/Bright Crimson_Lime Blast_Mint Foam_Washed Coral/AIR+ZOOM+MAXFLY+2 (1).avif" alt="Ảnh minh họa">
           </div>
           <div class="featured-text">
-            <h2>Alpha All-Purpose Gen Z</h2>
-            <p>Introducing the Nike Alpha All-Purpose Gen Z, the latest evolution in athletic footwear designed to meet the dynamic needs of the modern generation.</p>
+            <h2>Nike Maxfly 2 (Athletics Sprinting Spikes)</h2>
+            <p>Fit for the world's fastest, the Maxfly 2 is back in the starting blocks. Designed for the 100 metres to 400 metres (hurdle events too), it combines an ultra-aggressive feel with the responsiveness of an Air Zoom unit to propel the speediest sprinters on the planet.</p>
           </div>
           </button>
         </section>
