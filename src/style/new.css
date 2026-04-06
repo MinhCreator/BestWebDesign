@@ -310,6 +310,10 @@ p {
   margin-left: -8px; /* Bù trừ khoảng đệm để ảnh không bị đẩy lệch lề lúc bình thường */
   margin-right: 8px;
 }
+.sidebar-item img {
+ width: 150px;
+  max-height: 60px;
+}
 
 .sidebar-item:hover {
   background-color: #f4f6f9; /* Màu nền xám/xanh nhạt khi di chuột */
