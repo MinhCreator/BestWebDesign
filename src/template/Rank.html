@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 <!doctype html>
+=======
+<!DOCTYPE html>
+>>>>>>> origin/combine
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Endurance Hub Leaderboard</title>
+<<<<<<< HEAD
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -13,6 +18,13 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../style/Rank.css" />
+=======
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style/globalQ.css" />
+    <link rel="stylesheet" href="/src/style/Rank.css" />
+    <link rel="stylesheet" href="/src/style/sellbag.css">
+>>>>>>> origin/combine
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css"
@@ -29,7 +41,12 @@
       rel="stylesheet"
       type="text/css"
     />
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="../style/global.css" />
+=======
+    <link rel="stylesheet" type="text/css" href="/src/style/global.css" />
+    <link rel="stylesheet" href="/src/style/footer.css" />
+>>>>>>> origin/combine
   </head>
   <body>
     <header
@@ -37,15 +54,25 @@
     >
       <div class="flex flex-wrap items-center justify-between gap-5 w-full">
         <a href="javascript:void(0)" class="max-sm:hidden"
+<<<<<<< HEAD
           ><img src="../public/icon/logo_full.svg" alt="logo" class="w-50"
+=======
+          ><img src="/src/public/icon/logo_full.svg" alt="logo" class="w-50"
+>>>>>>> origin/combine
         /></a>
         <a
           href="javascript:void(0)"
           class="sm:hidden md:hidden lg:hidden max-sm:block"
+<<<<<<< HEAD
           ><img src="../public/icon/logo-lite.svg" alt="logo" class="w-20"
         /></a>
 
         <!-- collapse menu -->
+=======
+          ><img src="/src/public/icon/logo-lite.svg" alt="logo" class="w-20"
+        /></a>
+
+>>>>>>> origin/combine
         <div
           id="collapseMenu"
           class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50"
@@ -54,7 +81,11 @@
             id="toggleClose"
             class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border border-gray-200 cursor-pointer"
           >
+<<<<<<< HEAD
             <img src="../public/icon/cross.svg" alt="" />
+=======
+            <img src="/src/public/icon/cross.svg" alt="" />
+>>>>>>> origin/combine
           </button>
 
           <ul
@@ -63,7 +94,11 @@
             <li class="mb-6 md:hidden lg:hidden max-lg:block">
               <a href="javascript:void(0)"
                 ><img
+<<<<<<< HEAD
                   src="../public/icon/logo_full.svg"
+=======
+                  src="/src/public/icon/logo_full.svg"
+>>>>>>> origin/combine
                   alt="logo"
                   class="w-40"
                 />
@@ -80,13 +115,20 @@
 
             <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
               <a
+<<<<<<< HEAD
                 href="javascript:void(0)"
+=======
+                href="/src/template/new.html"
+>>>>>>> origin/combine
                 class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
                 >News</a
               >
             </li>
 
+<<<<<<< HEAD
             <!-- Dropdown menu -->
+=======
+>>>>>>> origin/combine
             <li
               class="relative list-none max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3"
             >
@@ -98,21 +140,32 @@
                 <img src="../public/icon/narrowDown.svg" alt="" />
               </a>
 
+<<<<<<< HEAD
               <!-- Hidden by default -->
+=======
+>>>>>>> origin/combine
               <ul
                 id="dropdown-menu"
                 class="absolute hidden bg-white shadow-lg mt-2 w-40 z-10 rounded-md"
               >
                 <li class="p-2 rounded-md">
                   <a
+<<<<<<< HEAD
                     href="javascript:void(0)"
+=======
+                    href="/src/template/Jogging.html"
+>>>>>>> origin/combine
                     class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
                     >Jogging</a
                   >
                 </li>
                 <li class="p-2 rounded-md">
                   <a
+<<<<<<< HEAD
                     href="javascript:void(0)"
+=======
+                    href="/src/template/Cycling.html"
+>>>>>>> origin/combine
                     class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
                     >Cycling</a
                   >
@@ -140,6 +193,7 @@
           <button
             class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
           >
+<<<<<<< HEAD
             <img src="../public/icon/search.svg" alt="" />
           </button>
           <button
@@ -153,6 +207,75 @@
             class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
           >
             <img src="../public/icon/user.svg" alt="" />
+=======
+            <img src="/src/public/icon/search.svg" alt="Search" />
+          </button>
+
+          <div class="cart-wrapper" id="cart-wrapper">
+            <button id="cart-toggle-btn" class="cart-btn">
+              <img src="/src/public/icon/cart.svg" alt="Cart" />
+              <span class="cart-badge">2</span>
+            </button>
+
+            <div id="cart-dropdown" class="cart-dropdown hidden">
+              <div class="cart-header">
+                <h3>Giỏ hàng của bạn <span>(2 sản phẩm)</span></h3>
+              </div>
+
+              <div class="cart-items">
+                <div class="cart-item">
+                  <img src="/src/public/cyrene.jpg" alt="Geforce Now" class="item-img" />
+                  <div class="item-info">
+                    <h4>Anta Skate x Cyrene</h4>
+                    <p class="item-desc-blue">Cyrene Collab Skateboarding</p>
+                    <p class="item-desc-gray"></p>
+                    <div class="item-price">$ 120.00</div>
+                  </div>
+                  <div class="item-actions">
+                    <button class="delete-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-trash" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <div class="qty-control">
+                      <button class="qty-btn">−</button>
+                      <input type="text" value="1" class="qty-input" readonly />
+                      <button class="qty-btn">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cart-item">
+                  <img src="/src/public/Shoes/Jogging/Nike Maxfly 2 (Athletics Sprinting Spikes)/Bright Crimson_Lime Blast_Mint Foam_Washed Coral/AIR+ZOOM+MAXFLY+2 (1).avif" alt="Giày Nike" class="item-img" />
+                  <div class="item-info">
+                    <h4>Nike Maxfly 2 </h4>
+                    <p class="item-desc-blue">(Athletics Sprinting Spikes)</p>
+                    <div class="item-price">$ 90.00</div>
+                  </div>
+                  <div class="item-actions">
+                    <button class="delete-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-trash" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <div class="qty-control">
+                      <button class="qty-btn">−</button>
+                      <input type="text" value="1" class="qty-input" readonly />
+                      <button class="qty-btn">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-footer">
+                <button onclick="window.location.href='bill.html'" class="checkout-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-card" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+                  Thanh toán
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="/src/public/icon/user.svg" alt="User" />
+>>>>>>> origin/combine
           </button>
 
           <button id="toggleOpen" class="lg:hidden cursor-pointer">
@@ -174,15 +297,74 @@
     </header>
     <script src="../script/navbar.js"></script>
 
+<<<<<<< HEAD
     <main class="container">
       <div class="breadcrumb">
         <span>Menus /</span> <strong>Leaderboard</strong>
+=======
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cartToggleBtn = document.getElementById('cart-toggle-btn');
+        const cartDropdown = document.getElementById('cart-dropdown');
+
+        if(cartToggleBtn && cartDropdown) {
+            // Bấm vào icon để bật/tắt giỏ hàng
+            cartToggleBtn.addEventListener('click', function(event) {
+              event.stopPropagation(); 
+              cartDropdown.classList.toggle('hidden');
+            });
+
+            // Tự động tắt
+            document.addEventListener('click', function(event) {
+              if (!cartDropdown.contains(event.target) && !cartToggleBtn.contains(event.target)) {
+                cartDropdown.classList.add('hidden');
+              }
+            });
+
+            // Ngăn giỏ hàng đóng lại khi click vào bên trong nó
+            cartDropdown.addEventListener('click', function(event) {
+              event.stopPropagation();
+            });
+
+            // Tăng giảm số lượng sản phẩm trong giỏ hàng
+            // Tìm tất cả các cụm chứa nút cộng/trừ
+            const qtyControls = document.querySelectorAll('.qty-control');
+            
+            qtyControls.forEach(control => {
+              // Lấy ra nút trừ, ô nhập số và nút cộng trong từng cụm
+              const btnMinus = control.children[0];
+              const inputQty = control.children[1];
+              const btnPlus = control.children[2];
+
+              // Trừ
+              btnMinus.addEventListener('click', function() {
+                let currentValue = parseInt(inputQty.value);
+                // Chỉ giảm nếu số lượng đang lớn hơn 1
+                if (currentValue > 1) {
+                  inputQty.value = currentValue - 1;
+                }
+              });
+
+              // Cộng
+              btnPlus.addEventListener('click', function() {
+                let currentValue = parseInt(inputQty.value);
+                inputQty.value = currentValue + 1;
+              });
+            });
+        }
+      });
+    </script>
+
+    <main class="container">
+      <div class="breadcrumb">
+>>>>>>> origin/combine
       </div>
 
       <h1 class="page-title">ENDURACE HUB LEADERBOARD</h1>
 
       <section class="podium">
         <div class="podium-card place-2">
+<<<<<<< HEAD
           <img src="../public/Avatar/NguyenVanThang.png" alt="Hạng 2" />
         </div>
         <div class="podium-card place-1">
@@ -194,6 +376,19 @@
       </section>
 
       <section class="leaderboard">
+=======
+          <img src="/src/public/Avatar/NguyenVanThang.png" alt="Hạng 2" />
+        </div>
+        <div class="podium-card place-1">
+          <img src="/src/public/Avatar/NgoMinhQuan.png" alt="Hạng 1" />
+        </div>
+        <div class="podium-card place-3">
+          <img src="/src/public/Avatar/BuiVoNhatMinh.png" alt="Hạng 3" />
+        </div>
+      </section>
+
+      <section class="leaderboard"> 
+>>>>>>> origin/combine
         <div class="board-header">
           <div class="col-rank">Rank</div>
           <div class="col-name">Name</div>
@@ -202,6 +397,7 @@
         </div>
 
         <div class="board-row">
+<<<<<<< HEAD
           <div class="col-rank">
             <span class="rank-num">1</span> <span class="trend up">↑ 3</span>
           </div>
@@ -209,11 +405,19 @@
           <div class="col-nation">
             <span class="nation-name">VietNam</span>
             <img src="../public/Flags/Vietnam.png" alt="VN" class="flag" />
+=======
+          <div class="col-rank"><span class="rank-num">1</span> <span class="trend up">↑ 3</span></div>
+          <div class="col-fullname">Ngô Minh Quân</div>
+          <div class="col-nation">
+            <span class="nation-name">VietNam</span> 
+            <img src="/src/public/Flags/Vietnam.png" alt="VN" class="flag" />
+>>>>>>> origin/combine
           </div>
           <div class="col-numpoints">999</div>
         </div>
 
         <div class="board-row">
+<<<<<<< HEAD
           <div class="col-rank">
             <span class="rank-num">2</span> <span class="trend up">↑ 1</span>
           </div>
@@ -221,11 +425,19 @@
           <div class="col-nation">
             <span class="nation-name">LGBT</span>
             <img src="../public/Flags/LGBT.png" alt="LGBT" class="flag" />
+=======
+          <div class="col-rank"><span class="rank-num">2</span> <span class="trend up">↑ 1</span></div>
+          <div class="col-fullname">Nguyễn Văn Thắng</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+>>>>>>> origin/combine
           </div>
           <div class="col-numpoints">666</div>
         </div>
 
         <div class="board-row">
+<<<<<<< HEAD
           <div class="col-rank">
             <span class="rank-num">3</span> <span class="trend down">↓ 2</span>
           </div>
@@ -233,11 +445,19 @@
           <div class="col-nation">
             <span class="nation-name">VietNam</span>
             <img src="../public/Flags/Vietnam.png" alt="LGBT" class="flag" />
+=======
+          <div class="col-rank"><span class="rank-num">3</span> <span class="trend down">↓ 2</span></div>
+          <div class="col-fullname">Bùi Võ Nhật Minh</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+>>>>>>> origin/combine
           </div>
           <div class="col-numpoints">333</div>
         </div>
 
         <div class="board-row">
+<<<<<<< HEAD
           <div class="col-rank">
             <span class="rank-num">4</span> <span class="trend down">↓ 2</span>
           </div>
@@ -245,11 +465,19 @@
           <div class="col-nation">
             <span class="nation-name">Thailand</span>
             <img src="../public/Flags/Thailand.png" alt="TH" class="flag" />
+=======
+          <div class="col-rank"><span class="rank-num">4</span> <span class="trend down">↓ 2</span></div>
+          <div class="col-fullname">Đặng Đại Khiêm</div>
+          <div class="col-nation">
+            <span class="nation-name">Thailand</span> 
+            <img src="/src/public/Flags/Thailand.png" alt="TH" class="flag" />
+>>>>>>> origin/combine
           </div>
           <div class="col-numpoints">300</div>
         </div>
 
         <div class="board-row">
+<<<<<<< HEAD
           <div class="col-rank">
             <span class="rank-num">5</span> <span class="trend up">↑ 36</span>
           </div>
@@ -257,11 +485,19 @@
           <div class="col-nation">
             <span class="nation-name">LGBT</span>
             <img src="../public/Flags/LGBT.png" alt="LGBT" class="flag" />
+=======
+          <div class="col-rank"><span class="rank-num">5</span> <span class="trend up">↑ 36</span></div>
+          <div class="col-fullname">Lê Đăng Anh Tuấn</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+>>>>>>> origin/combine
           </div>
           <div class="col-numpoints">236</div>
         </div>
 
         <div class="board-row">
+<<<<<<< HEAD
           <div class="col-rank">
             <span class="rank-num">6</span> <span class="trend down">↓ 1</span>
           </div>
@@ -269,6 +505,13 @@
           <div class="col-nation">
             <span class="nation-name">LGBT</span>
             <img src="../public/Flags/LGBT.png" alt="LGBT" class="flag" />
+=======
+          <div class="col-rank"><span class="rank-num">6</span> <span class="trend down">↓ 1</span></div>
+          <div class="col-fullname">Nguyễn Tiến Trường</div>
+          <div class="col-nation">
+            <span class="nation-name">LGBT</span> 
+            <img src="/src/public/Flags/LGBT.png" alt="LGBT" class="flag" />
+>>>>>>> origin/combine
           </div>
           <div class="col-numpoints">222</div>
         </div>
@@ -279,7 +522,11 @@
       <div class="container footer-content">
         <div class="footer-brand">
           <h2>
+<<<<<<< HEAD
             <img src="../public/icon/Logo-Lite.png" width="15%" alt="" />
+=======
+            <img src="/src/public/icon/Logo-Lite.png" width="15%" alt="" />
+>>>>>>> origin/combine
             ENDURANCE HUB
           </h2>
           <p>
@@ -294,7 +541,11 @@
             <h3>About Us</h3>
             <ul>
               <li>Careers</li>
+<<<<<<< HEAD
               <li><a href="../template/team.html">Partnerships</a></li>
+=======
+              <li><a href="/src/template/team.html">Partnerships</a></li>
+>>>>>>> origin/combine
               <li>Terms & Conditions</li>
               <li>Contact Us</li>
             </ul>
@@ -322,6 +573,7 @@
             <ul class="social-list">
               <li>
                 <img
+<<<<<<< HEAD
                   src="../public/icon/facebook.svg"
                   alt="Facebook"
                   class="social-icon"
@@ -338,10 +590,21 @@
                   alt=""
                   class="social-icon"
                 />
+=======
+                  src="/src/public/icon/facebook.svg"
+                  alt="Facebook"
+                  class="social-icon"
+                />
+                <span><a href="https://www.facebook.com/minh.quan.ngo.932383">Facebook</a></span>
+              </li>
+              <li>
+                <img src="/src/public/icon/instagram.svg" alt="" class="social-icon" />
+>>>>>>> origin/combine
                 <span>Instagram</span>
               </li>
               <li>
                 <img
+<<<<<<< HEAD
                   src="../public/icon/youtube.svg"
                   alt="Youtube"
                   class="social-icon"
@@ -356,6 +619,17 @@
               <li>
                 <img
                   src="../public/icon/github.svg"
+=======
+                  src="/src/public/icon/youtube.svg"
+                  alt="Youtube"
+                  class="social-icon"
+                />
+                <span><a href="https://www.youtube.com/channel/UChYwzphrJLJKzu_tmLtxM2Q">Youtube</a></span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/github.svg"
+>>>>>>> origin/combine
                   alt="Github"
                   class="social-icon github-icon"
                 />
@@ -372,5 +646,11 @@
         </div>
       </div>
     </footer>
+<<<<<<< HEAD
   </body>
 </html>
+=======
+
+  </body>
+</html>
+>>>>>>> origin/combine

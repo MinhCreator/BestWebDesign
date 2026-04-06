@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike Structure 26 (Men's Road Running Shoes)</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style/shoes/shoes_Nike_Air_Zoom.css">
+    <link rel="stylesheet" href="/src/style/sellbag.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+   
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/src/style/footer.css" />
+    <link rel="stylesheet" type="text/css" href="/src/style/global.css" />
+</head>
+<body>
+
+    <header
+      class="flex shadow-md py-4 px-4 sm:px-10 bg-white min-h-[70px] tracking-wide relative z-50"
+    >
+      <div class="flex flex-wrap items-center justify-between gap-5 w-full">
+        <a href="javascript:void(0)" class="max-sm:hidden"
+          ><img src="/src/public/icon/logo_full.svg" alt="logo" class="w-50"
+        /></a>
+        <a
+          href="javascript:void(0)"
+          class="sm:hidden md:hidden lg:hidden max-sm:block"
+          ><img src="/src/public/icon/logo-lite.svg" alt="logo" class="w-20"
+        /></a>
+
+        <div
+          id="collapseMenu"
+          class="max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50"
+        >
+          <button
+            id="toggleClose"
+            class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border border-gray-200 cursor-pointer"
+          >
+            <img src="/src/public/icon/cross.svg" alt="" />
+          </button>
+
+          <ul
+            class="lg:flex gap-x-2 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50"
+          >
+            <li class="mb-6 md:hidden lg:hidden max-lg:block">
+              <a href="javascript:void(0)"
+                ><img
+                  src="/src/public/icon/logo_full.svg"
+                  alt="logo"
+                  class="w-40"
+                />
+              </a>
+            </li>
+
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/home.html"
+                class="hover:text-blue-700 text-blue-700 block font-medium text-[15px]"
+                >Home</a
+              >
+            </li>
+
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/new.html"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >News</a
+              >
+            </li>
+
+            <li
+              class="relative list-none max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3"
+            >
+              <a href="/src/template/Jogging.html"
+                onclick="toggleMenu()"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px] inline-flex items-center justify-center"
+              >
+                Shop
+                <img src="../public/icon/narrowDown.svg" alt="" />
+              </a>
+
+              <ul
+                id="dropdown-menu"
+                class="absolute hidden bg-white shadow-lg mt-2 w-40 z-10 rounded-md"
+              >
+                <li class="p-2 rounded-md">
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                    >Jogging</a
+                  >
+                </li>
+                <li class="p-2 rounded-md">
+                  <a
+                    href="javascript:void(0)"
+                    class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                    >Cycling</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="javascript:void(0)"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >Tracking</a
+              >
+            </li>
+            <li class="max-lg:border-b max-lg:border-gray-300 max-lg:py-3 px-3">
+              <a
+                href="/src/template/Rank.html"
+                class="hover:text-blue-700 text-slate-900 block font-medium text-[15px]"
+                >Leaderboard</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex max-lg:ml-auto space-x-4">
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="/src/public/icon/search.svg" alt="Search" />
+          </button>
+
+          <div class="cart-wrapper" id="cart-wrapper">
+            <button id="cart-toggle-btn" class="cart-btn">
+              <img src="/src/public/icon/cart.svg" alt="Cart" />
+              <span class="cart-badge">2</span>
+            </button>
+
+            <div id="cart-dropdown" class="cart-dropdown hidden">
+              <div class="cart-header">
+                <h3>Giỏ hàng của bạn <span>(2 sản phẩm)</span></h3>
+              </div>
+
+              <div class="cart-items">
+                <div class="cart-item">
+                  <img src="/src/public/cyrene.jpg" alt="Geforce Now" class="item-img" />
+                  <div class="item-info">
+                    <h4>Anta Skate x Cyrene</h4>
+                    <p class="item-desc-blue">Cyrene Collab Skateboarding</p>
+                    <p class="item-desc-gray"></p>
+                    <div class="item-price">2140.000đ</div>
+                  </div>
+                  <div class="item-actions">
+                    <button class="delete-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-trash" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <div class="qty-control">
+                      <button class="qty-btn">−</button>
+                      <input type="text" value="1" class="qty-input" readonly />
+                      <button class="qty-btn">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cart-item">
+                  <img src="/src/public/Nike_Air_Zoom.webp" alt="Giày Nike" class="item-img" />
+                  <div class="item-info">
+                    <h4>Giày Nike Air Zoom</h4>
+                    <p class="item-desc-blue">Giày chạy bộ thể thao</p>
+                    <div class="item-price">1.500.000đ</div>
+                  </div>
+                  <div class="item-actions">
+                    <button class="delete-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon-trash" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                    <div class="qty-control">
+                      <button class="qty-btn">−</button>
+                      <input type="text" value="1" class="qty-input" readonly />
+                      <button class="qty-btn">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-footer">
+                <button onclick="window.location.href='bill.html'" class="checkout-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-card" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+                  Thanh toán
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            class="px-2 py-2 text-sm font-medium cursor-pointer tracking-tight text-slate-500 bg-transparent hover:bg-gray-50 rounded-xl transition-all w-10"
+          >
+            <img src="/src/public/icon/user.svg" alt="User" />
+          </button>
+
+          <button id="toggleOpen" class="lg:hidden cursor-pointer">
+            <svg
+              class="w-7 h-7"
+              fill="#000"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <script src="../script/navbar.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cartToggleBtn = document.getElementById('cart-toggle-btn');
+        const cartDropdown = document.getElementById('cart-dropdown');
+
+        if(cartToggleBtn && cartDropdown) {
+            // Bấm vào icon để bật/tắt giỏ hàng
+            cartToggleBtn.addEventListener('click', function(event) {
+              event.stopPropagation(); 
+              cartDropdown.classList.toggle('hidden');
+            });
+
+            // Tự động tắt
+            document.addEventListener('click', function(event) {
+              if (!cartDropdown.contains(event.target) && !cartToggleBtn.contains(event.target)) {
+                cartDropdown.classList.add('hidden');
+              }
+            });
+
+            // Ngăn giỏ hàng đóng lại khi click vào bên trong nó
+            cartDropdown.addEventListener('click', function(event) {
+              event.stopPropagation();
+            });
+
+            // Tăng giảm số lượng sản phẩm trong giỏ hàng
+            // Tìm tất cả các cụm chứa nút cộng/trừ
+            const qtyControls = document.querySelectorAll('.qty-control');
+            
+            qtyControls.forEach(control => {
+              // Lấy ra nút trừ, ô nhập số và nút cộng trong từng cụm
+              const btnMinus = control.children[0];
+              const inputQty = control.children[1];
+              const btnPlus = control.children[2];
+
+              // Trừ
+              btnMinus.addEventListener('click', function() {
+                let currentValue = parseInt(inputQty.value);
+                // Chỉ giảm nếu số lượng đang lớn hơn 1
+                if (currentValue > 1) {
+                  inputQty.value = currentValue - 1;
+                }
+              });
+
+              // Cộng
+              btnPlus.addEventListener('click', function() {
+                let currentValue = parseInt(inputQty.value);
+                inputQty.value = currentValue + 1;
+              });
+            });
+        }
+      });
+    </script>
+
+    <main class="container">
+        <nav class="breadcrumb">
+            Shops / Jogging / <strong>Nike Structure 26 (Men's Road Running Shoes)</strong>
+        </nav>
+
+        <div class="product-layout">
+            <section class="product-gallery">
+                <div class="main-image-container">
+                    <span class="discount-badge">25% OFF</span>
+                    <img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (2).avif" alt="Nike Maxfly 2" class="main-image">
+                </div>
+                
+                <div class="thumbnail-list">
+                    <div class="thumbnail active"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26.avif" alt="thumb"></div>
+                    <div class="thumbnail"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (1).avif" alt="thumb"></div>
+                    <div class="thumbnail"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (3).avif" alt="thumb"></div>
+                    <div class="thumbnail"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (4).avif" alt="thumb"></div>
+                    <div class="thumbnail"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (5).avif" alt="thumb"></div>
+                    <div class="thumbnail more-thumb">
+                        <img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (6).avif                                                                                                 " alt="thumb">
+                        <div class="overlay">+2</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-info">
+                <div class="brand-actions">
+                    <span class="brand">Nike</span>
+                    <div class="actions">
+                        <button class="icon-btn"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+                        <button class="icon-btn"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+                    </div>
+                </div>
+
+                <h1 class="product-title">Nike Structure 26 (Men's Road Running Shoes)</h1>
+                
+                <p class="product-desc">
+                  Full-length foam plus arch support equals our most steady ride.
+                  <br>
+                  The supportive cushioning in the Structure 26 provides steadiness for everyday runs. A full-length ReactX midsole delivers a cushioned yet stable transition from heel to toe-off. Plus, a tried-and-tested midfoot support system wraps around your arch and heel to provide a firm platform.
+                  <br>
+                  <b>Plush upper</b>
+                  <br>
+                  The plush collar and tongue, along with the engineered mesh upper, provide comfort, support and an improved fit.
+                  <br>
+                  <b>Midfoot Support</b>
+                  <br>
+                  Our midfoot support system helps to slow the rate of ankle eversion and provides a stable platform for transition and toe-off.
+                  <br>
+                  <b>ReactX foam</b>
+                  <br>
+                  The full-length ReactX midsole delivers cushion, comfort and increased energy return. It's 13% more responsive than previous React technology.
+                  <br>
+                  <b>What's new?</b>
+                  <br>
+                  With ReactX foam underfoot and a higher stack height for stability and support
+                  <br>
+                  Lighter, more flexible rubber in the forefoot of the outsole for cushioning
+                  <br>
+                  High-abrasion rubber in the heel for increased durability
+                  <br>
+                  <strong>See more</strong>
+                </p>
+
+                <div class="product-stats">
+                    <span class="sold">4K+ sold</span>
+                    <span class="dot">•</span>
+                    <span class="rating">⭐ 4.8 <span class="review-count">(156 reviews)</span></span>
+                </div>
+
+                <div class="price-section">
+                    <span class="current-price">$ 90.00</span>
+                    <span class="old-price">$ 120.00</span>
+                </div>
+
+                <div class="variants">
+                    <div class="variant-group">
+                        <div class="variant-header">
+                            <span><strong>Color :</strong> Black_Iron Grey_Black</span>
+                            <a href="#" class="size-guide">Size Guide</a>
+                        </div>
+                        <div class="color-options">
+                            <button class="color-box"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Cool Grey_Metallic Silver_White/NIKE+STRUCTURE+26 (1).avif"></button>
+                            <button class="color-box active"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/Black_Iron Grey_Black/NIKE+STRUCTURE+26 (2).avif" alt="Black_Iron Grey_Black"></button>
+                            <button class="color-box"><img src="/src/public/Shoes/Jogging/Nike Structure 26 (Men's Road Running Shoes)/White_Mineral Slate_Hyper Pink_Black/NIKE+STRUCTURE+26 (2).avif" alt="White_Mineral Slate_Hyper Pink_Black"></button>
+                        </div>
+                    </div>
+
+                    <div class="variant-group">
+                        <div class="variant-header">
+                            <span><strong>Size:</strong> 7.5 (42.0)</span>
+                        </div>
+                        <div class="size-grid">
+                            <button class="size-btn">5.5 (38.5)</button>
+                            <button class="size-btn">6.0 (39.0)</button>
+                            <button class="size-btn">6.5 (40.5)</button>
+                            <button class="size-btn">7.0 (41.5)</button>
+                            <button class="size-btn active">7.5 (42.0)</button>
+                            <button class="size-btn">8.0 (42.5)</button>
+                            <button class="size-btn">8.5 (43.5)</button>
+                            <button class="size-btn">9.0 (44.5)</button>
+                            <button class="size-btn">9.5 (45.0)</button>
+                            <button class="size-btn">10.0 (45.5)</button>
+                            <button class="size-btn">10.5 (46.5)</button>
+                            <button class="size-btn">11.0 (48.0)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-cart-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Add to Cart
+                </button>
+            </section>
+        </div>
+
+        <section class="tabs-section">
+            <div class="tabs-header">
+                <button class="tab active">Reviews</button>
+                <button class="tab">Questions</button>
+            </div>
+
+            <div class="reviews-content">
+                <div class="reviews-summary">
+                    <div class="score">4.8</div>
+                    <div class="stars-info">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-count">Based on 138 reviews</div>
+                    </div>
+                </div>
+
+                <div class="reviews-toolbar">
+                    <button class="write-review-btn">Write a Review</button>
+                    <select class="sort-select">
+                        <option>Highest Rating</option>
+                        <option>Newest</option>
+                    </select>
+                </div>
+
+                <div class="review-list">
+                    <div class="review-item">
+                        <div class="user-avatar">PG</div>
+                        <div class="review-body">
+                            <div class="user-name">Peggy G. <span class="verified">✔ Verified Buyer</span></div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                            <div class="review-text">Excellent Product</div>
+                        </div>
+                        <div class="review-date">1 week ago</div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="user-avatar">ML</div>
+                        <div class="review-body">
+                            <div class="user-name">Mona Lisa <span class="verified">✔ Verified Buyer</span></div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                            <div class="review-text">Perfect fit. Superb Quality!</div>
+                        </div>
+                        <div class="review-date">2 week ago</div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="user-avatar">ML</div>
+                        <div class="review-body">
+                            <div class="user-name">Mona Lisa <span class="verified">✔ Verified Buyer</span></div>
+                            <div class="review-stars">⭐⭐⭐⭐☆</div>
+                            <div class="review-text">Great Quality. Packaging could be better.</div>
+                        </div>
+                        <div class="review-date">2 week ago</div>
+                    </div>
+                </div>
+
+                <div class="read-all-container">
+                    <button class="read-all-btn">Read All Reviews</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">
+          <h2>
+            <img src="/src/public/icon/Logo-Lite.png" width="15%" alt="" />
+            ENDURANCE HUB
+          </h2>
+          <p>
+            Founded in 2026, we focus on delivering the latest news and insights
+            on walking and cycling, bringing you updates, tips, and trends from
+            around the world to support your fitness journey and active
+            lifestyle.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h3>About Us</h3>
+            <ul>
+              <li>Careers</li>
+              <li><a href="/src/template/team.html">Partnerships</a></li>
+              <li>Terms & Conditions</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Help</h3>
+            <ul>
+              <li>FAQ</li>
+              <li>Size Guide</li>
+              <li>Delivery & Returns</li>
+              <li>Orders & Payments</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Account</h3>
+            <ul>
+              <li>Profile</li>
+              <li>Coupons</li>
+              <li>Wish List</li>
+              <li>Notifications</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Social Media</h3>
+            <ul class="social-list">
+              <li>
+                <img
+                  src="/src/public/icon/facebook.svg"
+                  alt="Facebook"
+                  class="social-icon"
+                />
+                <span><a href="https://www.facebook.com/minh.quan.ngo.932383">Facebook</a></span>
+              </li>
+              <li>
+                <img src="/src/public/icon/instagram.svg" alt="" class="social-icon" />
+                <span>Instagram</span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/youtube.svg"
+                  alt="Youtube"
+                  class="social-icon"
+                />
+                <span><a href="https://www.youtube.com/channel/UChYwzphrJLJKzu_tmLtxM2Q">Youtube</a></span>
+              </li>
+              <li>
+                <img
+                  src="/src/public/icon/github.svg"
+                  alt="Github"
+                  class="social-icon github-icon"
+                />
+                <span><a href="https://github.com/QuannmGIT">Github</a></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>Copyright © 2026 Endurance Hub®. All rights reserved.</p>
+        <div class="legal">
+          <span>Privacy Policy</span> • <span>Sitemap</span>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

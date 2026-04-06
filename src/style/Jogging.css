@@ -1,0 +1,239 @@
+.jogging-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #111827;
+}
+
+/* Breadcrumb */
+.j-breadcrumb {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+.j-breadcrumb strong {
+    color: #111827;
+}
+
+/* Page Header (Title + Count) */
+.j-page-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+.j-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+.j-count {
+    color: #6b7280;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Filter Bar */
+.j-filter-bar {
+    background-color: #fdfaf6; /* Màu nền beige nhạt */
+    padding: 16px 24px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.j-filter-left {
+    display: flex;
+    gap: 32px;
+}
+.j-filter-btn {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    color: #4b5563;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.j-filter-btn:hover {
+    color: #111827;
+}
+
+/* Product Grid */
+.j-product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 cột */
+    gap: 24px;
+}
+
+/* Product Card */
+.j-card {
+    position: relative;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+.j-card:hover, .active-card {
+    border-color: #111827;
+}
+
+/* Các thành phần trong Card */
+.j-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    z-index: 2;
+}
+.j-heart-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    z-index: 2;
+}
+.j-heart-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+.j-heart-btn.filled {
+    color: #6b7280;
+}
+.j-heart-btn.filled svg {
+    fill: currentColor;
+    stroke: none;
+}
+
+.j-product-img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    margin-bottom: 24px;
+    mix-blend-mode: multiply; /* Giúp ảnh nền trắng chìm vào mượt hơn */
+}
+.j-brand {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-bottom: 4px;
+}
+.j-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+.j-price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.j-price {
+    font-weight: 700;
+    font-size: 15px;
+    color: #111827;
+}
+.j-old-price {
+    font-size: 13px;
+    color: #9ca3af;
+    text-decoration: line-through;
+}
+
+/* Nút Add to Cart (Ẩn mặc định, hiện khi Hover) */
+.j-add-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #5b46f9; 
+    border: 1px solid #111827;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0; /* Ẩn đi */
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.j-add-btn:hover {
+    background-color: #4a39cc;
+}
+
+/* Hiển thị nút khi hover thẻ */
+.j-card:hover .j-add-btn,
+.always-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Pagination */
+.j-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 24px;
+    margin-top: 48px;
+}
+.j-page-nav {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4b5563;
+    cursor: pointer;
+}
+.j-page-nav:hover {
+    color: #111827;
+}
+.j-page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.j-page-num {
+    font-size: 15px;
+    color: #6b7280;
+    cursor: pointer;
+}
+.j-page-num.active {
+    font-weight: 700;
+    color: #111827;
+}
+.j-page-dots {
+    color: #9ca3af;
+    letter-spacing: 2px;
+}
+
+/* Responsive cơ bản */
+@media screen and (max-width: 1200px) {
+    .j-product-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media screen and (max-width: 992px) {
+    .j-product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media screen and (max-width: 768px) {
+    .j-product-grid { grid-template-columns: repeat(2, 1fr); }
+    .j-filter-bar { flex-direction: column; gap: 16px; align-items: flex-start; }
+}
+@media screen and (max-width: 480px) {
+    .j-product-grid { grid-template-columns: 1fr; }
+}
