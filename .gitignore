@@ -10,12 +10,13 @@ Desktop.ini # Windows desktop icon settings
 *.swp   # Vim swap files
 *.swo   # Vim swap files
 *.swn   # Vim swap files
-
+node_modules/
 # Temporary or cache files
 *.tmp   # Temporary files
 *.temp  # Temporary files
 *.cache   # Cache files
 *.bak   # Backup files
-
+*.pyc
+.venv/
 # Others
 *.log   # Log files

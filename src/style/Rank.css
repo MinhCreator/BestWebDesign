@@ -1,108 +1,4 @@
-/* global variables */
-body {
-  margin: 0;
-  line-height: normal;
-}
-
-:root {
-  /* Common Style Variables */
-
-  /* Color */
-  --color-black: #000;
-  --color-dimgray-100: #6b6565;
-  --color-dimgray-200: rgba(107, 101, 101, 0.18);
-  --color-gainsboro-100: #e6e6e6;
-  --color-gainsboro-200: #d9d9d9;
-  --color-khaki: #ffd470;
-  --color-lightgreen: #6ace56;
-  --color-orange: #ffb814;
-  --color-tomato: #ff5252;
-  --color-white: #fff;
-
-  /* Gap */
-  --gap-18: 18px;
-  --gap-20: 20px;
-  --gap-26: 26px;
-  --gap-36: 36px;
-  --gap-41: 41px;
-  --gap-6_6: 6.6px;
-  --gap-7_2: 7.2px;
-
-  /* Padding */
-  --padding-0: 0px;
-  --padding-1: 1px;
-  --padding-2: 2px;
-  --padding-3: 3px;
-  --padding-4: 4px;
-  --padding-5: 5px;
-  --padding-6: 6px;
-  --padding-15: 15px;
-  --padding-20: 20px;
-  --padding-32: 32px;
-  --padding-36: 36px;
-  --padding-73: 73px;
-
-  /* BorderRadius */
-  --br-126: 126px;
-
-  /* Font */
-  --font-ibm-plex-sans: IBM Plex Sans;
-  --font-racing-sans-one: Racing Sans One;
-
-  /* FontSize */
-  --fs-19: 19px;
-  --fs-23: 23px;
-  --fs-27: 27px;
-  --fs-30: 30px;
-  --fs-32: 32px;
-  --fs-36: 36px;
-  --fs-40: 40px;
-  --fs-42: 42px;
-  --fs-45: 45px;
-  --fs-50: 50px;
-  --fs-56: 56px;
-  --fs-70: 70px;
-  --fs-23_3: 23.3px;
-  --fs-29_1: 29.1px;
-  --fs-5_6: 5.6px;
-  --fs-6_5: 6.5px;
-  --fs-6_7: 6.7px;
-  --fs-8_2: 8.2px;
-
-  /* Borders */
-  --border-1: 1.1px solid var(--color-gainsboro-200);
-
-  /* Shadows */
-  --text-shadow-1:
-    1px 0 0 var(--color-white), 0 1px 0 var(--color-white),
-    -1px 0 0 var(--color-white), 0 -1px 0 var(--color-white);
-
-  /* WidthHeights */
-  --height-30: 30px;
-  --height-34: 34px;
-  --height-45: 45px;
-  --min-w-690: 690px;
-  --width-45: 45px;
-  --width-67: 67px;
-  --width-111: 111px;
-  --width-160: 160px;
-  --width-294: 294px;
-  --width-511: 511px;
-  --width-530: 530px;
-  --width-1014: 1014px;
-  --width-29_5: 29.5px;
-  --width-51_5: 51.5px;
-
-  /* LetterSpacings */
-  --ls-0_01: 0.01;
-
-  --left-0: 0px;
-  --left--20: -20px;
-  --top-0: 0px;
-}
-
-
-:root {
+.rank-page {
   --color-black: #000;
   --color-dimgray-100: #6b6565;
   --color-white: #fff;
@@ -110,59 +6,58 @@ body {
   --color-red: #ff5252;
   --border-color: #d9d9d9;
   --bg-table-header: #e6e6e6;
-  --font-primary: 'IBM Plex Sans', sans-serif;
+  --font-primary: 'Inter', sans-serif;
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-primary);
-  background-color: var(--color-white);
-  color: var(--color-black);
-}
-
-/* Container giúp bóp nội dung lại ở giữa màn hình Full HD (1920px) */
-.container {
-  max-width: 1440px; /* Chiều rộng tối ưu cho màn Full HD */
+.rank-container {
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 40px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* --- Typography --- */
 .breadcrumb {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--color-dimgray-100);
-  margin-top: 60px;
   margin-bottom: 20px;
 }
-.breadcrumb strong { font-weight: 600; color: var(--color-black); }
+.breadcrumb strong {
+  font-weight: 600;
+  color: var(--color-black);
+}
 
 .page-title {
   text-align: center;
-  font-size: clamp(3rem, 5vw, 5rem); /* Tự động scale chữ theo màn hình */
+  font-size: clamp(2.5rem, 5vw, 4rem);
   color: var(--color-dimgray-100);
   font-weight: 700;
   margin-bottom: 60px;
   letter-spacing: 2px;
+  font-family: 'Outfit', sans-serif;
 }
 
 /* --- Podium (Top 3) --- */
 .podium {
   display: flex;
   justify-content: center;
-  align-items: center; 
-  gap: 50px; 
-  margin-bottom: 100px;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 80px;
 }
 
 .podium-card {
-  border-radius: 25px; /* Bo góc cho viền ngoài */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  background: var(--bg-table-header); /* Khung xám bao ngoài */
-  padding: 12px; 
-  box-sizing: border-box; /* Đảm bảo padding không làm méo kích thước tổng */
-  display: flex; 
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: var(--bg-table-header);
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.podium-card:hover {
+  transform: translateY(-10px);
 }
 
 .podium-card img {
@@ -170,250 +65,130 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px; 
+  border-radius: 15px;
 }
 
-/* Tinh chỉnh lại kích thước cho giống tỷ lệ trong ảnh thiết kế nhất */
-.place-1 { 
-  width: 460px; 
-  height: 600px; 
+.place-1 {
+  width: 400px;
+  height: 520px;
+  z-index: 2;
 }
 
-.place-2, .place-3 { 
-  width: 350px; 
-  height: 460px; 
+.place-2,
+.place-3 {
+  width: 300px;
+  height: 400px;
 }
 
-/* --- Leaderboard Table (CSS Grid) --- */
+/* --- Leaderboard Table --- */
 .leaderboard {
   margin-bottom: 100px;
 }
 
-.board-header, .board-row {
+.board-header,
+.board-row {
   display: grid;
-  /* Chia 4 cột: Cột 1 (1.5 phần), Cột 2 (3 phần), Cột 3 (2 phần), Cột 4 (1 phần) */
-  grid-template-columns: 1.5fr 3fr 2fr 1fr; 
+  grid-template-columns: 1fr 3fr 2fr 1fr;
   align-items: center;
   padding: 20px 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .board-header {
-  background-color: var(--bg-table-header);
+  background-color: #0f172a;
   border-radius: 10px;
   font-weight: 700;
   color: var(--color-white);
   text-align: center;
+  margin-bottom: 10px;
 }
 
-/* Tạo đường gạch dọc cho Header giống ảnh */
 .board-header div:not(:first-child) {
-  border-left: 2px solid var(--color-dimgray-100);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .board-row {
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   color: var(--color-dimgray-100);
   text-align: center;
   transition: background 0.2s ease;
 }
 
-.board-row:hover { background-color: rgba(0,0,0,0.02); }
-
-.col-rank { 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+.board-row:hover {
+  background-color: rgba(0, 0, 0, 0.02);
 }
-.rank-group {
+
+.col-rank {
   display: flex;
+  justify-content: center;
   align-items: center;
-  width: 90px; /* Chiều rộng cố định cho cả cụm */
-
-}
-.rank-num { 
-  width: 35px; /* Cố định chiều rộng để dù 1 chữ số hay 2 chữ số (10, 11) vẫn thẳng hàng */
-  text-align: right; /* Ép số sát về lề phải để đứng cạnh trend */
-  font-size: 2rem; 
-  font-weight: 700; 
-  color: var(--color-black); 
+  font-weight: 700;
 }
 
-.col-name { 
-  text-align: center; 
-  color: var(--color-white); 
-}
-.col-fullname { 
-  text-align: center; 
-  color: var(--color-black); 
+.rank-num {
+  font-size: 1.5rem;
+  color: var(--color-black);
+  margin-right: 10px;
 }
 
-/* Container chứa chữ và cờ */
-.col-nation { 
-  display: flex; 
-  justify-content: center; /* Căn giữa toàn bộ cụm quốc gia + cờ vào giữa cột */
-  align-items: center; 
+.trend {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.trend.up {
+  color: var(--color-green);
+}
+.trend.down {
+  color: var(--color-red);
 }
 
-/* Chữ hiển thị quốc gia */
-.nation-name {
-  width: 100px; 
-  text-align: right; /* Căn chữ sang lề phải */
-  margin-right: 15px; /* Khoảng cách giữa chữ và cờ */
-}
-.col-points { 
-  font-weight: 500; 
+.col-fullname {
+  color: var(--color-black);
+  font-weight: 600;
 }
 
-.trend { 
-  width: 55px; 
-  text-align: left; 
-  padding-left: 10px; 
-  font-size: 1.2rem; 
-  font-weight: 600; 
-}
-.trend.up { 
-  color: var(--color-green); 
-}
-.trend.down { 
-  color: var(--color-red); 
+.col-nation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .flag {
-  width: 45px; 
+  width: 32px;
   height: auto;
   border-radius: 4px;
-  flex-shrink: 0; /* Giúp cờ không bị bóp méo hình dạng */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Footer --- */
-.footer {
-  background-color: var(--color-black);
-  color: var(--color-white);
-  padding: 60px 0 30px;
+.col-numpoints {
+  font-weight: 700;
+  color: #4f46e5;
 }
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 60px;
-  margin-bottom: 40px;
-}
-
-.footer-brand { flex: 1; }
-.footer-brand h2 { color: #ffb814; font-family: 'Racing Sans One', sans-serif; }
-.footer-brand p { font-size: 1rem; line-height: 1.6; color: #ccc; }
-
-.footer-links {
-  display: flex;
-  gap: 80px;
-}
-
-.footer-links h3 { font-size: 1.2rem; margin-bottom: 20px; }
-.footer-links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.footer-links li { color: #ccc; cursor: pointer; }
-.footer-links li:hover { color: #ffb814; }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #333;
-  padding-top: 20px;
-  font-size: 0.9rem;
-  color: #888;
-}
-
-/* --- Social Media Icons --- */
-/* --- Danh sách Social Media --- */
-.social-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px; /* Khoảng cách các dòng */
-}
-
-.social-list li {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* Khoảng cách giữa icon và chữ */
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.social-list li:hover {
-  color: #ffb814;
-}
-
-/* --- Chỉnh kích thước chung cho Facebook, Youtube, Github --- */
-.social-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  flex-shrink: 0; /* Không bị bóp méo icon */
-}
-
-/* Tinh chỉnh riêng Github nếu file PNG có viền mờ xung quanh cần làm to lên một chút */
-.github-icon {
-  width: 26px;
-  height: 26px;
-  margin-left: -1px; /* Căn bù lại cho khớp với trục thẳng đứng của các icon khác */
-}
-
-/* --- Xếp chồng 3 Vector cho Instagram --- */
-.insta-group {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-}
-
-.insta-layer-1, 
-.insta-layer-2, 
-.insta-layer-3 {
-  position: absolute;
-}
-
-/* Vector 1: Khung vuông viền bo tròn */
-.insta-layer-1 {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Vector 2: Vòng tròn giữa (Top, Left, Right, Bottom khoảng 24.5%) */
-.insta-layer-2 {
-  top: 24.46%;
-  left: 24.46%;
-  width: 51.5%;
-  height: 51.5%;
-}
-
-/* Vector 3: Dấu chấm nhỏ (Top, Right khoảng 17%) */
-.insta-layer-3 {
-  top: 17.17%;
-  right: 17.17%;
-  width: 12.02%;
-  height: 12.02%;
-}
-
-/* Responsive cho màn hình nhỏ hơn nếu cần */
 @media screen and (max-width: 1024px) {
-  .podium { gap: 20px; }
-  .place-1 { width: 300px; height: 400px; }
-  .place-2, .place-3 { width: 220px; height: 300px; }
-  .footer-content { flex-direction: column; }
-  .footer-links { flex-wrap: wrap; }
+  .podium {
+    gap: 15px;
+  }
+  .place-1 {
+    width: 300px;
+    height: 400px;
+  }
+  .place-2,
+  .place-3 {
+    width: 220px;
+    height: 300px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .board-header, .board-row {
-    font-size: 1.1rem;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
+  .board-header,
+  .board-row {
+    font-size: 1rem;
+    grid-template-columns: 0.8fr 2fr 1.5fr 0.8fr;
   }
-  .col-name { padding-left: 10px; }
-  .podium { flex-direction: column; align-items: center; }
+  .podium {
+    flex-direction: column;
+    align-items: center;
+  }
 }
