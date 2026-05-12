@@ -2,21 +2,28 @@
 # OS generated files
 .DS_Store # macOS folder settings
 Thumbs.db # Windows image file cache
+review.md
+AGENTS.md
+implementation_plan.md
 Desktop.ini # Windows desktop icon settings
-
+dist/ #dist folder
 # Editor directories and files
 .vscode/   # Visual Studio Code settings
 .idea/   # IntelliJ IDEA settings
 *.swp   # Vim swap files
 *.swo   # Vim swap files
 *.swn   # Vim swap files
-node_modules/
+#environment
+node_modules/     #npm module
+.venv/            #python environment
+.agents/          #agent skills
+.agents/skills/          #agent skills
 # Temporary or cache files
 *.tmp   # Temporary files
 *.temp  # Temporary files
 *.cache   # Cache files
 *.bak   # Backup files
 *.pyc
-.venv/
+tempCodeRunnerFile.py
 # Others
 *.log   # Log files

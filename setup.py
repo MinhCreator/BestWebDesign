@@ -20,6 +20,10 @@ def install():
         # Determine the pip path (Windows vs Unix)
         pip_exe = venv_path / 'Scripts' / 'pip.exe' if os.name == 'nt' else venv_path / 'bin' / 'pip'
         
+        print("Activating virtual environment...")
+        active_venv = venv_path / 'Scripts' / 'activate' if os.name == 'nt' else venv_path / 'bin' / 'activate'
+        sp.Popen([str(active_venv)], check=True, shell=True)
+        
         print("Installing requirements...")
         sp.run([str(pip_exe), 'install', '-r', 'private/server/requirements.txt'], check=True)
 

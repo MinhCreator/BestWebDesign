@@ -1,8 +1,10 @@
-import Home from '@pages/Home'
-import Rank from '@pages/Rank'
-import News from '@pages/News'
-import Team from '@pages/Team'
-import Event from '@pages/Event'
+import { lazy, React } from "react";
+import Loadable from '@shared/Loadable';
+import Home from "@pages/Home";
+import Rank from "@pages/Rank";
+import News from "@pages/News";
+import Team from "@pages/Team";
+import Event from "@pages/Event";
 
 export const AppConfig = {
   // place code here
@@ -10,36 +12,36 @@ export const AppConfig = {
   Routes: [
     {
       name: "Home",
-      route: "/",
-      component: () => <Home />,
+      path: "/",
+      component: Loadable(lazy(() => import("@pages/Home"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "News",
-      route: "/News",
-      component: () => <News />,
+      path: "/News",
+      component: Loadable(lazy(() => import("@pages/News"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "Events",
-      route: "/Event",
-      component: () => <Event />,
+      path: "/Event",
+      component: Loadable(lazy(() => import("@pages/Event"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "Leaderboard",
-      route: "/Leaderboard",
-      component: () => <Rank />,
+      path: "/Leaderboard",
+      component: Loadable(lazy(() => import("@pages/Rank"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "Team",
-      route: "/Team",
-      component: () => <Team />,
+      path: "/Team",
+      component: Loadable(lazy(() => import("@pages/Team"))),
       isDisableRoute: false,
       NavbarComp: false,
     },

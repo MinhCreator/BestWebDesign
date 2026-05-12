@@ -8,14 +8,9 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: "IBM Plex Sans", Arial, sans-serif;
-  background: linear-gradient(180deg, #f6fef9, #ecfdf5);
-  color: #1f2937;
-}
 
-/* layout của phần new nha */
+
+/* layout news page */
 .site {
   max-width: 1200px;
   margin: 40px auto;

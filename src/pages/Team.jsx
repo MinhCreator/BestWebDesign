@@ -1,6 +1,3 @@
-import Navbar from '@components/Navbar'
-import Footer from '@components/Footer'
-
 const Team = () => {
   const teamMembers = [
     {
@@ -26,9 +23,7 @@ const Team = () => {
   ]
 
   return (
-    <div className="team-page min-h-screen bg-slate-50">
-      <Navbar />
-
+    <div className="team-page bg-slate-50">
       <main className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -80,8 +75,6 @@ const Team = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

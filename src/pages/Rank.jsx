@@ -1,22 +1,66 @@
-import Navbar from '@components/Navbar'
-import Footer from '@components/Footer'
-import Breadcrumbs from '@components/Breadcrumbs'
-import '@css/Rank.css'
+import Breadcrumbs from "@components/ui/Breadcrumbs";
+import "@css/Rank.css";
 
 const Rank = () => {
   const leaderboardData = [
-    { rank: 1, trend: '↑ 3', trendType: 'up', name: 'Ngô Minh Quân', nation: 'VietNam', flag: '/Flags/Vietnam.png', points: 999 },
-    { rank: 2, trend: '↑ 1', trendType: 'up', name: 'Nguyễn Văn Thắng', nation: 'LGBT', flag: '/Flags/LGBT.png', points: 666 },
-    { rank: 3, trend: '↓ 2', trendType: 'down', name: 'Bùi Võ Nhật Minh', nation: 'VietNam', flag: '/Flags/Vietnam.png', points: 333 },
-    { rank: 4, trend: '↓ 2', trendType: 'down', name: 'Đặng Đại Khiêm', nation: 'Thailand', flag: '/Flags/Thailand.png', points: 300 },
-    { rank: 5, trend: '↑ 36', trendType: 'up', name: 'Lê Đăng Anh Tuấn', nation: 'LGBT', flag: '/Flags/LGBT.png', points: 236 },
-    { rank: 6, trend: '↓ 1', trendType: 'down', name: 'Nguyễn Tiến Trường', nation: 'LGBT', flag: '/Flags/LGBT.png', points: 222 },
-  ]
+    {
+      rank: 1,
+      trend: "↑ 3",
+      trendType: "up",
+      name: "Ngô Minh Quân",
+      nation: "VietNam",
+      flag: "/Flags/Vietnam.png",
+      points: 999,
+    },
+    {
+      rank: 2,
+      trend: "↑ 1",
+      trendType: "up",
+      name: "Nguyễn Văn Thắng",
+      nation: "LGBT",
+      flag: "/Flags/LGBT.png",
+      points: 666,
+    },
+    {
+      rank: 3,
+      trend: "↓ 2",
+      trendType: "down",
+      name: "Bùi Võ Nhật Minh",
+      nation: "VietNam",
+      flag: "/Flags/Vietnam.png",
+      points: 333,
+    },
+    {
+      rank: 4,
+      trend: "↓ 2",
+      trendType: "down",
+      name: "Đặng Đại Khiêm",
+      nation: "Thailand",
+      flag: "/Flags/Thailand.png",
+      points: 300,
+    },
+    {
+      rank: 5,
+      trend: "↑ 36",
+      trendType: "up",
+      name: "Lê Đăng Anh Tuấn",
+      nation: "LGBT",
+      flag: "/Flags/LGBT.png",
+      points: 236,
+    },
+    {
+      rank: 6,
+      trend: "↓ 1",
+      trendType: "down",
+      name: "Nguyễn Tiến Trường",
+      nation: "LGBT",
+      flag: "/Flags/LGBT.png",
+      points: 222,
+    },
+  ];
 
   return (
-    <div className="rank-page bg-white min-h-screen">
-      <Navbar />
-
+    <div className="rank-page bg-white">
       <main className="rank-container">
         <Breadcrumbs />
 
@@ -58,10 +102,8 @@ const Rank = () => {
           ))}
         </section>
       </main>
-
-      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Rank
+export default Rank;

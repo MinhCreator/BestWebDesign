@@ -18,13 +18,17 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
+      '@layouts': '/src/layouts',
       '@components': '/src/components',
       '@assets': '/src/assets',
       '@pages': '/src/pages',
       '@utils': '/src/utils',
       '@public': '/public',
       '@config': '/src/config',
-      '@css' : '/src/style',
+      '@css': '/src/style',
+      '@api': '/src/api',
+      '@shared': '/src/shared',
+      '@views': '/src/views',
     },
   },
 

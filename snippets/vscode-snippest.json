@@ -1,0 +1,25 @@
+---
+
+### Pro-Tip: Setting up VS Code Snippets
+To make these instant:
+1. In VS Code, go to **File > Preferences > Configure User Snippets**.
+2. Select **javascriptreact.json**.
+3. Add a snippet like this:
+
+```json
+"React Functional Component": {
+  "prefix": "rfc",
+  "body": [
+    "import React from 'react';",
+    "",
+    "const ${1:ComponentName} = () => {",
+    "  return (",
+    "    <div>$0</div>",
+    "  );",
+    "};",
+    "",
+    "export default ${1:ComponentName};"
+  ],
+  "description": "Create a functional React component"
+}
+```

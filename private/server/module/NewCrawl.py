@@ -77,14 +77,14 @@ def crawl_irace_news():
     unique_articles = []
     seen_links = set()
     for article in articles:
-        if article['link'] not in seen_links:
-            unique_articles.append(article)
-            seen_links.add(article['link'])
+            if article['link'] not in seen_links:
+                unique_articles.append(article)
+                seen_links.add(article['link'])
 
     print(f"Successfully crawled {len(unique_articles)} articles.")
     
     # Save to JSON
-    with open(f'{os.getcwd()}/articles.json', 'w', encoding='utf-8') as f:
+    with open(f'{os.getcwd()}/output/articles.json', 'w', encoding='utf-8') as f:
         json.dump(unique_articles, f, ensure_ascii=False, indent=4)
     print("Data saved to articles.json")
 
@@ -95,6 +95,7 @@ def crawl_irace_news():
         print(f"Link: {article['link']}")
         print(f"image_url: {article['image_url']}")
         print(f"Date: {article['date']}")
+        print(f"Page: {article['page']}")
 
 
 
