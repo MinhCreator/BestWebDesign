@@ -1,57 +1,101 @@
-# ENDURANCE|HUB - Push Your Limits
+# ENDURANCE|HUB
 
-## Description
+Community platform for endurance athletes. Built with React 18 + Vite 8 + Tailwind CSS v4 + DaisyUI v5. Python FastAPI backend scrapes running news.
 
-A modern, visually stunning and responsive landing page for **ENDURANCE|HUB**, a brand focusing on elite athletic gear including aero cycling apparel, endurance running gear, and next-gen footwear. This project showcases dynamic UI design built using HTML, modern CSS with Tailwind CSS, and DaisyUI components.
+## Tech Stack
 
-### Key Features
+| Layer | What |
+|-------|------|
+| Frontend | React 18, React Router v7, Lucide React, Motion (Framer) |
+| Styling | Tailwind CSS v4, DaisyUI v5, styled-components, CSS modules |
+| Build | Vite 8, ESLint v10 |
+| Backend | FastAPI, BeautifulSoup4, Requests (web scraper) |
+| Backend runs on | Python 3 + uvicorn |
 
-- **Responsive Design:** Optimized layout for all screen sizes (mobile, tablet, desktop).
-- **Modern Aesthetics:** Vibrant gradients, glassmorphism navbars, hover micro-animations, and beautiful typography using Google Fonts (Outfit & Inter).
-- **Tailwind CSS & DaisyUI:** Built using the utility-first CSS framework and a powerful component library for rapid UI construction.
+## Project Structure
 
-## Installation & Setup
+```
+src/
+├── api/            # API fetch components
+├── components/     # UI + feature components
+│   ├── Home/       # Hero, RaceSlider, Community, Training
+│   ├── event/      # Event list, map, registration, filter
+│   ├── form/       # Registration form + validation
+│   ├── news/       # Article sidebar
+│   └── ui/         # Navbar, Footer, Breadcrumbs, Dialog, Loader, ProductCard
+├── config/         # Route definitions
+├── layouts/        # Shell layout (Nav + Outlet + Footer)
+├── pages/          # Home, News, Event, Rank, Team
+├── routes/         # BrowserRouter config
+├── shared/         # Loadable (lazy HOC)
+├── style/          # Per-page CSS modules
+├── utils/          # Class merging (clsx + tailwind-merge)
+└── views/          # Spinner, skeleton, loading states
 
-Since this project uses vanilla HTML and CDN-linked CSS libraries, no complex build step or package installation is required to view the page.
+private/server/     # FastAPI backend
+├── main.py         # Server entry
+├── module/
+│   ├── NewCrawl.py      # Scrape irace.vn articles
+│   ├── tip_and_trick.py # Scrape posts
+│   └── utilities.py     # helpers
+└── output/         # Cached JSON
+```
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd bestWebDesign
-   ```
-3. Open `src/index.html` in your favorite web browser, or use a local development server like Live Server (a VS Code Extension) for a better development experience.
+## Features
 
-## Usage
+- **Video hero** - Full-width bg video with community stats overlay
+- **Glassmorphism navbar** - Responsive hamburger menu + active route highlight
+- **Running events** - Filter by type/marathon/trial, location/distance. Embedded Google Map. Registration form with validation.
+- **Leaderboard** - Top 3 podium (avatars) + ranked table (flags, points, trend arrows)
+- **News sidebar** - Fetch articles from irace.vn via scraper API
+- **Paginated tips** - Animated grid, fetch `/api/posts/`
+- **Community section** - Club cards, forum, activity feed
+- **Training tools** - Training Plan poster, Pace Calculator, Progress Analysis
+- **Team page** - 4-member grid with social links
+- **Lazy loading** - Code-split routes via React.lazy + Suspense
+- **Multiple loaders** - SVG loader, skeleton, CSS spinner
 
-Explore the different sections of the landing page:
-G
-- **Hero Section:** A powerful call-to-action showcasing the brand.
-- **Engineered Categories:** Interactive cards highlighting Cycling, Jogging, and Footwear collections.
-- **Promotional Banner:** Engaging visual section prompting users to unlock their potential.
+## Setup
 
-## Technologies Used
+### Frontend
 
-- HTML5
-- Tailwind CSS (@tailwindcss/browser)
-- DaisyUI (CDN)
-- Google Fonts (Outfit, Inter)
-- NodeJs (WIP)
-- ExpressJS (WIP)
+```bash
+npm install
+npm run dev        # Vite on port 2007
+npm run build      # Prod build -> dist/
+npm run preview    # Preview prod build
+```
 
-## Contributing
+### Backend
 
-Contributions to improve the design or add new features are welcome! Please follow these steps:
+```bash
+cd private/server
+pip install -r requirements.txt
+fastapi dev main.py   # API on port 8000
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/AmazingFeature`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-5. Push to the branch (`git push origin feature/AmazingFeature`).
-6. Submit a pull request.
+# Or scrape manually:
+python module/NewCrawl.py
+python module/tip_and_trick.py
+```
+
+### Full auto-setup
+
+```bash
+python setup.py
+```
+
+Installs npm deps, creates Python venv, installs reqs, starts both servers.
+
+## API Proxy
+
+Vite proxies `/api/*` -> `http://127.0.0.1:8000`. Backend CORS allows `localhost:2007`.
+
+## .env
+
+```
+VITE_SERVER_URL=
+```
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+MIT
