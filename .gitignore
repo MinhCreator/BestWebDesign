@@ -15,10 +15,10 @@ dist/ # dist folder
 *.swo   # Vim swap files
 *.swn   # Vim swap files
 # environment
-node_modules/     # npm module
-.venv/            # python environment
-.agents/          # agent skills
-.agents/skills/   # agent skills
+/node_modules/
+.venv/           
+.agents/         
+.agents/skills/   
 # Temporary or cache files
 *.tmp   # Temporary files
 *.temp  # Temporary files

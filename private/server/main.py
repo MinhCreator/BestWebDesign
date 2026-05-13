@@ -1,6 +1,7 @@
 import json
 import os
-from fastapi import FastAPI, HTTPException
+import asyncio
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from module.NewCrawl import crawl_irace_news 
 from module.tip_and_trick import crawl_irace_triathlon 
@@ -28,7 +29,7 @@ async def articles() -> dict:
             jsonLoaded = {f"article-{index + 1}": data for index, data in enumerate(json.load(f))}
             return jsonLoaded
     except:
-        await crawl_irace_news()
+        crawl_irace_news()
         with open(f"{os.getcwd()}{outputPath}/articles.json", "r", encoding="utf-8") as f:
             jsonLoaded = {f"article-{index + 1}": data for index, data in enumerate(json.load(f))}
             return  jsonLoaded
@@ -42,7 +43,7 @@ async def posts() -> dict:
             postLoaded ={f"article-{index + 1}": data for index, data in enumerate(json.load(f))}
             return postLoaded
     except:
-        await crawl_irace_triathlon()
+        crawl_irace_triathlon()
         with open(f"{os.getcwd()}{outputPath}/post.json", "r", encoding="utf-8") as f:
             postLoaded = {f"article-{index + 1}": data for index, data in enumerate(json.load(f))}
             return 
@@ -57,13 +58,23 @@ async def limit(page: int, limit: int) -> dict:
             postLimit = getPost(page, limit, postLoaded)
             return {f"article-{index + 1}": data for index, data in enumerate(postLimit)}
     except:
-        await crawl_irace_triathlon()
+        crawl_irace_triathlon()
         with open(f"{os.getcwd()}{outputPath}/post.json", "r", encoding="utf-8") as f:
             postLoaded = {f"article-{index + 1}": data for index, data in enumerate(json.load(f))}
             postLimit = getPost(page, limit, postLoaded)
             return {f"article-{index + 1}": data for index, data in enumerate(postLimit)}
     else:
         raise HTTPException(status_code=404, detail="Not Found")
+
+@app.get("/heath")
+async def health():
+    status = {"status": "ok"}
+    not_ok = {"status": "offline"}
+    return {
+        "article": f"{status if articles != {} or articles != {"detail":"Not Found"} else not_ok}",
+        "post": f"{status if posts != {} or posts != {"detail":"Not Found"} else not_ok}",    
+        "post_limit": f"{status if limit(1, 4) != {} or limit(1, 4) != {"detail":"Not Found"} else not_ok}"    
+        }
 
 
 if __name__ == "__main__":
