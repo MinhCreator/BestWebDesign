@@ -99,9 +99,11 @@ const Navbar = () => {
           <button className="material-symbols-outlined text-primary p-2 hover:bg-emerald-50 rounded-full transition-all">
             <Bell />
           </button>
-          <button className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all">
-            Join Now
-          </button>
+          <Link to="/Event" className="max-sm:hidden">
+            <button className="bg-primary text-white px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all">
+              Join Now
+            </button>
+          </Link>
         </div>
       </div>
     </header>

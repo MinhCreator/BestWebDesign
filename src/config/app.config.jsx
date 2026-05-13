@@ -5,10 +5,11 @@ import Rank from "@pages/Rank";
 import News from "@pages/News";
 import Team from "@pages/Team";
 import Event from "@pages/Event";
+import dotenv, { configDotenv } from "dotenv"
 
 export const AppConfig = {
   // place code here
-
+  
   Routes: [
     {
       name: "Home",
