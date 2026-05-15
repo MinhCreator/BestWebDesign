@@ -47,23 +47,23 @@ const mockEvents = [
   },
 ];
 
-const RegisterEvent = () => {
+const PassEvent = () => {
   return (
     <>
       <h1 className="flex ml-10 font-bold text-emerald-900 text-4xl">
-        REGISTER TO PARTICIPATE
+        PAST RUNNING EVENTS
       </h1>
       <div className="event-list">
         {mockEvents.map((Card, index) => (
           <div className="card" key={index}>
-            <div className="card-image">{ Card.image}</div>
+            <div className="card-image">{Card.image}</div>
             <div className="card-content">
               <h3 className="">{Card.name}</h3>
               <p>{Card.organizer}</p>
               <p>- {Card.date} -</p>
               <div className="card-bottom">
                 <span>{Card.distance}</span>
-                <button>Đăng kí</button>
+                <button className="past-btn">Completed</button>
               </div>
             </div>
           </div>
@@ -73,4 +73,4 @@ const RegisterEvent = () => {
   );
 };
 
-export default RegisterEvent;
+export default PassEvent;

@@ -1,39 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Loader from "@views/spinner/Loader";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { usePosts } from "@hooks/usePosts";
+
 const PaginatedList = () => {
-  const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(
-          `/api/posts/?page=${currentPage}&limit=${currentPage + 3}`,
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const json = await response.json();
-        // FastAPI returns {0: {...}, 1: {...}, ...} — convert to array
-        const post = Object.values(json);
-        setItems(post);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setIsLoading(true);
-        setError(error.message);
-        setItems([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [currentPage]); // Re-fetches whenever currentPage changes
+  const { data: items, isLoading, error } = usePosts(currentPage, currentPage + 3);
 
   if (isLoading)
     return (
@@ -41,10 +14,7 @@ const PaginatedList = () => {
         <Loader />
       </div>
     );
-  const errStyle = {
-    color: "#ff0800",
-  }
-  if (error) return <p style={errStyle}>Error: {error}</p>;
+  if (error) return <p style={{ color: "#ff0800" }}>Error: {error.message}</p>;
 
   return (
     <div className="grid grid-cols-3 gap-6 justify-items-center">

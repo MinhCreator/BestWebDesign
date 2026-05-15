@@ -9,7 +9,7 @@ import dotenv, { configDotenv } from "dotenv"
 
 export const AppConfig = {
   // place code here
-  
+
   Routes: [
     {
       name: "Home",
@@ -45,6 +45,13 @@ export const AppConfig = {
       component: Loadable(lazy(() => import("@pages/Team"))),
       isDisableRoute: false,
       NavbarComp: false,
+    },
+    {
+      name: "Testing",
+      path: "/dev/Test",
+      component: Loadable(lazy(() => import("@pages/Testing"))),
+      isDisableRoute: false,
+      NavbarComp: true,
     },
   ],
 };

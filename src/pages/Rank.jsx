@@ -2,107 +2,136 @@ import Breadcrumbs from "@components/ui/Breadcrumbs";
 import "@css/Rank.css";
 
 const Rank = () => {
-  const leaderboardData = [
-    {
-      rank: 1,
-      trend: "↑ 3",
-      trendType: "up",
-      name: "Ngô Minh Quân",
-      nation: "VietNam",
-      flag: "/Flags/Vietnam.png",
-      points: 999,
-    },
-    {
-      rank: 2,
-      trend: "↑ 1",
-      trendType: "up",
-      name: "Nguyễn Văn Thắng",
-      nation: "LGBT",
-      flag: "/Flags/LGBT.png",
-      points: 666,
-    },
-    {
-      rank: 3,
-      trend: "↓ 2",
-      trendType: "down",
-      name: "Bùi Võ Nhật Minh",
-      nation: "VietNam",
-      flag: "/Flags/Vietnam.png",
-      points: 333,
-    },
-    {
-      rank: 4,
-      trend: "↓ 2",
-      trendType: "down",
-      name: "Đặng Đại Khiêm",
-      nation: "Thailand",
-      flag: "/Flags/Thailand.png",
-      points: 300,
-    },
-    {
-      rank: 5,
-      trend: "↑ 36",
-      trendType: "up",
-      name: "Lê Đăng Anh Tuấn",
-      nation: "LGBT",
-      flag: "/Flags/LGBT.png",
-      points: 236,
-    },
-    {
-      rank: 6,
-      trend: "↓ 1",
-      trendType: "down",
-      name: "Nguyễn Tiến Trường",
-      nation: "LGBT",
-      flag: "/Flags/LGBT.png",
-      points: 222,
-    },
-  ];
-
+  const avatar = "public/Avatar";
+  const flag = "public/Flags";
   return (
-    <div className="rank-page bg-white">
-      <main className="rank-container">
-        <Breadcrumbs />
-
-        <h1 className="page-title uppercase">Endurance Hub Leaderboard</h1>
-
-        <section className="podium">
-          <div className="podium-card place-2">
-            <img src="/Avatar/NguyenVanThang.png" alt="Hạng 2" />
-          </div>
-          <div className="podium-card place-1">
-            <img src="/Avatar/NgoMinhQuan.png" alt="Hạng 1" />
-          </div>
-          <div className="podium-card place-3">
-            <img src="/Avatar/BuiVoNhatMinh.png" alt="Hạng 3" />
-          </div>
-        </section>
-
+    <>
+      <div className="leaderboard-style">
         <section className="leaderboard">
-          <div className="board-header">
-            <div className="col-rank">Rank</div>
-            <div className="col-name">Name</div>
-            <div className="col-nation">Nation</div>
-            <div className="col-point">Points</div>
+          <Breadcrumbs />
+          <h1>I RUN LEADERBOARD</h1>
+
+          <div className="filter-wrapper">
+            <div className="filter-group">
+              <label>All Distance</label>
+              <select>
+                <option>All Distance</option>
+                <option>5KM</option>
+                <option>10KM</option>
+                <option>21KM Half Marathon</option>
+                <option>42KM Marathon</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>All Event</label>
+              <select>
+                <option>All Event</option>
+                <option>Da Nang Marathon</option>
+                <option>Ho Chi Minh City Run</option>
+                <option>Tokyo Marathon</option>
+                <option>New York Marathon</option>
+              </select>
+            </div>
           </div>
 
-          {leaderboardData.map((item, index) => (
-            <div key={index} className="board-row">
-              <div className="col-rank">
-                <span className="rank-num">{item.rank}</span>
-                <span className={`trend ${item.trendType}`}>{item.trend}</span>
+          <div className="top-runner">
+            <div className="top-card second">
+              <div className="runner">
+                <img src={`${avatar}/2.svg`} alt="" />
               </div>
-              <div className="col-fullname">{item.name}</div>
-              <div className="col-nation">
-                <span className="nation-name">{item.nation}</span>
-                <img src={item.flag} alt={item.nation} className="flag" />
-              </div>
-              <div className="col-numpoints">{item.points}</div>
+              <h2>Yohan Blake</h2>
+              <p>TOP 2</p>
             </div>
-          ))}
+
+            <div className="top-card first">
+              <div className="runner">
+                <img src={`${avatar}/1.svg`} alt="" />
+              </div>
+              <h2>Li Wei</h2>
+              <p>TOP 1</p>
+            </div>
+
+            <div className="top-card third">
+              <div className="runner">
+                <img src={`${avatar}/3.svg`} alt="" />
+              </div>
+              <h2>Yuki Kawauchi</h2>
+              <p>TOP 3</p>
+            </div>
+          </div>
+
+          <div className="table-box">
+            <div className="table-header">
+              <span>Rank</span>
+              <span>Name</span>
+              <span>Nation</span>
+              <span>Time Run</span>
+            </div>
+
+            <div className="table-row">
+              <span className="rank gold">1</span>
+              <span>Li Wei</span>
+              <span className="nation">
+                China
+                <img src={`${flag}/china.svg`} alt="" />
+              </span>
+              <span>01:49:32</span>
+            </div>
+
+            <div className="table-row">
+              <span className="rank silver">2</span>
+              <span>Yohan Blake</span>
+              <span className="nation">
+                Jamaica
+                <img src={`${flag}/Jamaica.svg`} alt="" />
+              </span>
+              <span>01:54:11</span>
+            </div>
+
+            <div className="table-row">
+              <span className="rank bronze">3</span>
+              <span>Yuki Kawauchi</span>
+              <span className="nation">
+                Japan
+                <img src={`${flag}/japan.svg`} alt="" />
+              </span>
+              <span>01:58:47</span>
+            </div>
+
+            <div className="table-row">
+              <span className="rank">4</span>
+              <span>Nguyễn Minh Quân</span>
+              <span className="nation">
+                Vietnam
+                <img src={`${flag}/vietnam.svg`} alt="" />
+              </span>
+              <span>02:03:15</span>
+            </div>
+
+            <div className="table-row">
+              <span className="rank">5</span>
+              <span>Barry Allen</span>
+              <span className="nation">
+                USA
+                <img src={`${flag}/USA.svg`} alt="" />
+              </span>
+              <span>02:06:42</span>
+            </div>
+
+            <div className="table-row">
+              <span className="rank">6</span>
+              <span>Bùi Ngô Đại Thắng</span>
+              <span className="nation">
+                Vietnam
+                <img src={`${flag}/vietnam.svg`} alt="" />
+              </span>
+              <span>02:12:56</span>
+            </div>
+          </div>
         </section>
-      </main>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import EventList from "@components/event/EventList";
 import FilterSection from "@components/event/filterSection";
 import Hero from "@components/event/Hero";
 import MapSection from "@components/event/MapSection";
-import RegisterEvent from "@components/event/RegisterEvent";
+import PassEvent from "@components/event/PassEvent";
 import { useState } from "react";
 import Breadcrumb from "@components/ui/Breadcrumbs";
 
@@ -12,7 +12,7 @@ const Event = () => {
   const [filters, setFilters] = useState({
     type: "all",
     location: "",
-    distance: ""
+    distance: "",
   });
 
   return (
@@ -21,7 +21,7 @@ const Event = () => {
       <FilterSection onFilterChange={setFilters} />
       <EventList filters={filters} />
       <MapSection />
-      <RegisterEvent />
+      <PassEvent />
     </>
   );
 };

@@ -197,7 +197,6 @@
   box-shadow: 0 0 0 4px rgba(85, 181, 118, 0.15);
 }
 
-
 .card {
   background: #ffffff;
   border: 1px solid #dcdcdc;
@@ -250,6 +249,7 @@
 
 .card-bottom button {
   background: #55b576;
+
   color: white;
 
   border: none;
@@ -263,6 +263,23 @@
 .card-bottom button:hover {
   transform: scale(1.05);
   background: #45a564;
+}
+
+.past-card {
+  @apply opacity-90 grayscale-[10%];
+}
+.past-card .card-image {
+  background: #9aa1ad;
+}
+.past-btn {
+  @apply cursor-default hover:shadow-none;
+  background: #7f8c8d !important;
+  cursor: default !important;
+  
+}
+.past-btn:hover {
+  transform: none !important;
+  background: #7f8c8d !important;
 }
 
 .map-box {

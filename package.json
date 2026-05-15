@@ -23,9 +23,14 @@
   "homepage": "https://github.com/MinhCreator/BestWebDesign#readme",
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
+    "@tanstack/react-query": "^5.100.10",
     "@vitejs/plugin-react": "^6.0.1",
+    "axios": "^1.16.1",
+    "cheerio": "^1.2.0",
     "clsx": "^2.1.1",
+    "daisyui": "^5.5.19",
     "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "install": "^0.13.0",
     "lucide-react": "^1.3.0",
     "motion": "^12.38.0",
@@ -38,9 +43,5 @@
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.3.0",
     "vite": "^8.0.9"
-  },
-  "devDependencies": {
-    "daisyui": "^5.5.19",
-    "eslint": "^10.2.1"
   }
 }

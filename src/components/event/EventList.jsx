@@ -66,7 +66,7 @@ const EventList = ({ filters }) => {
             <p>- {event.date} -</p>
             <div className="card-bottom">
               <span>🏃 {event.distance}</span>
-              <button>Xem ngay</button>
+              <button>View now</button>
             </div>
           </div>
         </div>

@@ -25,6 +25,8 @@ export default defineConfig({
       '@utils': '/src/utils',
       '@public': '/public',
       '@config': '/src/config',
+      '@services': '/src/services',
+      '@hooks': '/src/hooks',
       '@css': '/src/style',
       '@api': '/src/api',
       '@shared': '/src/shared',

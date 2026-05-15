@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from module.NewCrawl import crawl_irace_news 
 from module.tip_and_trick import crawl_irace_triathlon 
 from module.utilities import getPost
+from module.crawl_article import crawl_single_article
 app = FastAPI()
 outputPath = "/output"
 
@@ -66,14 +67,27 @@ async def limit(page: int, limit: int) -> dict:
     else:
         raise HTTPException(status_code=404, detail="Not Found")
 
-@app.get("/heath")
+@app.get("/api/blog")
+async def blog(url: str = ""):
+    if not url:
+        raise HTTPException(status_code=400, detail="url query parameter is required")
+    try:
+        output_dir = f"{os.getcwd()}{outputPath}/"
+        data = crawl_single_article(url, output_dir=output_dir)
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/health")
 async def health():
     status = {"status": "ok"}
     not_ok = {"status": "offline"}
     return {
         "article": f"{status if articles != {} or articles != {"detail":"Not Found"} else not_ok}",
         "post": f"{status if posts != {} or posts != {"detail":"Not Found"} else not_ok}",    
-        "post_limit": f"{status if limit(1, 4) != {} or limit(1, 4) != {"detail":"Not Found"} else not_ok}"    
+        "post_limit": f"{status if limit(1, 4) != {} or limit(1, 4) != {"detail":"Not Found"} else not_ok}",
+        "blog": f"{status if blog("") != {} or blog("") != {"detail":"Not Found"} else not_ok}"    
         }
 
 

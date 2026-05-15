@@ -17,6 +17,7 @@ dist/ # dist folder
 # environment
 /node_modules/
 .venv/           
+dist/
 .agents/         
 .agents/skills/   
 # Temporary or cache files
@@ -27,3 +28,5 @@ dist/ # dist folder
 *.pyc
 # Others
 *.log   # Log files
+jsconfig.json
+skills-lock.json
