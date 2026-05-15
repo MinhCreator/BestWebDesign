@@ -84,13 +84,14 @@ async def health():
     status = {"status": "ok"}
     not_ok = {"status": "offline"}
     return {
-        "article": f"{status if articles != {} or articles != {"detail":"Not Found"} else not_ok}",
-        "post": f"{status if posts != {} or posts != {"detail":"Not Found"} else not_ok}",    
-        "post_limit": f"{status if limit(1, 4) != {} or limit(1, 4) != {"detail":"Not Found"} else not_ok}",
-        "blog": f"{status if blog("") != {} or blog("") != {"detail":"Not Found"} else not_ok}"    
-        }
-
+        "article": f"{status if articles != {} and articles != {'detail': 'Not Found'} else not_ok}",
+        "post": f"{status if posts != {} and posts != {'detail': 'Not Found'} else not_ok}",    
+        "post_limit": f"{status if limit(1, 4) != {} and limit(1, 4) != {'detail': 'Not Found'} else not_ok}",
+        "blog": f"{status if blog('') != {} and blog('') != {'detail': 'Not Found'} else not_ok}"    
+    }
 
 if __name__ == "__main__":
-    # uvicorn.run(app, host="0.0.0.0", port=8000)
-    app.run()
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
