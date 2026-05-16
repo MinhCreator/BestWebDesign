@@ -28,7 +28,7 @@ const FilterSection = ({ onFilterChange }) => {
   return (
     <>
       <h1 className="flex ml-10 mt-8 font-bold text-emerald-900 text-4xl section-title">
-        RUNNING EVENTS AT DA NANG
+        RUNNING EVENTS
       </h1>
       <div className="filter-section bg-teal-800 mt-2">
         <div className="filter-controls justify-between">
@@ -52,9 +52,7 @@ const FilterSection = ({ onFilterChange }) => {
               Trial
             </button>
           </div>
-          <div
-            className="filter-dropdowns"
-          >
+          <div className="filter-dropdowns">
             <select
               onChange={handleLocationChange}
               value={filters.location}
@@ -69,6 +67,7 @@ const FilterSection = ({ onFilterChange }) => {
             <select onChange={handleDistanceChange} value={filters.distance}>
               <option value="">Distance</option>
               <option value="5k">5km</option>
+              <option value="10k">10km</option>
               <option value="21k">21km</option>
               <option value="42k">42km</option>
             </select>

@@ -14,7 +14,7 @@ const EventList = ({ filters }) => {
       date: "27/07/2026",
       route: "",
       organizer: "Endurance hub",
-      image: "Illustration photo",
+      image: "public/image/danang.png",
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const EventList = ({ filters }) => {
       date: "12/08/2026",
       route: "",
       organizer: "Endurance hub",
-      image: "Illustration photo",
+      image: "public/image/sontra.webp",
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const EventList = ({ filters }) => {
       date: "05/09/2026",
       route: "",
       organizer: "Endurance hub",
-      image: "Illustration photo",
+      image: "public/image/mykhe.jpg",
     },
     {
       id: 4,
@@ -46,8 +46,8 @@ const EventList = ({ filters }) => {
       distance: "42km",
       date: "22/10/2026",
       route: "",
-      organizer: "(Bộ phận tổ chức sự kiện)",
-      image: "Illustration photo",
+      organizer: "Irace",
+      image: "public/image/haivan.jpg",
     },
   ];
 
@@ -86,7 +86,9 @@ const EventList = ({ filters }) => {
             key={event.id}
             className={`card ${selectedEvent?.id === event.id ? "ring-2 ring-[#55b576]" : ""}`}
           >
-            <div className="card-image">{event.image}</div>
+            <div className="card-image">
+              <img src={event.image} alt="" />
+            </div>
             <div className="card-content font-bold text-md">
               <h3 className="">{event.name}</h3>
               <p>{event.organizer}</p>
@@ -106,10 +108,18 @@ const EventList = ({ filters }) => {
         <div className="mx-10 mb-8 p-8 bg-white border border-[#dcdcdc] rounded-lg animate-fadeIn">
           <h3 className="text-2xl font-bold mb-2">{selectedEvent.name}</h3>
           <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-gray-600">
-            <p><strong>Organizer:</strong> {selectedEvent.organizer}</p>
-            <p><strong>Date:</strong> {selectedEvent.date}</p>
-            <p><strong>Location:</strong> {selectedEvent.location}</p>
-            <p><strong>Distance:</strong> {selectedEvent.distance}</p>
+            <p>
+              <strong>Organizer:</strong> {selectedEvent.organizer}
+            </p>
+            <p>
+              <strong>Date:</strong> {selectedEvent.date}
+            </p>
+            <p>
+              <strong>Location:</strong> {selectedEvent.location}
+            </p>
+            <p>
+              <strong>Distance:</strong> {selectedEvent.distance}
+            </p>
           </div>
 
           <h4 className="text-lg font-semibold mb-4 text-[#55b576]">

@@ -3,22 +3,24 @@ const RaceSlider = () => {
   const races = [
     {
       title: "Coming Soon",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfIOC_SxDHq_LscojrkOZ9cGEwKLTYTU8ctEi4ibt2_3N5bLFObGs0c41fOZp_4hSlcYlM-sV1Zg3JFj6CpROYmeRgHGg49RbEC16fdoO7j6uXZt8WQfrTnHLEKnSZfk7rCDe7TOeRe0AfyLFsrX75zScIgTEijVFSL3qxWO-bndkiq8lVDsJBxQ86cpSSnLE6FAr-oW5zmpzX5f7dg_rtzR02a1rgDqklHZSlV_ybTAEbl_Sz5FI2TZbwrfhTupcSviVwKjPGlC4",
-      highlight: false
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBfIOC_SxDHq_LscojrkOZ9cGEwKLTYTU8ctEi4ibt2_3N5bLFObGs0c41fOZp_4hSlcYlM-sV1Zg3JFj6CpROYmeRgHGg49RbEC16fdoO7j6uXZt8WQfrTnHLEKnSZfk7rCDe7TOeRe0AfyLFsrX75zScIgTEijVFSL3qxWO-bndkiq8lVDsJBxQ86cpSSnLE6FAr-oW5zmpzX5f7dg_rtzR02a1rgDqklHZSlV_ybTAEbl_Sz5FI2TZbwrfhTupcSviVwKjPGlC4",
+      highlight: false,
     },
     {
       title: "Giải Sapa Marathon Sắp Tới",
       subtitle: "02/07/2026",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCExpwg0wRdur3Mth3mlcM3AsUwcZhA9GRnn0nyigBVIlyvMk7cOTQRWtLCQKC8Mt-qk7F1S4xILsWTy_vMNS0fh_hKS_MqsAt4as7PI898TydAYlkG5quF3d67XJ2sfWH5zCOJ1svoiBk4_Pa5dQMGonhwmZ1ccNiGo6J0NcYPUaXbPSiaVoom5i2YJY9bWVdvrtdxdSxV7QFby0DRNK6NeF7V6KsdZy_fvwRgp850uTp8I-DStcky9X1npTNKbjuqt_CQaarMid8",
-      highlight: true
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCExpwg0wRdur3Mth3mlcM3AsUwcZhA9GRnn0nyigBVIlyvMk7cOTQRWtLCQKC8Mt-qk7F1S4xILsWTy_vMNS0fh_hKS_MqsAt4as7PI898TydAYlkG5quF3d67XJ2sfWH5zCOJ1svoiBk4_Pa5dQMGonhwmZ1ccNiGo6J0NcYPUaXbPSiaVoom5i2YJY9bWVdvrtdxdSxV7QFby0DRNK6NeF7V6KsdZy_fvwRgp850uTp8I-DStcky9X1npTNKbjuqt_CQaarMid8",
+      highlight: true,
     },
     {
       title: "TRAINING",
       promo: "Training Plan",
       date: "02/02/2026",
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA654JWAeJkSBqmCDPdPncR21_2wm8KKZo0TA6uPQudqjzeuR-zljOBMh8A-k0Iw-URvwpvXr-R-HZj1_-v0K0L8IKhfQWQBXiTQ5X3kGkPX1mF_2BPJADBpQxsz_Z_SME2p8movi_cwE7aJCcpNWksfcwF2d_th6I1B8ZoXfUBkyMORFRfq06gZyZFsy7BJDht8wIXgfwSkVeK_8kCbHh9A-QGh-nYoX6IyfjNbLuAfdpoMTDg0aks7AONVQGA-N1VCZjtmDPWGfQ",
-      isTraining: true
-    }
+      image: "public/image/jogging.png",
+      isTraining: true,
+    },
   ];
 
   return (

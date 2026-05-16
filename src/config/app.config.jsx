@@ -51,7 +51,7 @@ export const AppConfig = {
       path: "/dev/Test",
       component: Loadable(lazy(() => import("@pages/Testing"))),
       isDisableRoute: false,
-      NavbarComp: true,
+      NavbarComp: false,
     },
   ],
 };

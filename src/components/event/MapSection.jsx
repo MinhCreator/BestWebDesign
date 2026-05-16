@@ -6,7 +6,7 @@ const MapSection = () => {
   return (
     <>
       <h1 className="flex ml-10 font-bold text-emerald-900 text-4xl">
-        DA NANG RACE MAP
+        RACE MAP
       </h1>
       <div className="map-box">
         <iframe

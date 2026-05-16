@@ -5,7 +5,7 @@ import os
 
 def install():
     cwd = Path.cwd()
-    venv_path = cwd / 'private/server' / '.venv'
+    venv_path = cwd / 'server' / '.venv'
     
     # 1. Install Node Modules
     if not (cwd / 'node_modules').exists():
@@ -25,7 +25,7 @@ def install():
         sp.Popen([str(active_venv)], check=True, shell=True)
         
         print("Installing requirements...")
-        sp.run([str(pip_exe), 'install', '-r', 'private/server/requirements.txt'], check=True)
+        sp.run([str(pip_exe), 'install', '-r', 'server/requirements.txt'], check=True)
 
     # 3. Run Servers Concurrently
     # Point directly to the fastapi executable in the venv
@@ -35,7 +35,7 @@ def install():
     # We use Popen so it doesn't block the script
     api_proc = sp.Popen(
         [str(fastapi_exe), 'dev'],
-        cwd=cwd / 'private/server',
+        cwd=cwd / 'server',
         shell=True
     )
 

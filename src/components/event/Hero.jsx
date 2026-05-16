@@ -7,7 +7,7 @@ const Hero = () => {
         <h1 className="text-5xl">
           <span className="text-emerald-400">Discover </span>
           <span className="bg-gradient-to-r from-red-600 to-yellow-400 bg-clip-text text-transparent text-5xl font-bold">
-            Da Nang{" "}
+            Viet Nam{" "}
             <svg
               className="w-15 h-15"
               enableBackground="new 0 0 512 512"
