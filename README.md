@@ -32,7 +32,7 @@ src/
 ├── utils/          # Class merging (clsx + tailwind-merge)
 └── views/          # Spinner, skeleton, loading states
 
-private/server/     # FastAPI backend
+server/     # FastAPI backend
 ├── main.py         # Server entry
 ├── module/
 │   ├── NewCrawl.py      # Scrape irace.vn articles

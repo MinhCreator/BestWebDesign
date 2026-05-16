@@ -27,7 +27,7 @@ bestWebDesign-main/
 │       ├── caveman-stats/     SKILL.md, README.md
 │       ├── expo-tailwind-setup/  SKILL.md
 │       └── find-skills/       SKILL.md
-├── private/server/
+├── server/
 │   ├── main.py                FastAPI entry point
 │   ├── requirements.txt
 │   ├── module/
