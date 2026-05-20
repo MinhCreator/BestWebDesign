@@ -69,7 +69,7 @@ npm run preview    # Preview prod build
 ### Backend
 
 ```bash
-cd private/server
+cd server
 pip install -r requirements.txt
 fastapi dev main.py   # API on port 8000
 
