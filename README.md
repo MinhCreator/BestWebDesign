@@ -98,4 +98,4 @@ VITE_SERVER_URL=
 
 ## License
 
-MIT
+[MIT](./license)
