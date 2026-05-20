@@ -1,4 +1,4 @@
-<div style="" >
+<div align="center">
     <h1 style="text-align: center;">No longer received update and bug fixed</h1>
 </div>
 
