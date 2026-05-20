@@ -1,3 +1,7 @@
+<div style="" >
+    <h1 style="text-align: center;">No longer received update and bug fixed</h1>
+</div>
+
 # ENDURANCE|HUB
 
 Community platform for endurance athletes. Built with React 18 + Vite 8 + Tailwind CSS v4 + DaisyUI v5. Python FastAPI backend scrapes running news.
