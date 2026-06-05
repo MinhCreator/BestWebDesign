@@ -13,7 +13,8 @@ const Register = ({ event: selectedEvent, onClose }) => {
     e.preventDefault();
     setError(null);
     try {
-      const res = await fetch("/api/register", {
+      const apiUrl = import.meta.env.VITE_API_URL || "";
+      const res = await fetch(`${apiUrl}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
