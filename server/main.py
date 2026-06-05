@@ -19,9 +19,9 @@ canAccess = [
     "http://localhost:2007",
 ]
 
+# allow_origins=canAccess,
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=canAccess,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
