@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import Register from "@components/ui/modal/Register";
 
 const EventList = ({ filters }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [formData, setFormData] = useState({ name: "", phone: "" });
+  const [registeringEvent, setRegisteringEvent] = useState(null);
 
   const mockEvents = [
     {
@@ -66,18 +67,6 @@ const EventList = ({ filters }) => {
     }
   };
 
-  const handleFormChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log("Registering for", selectedEvent?.name, formData);
-    alert(`Registered for "${selectedEvent?.name}" successfully!`);
-    setFormData({ name: "", phone: "" });
-    setSelectedEvent(null);
-  };
-
   return (
     <>
       <div className="event-list">
@@ -95,9 +84,17 @@ const EventList = ({ filters }) => {
               <p>- {event.date} -</p>
               <div className="card-bottom">
                 <span>🏃 {event.distance}</span>
-                <button onClick={() => handleViewNow(event)}>
-                  {selectedEvent?.id === event.id ? "Close" : "View now"}
-                </button>
+                <div className="flex gap-2">
+                  <button onClick={() => handleViewNow(event)}>
+                    {selectedEvent?.id === event.id ? "Close" : "View now"}
+                  </button>
+                  <button
+                    onClick={() => setRegisteringEvent(event)}
+                    className="rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-primary-content transition-all hover:brightness-110 active:scale-95"
+                  >
+                    Register
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -121,47 +118,11 @@ const EventList = ({ filters }) => {
               <strong>Distance:</strong> {selectedEvent.distance}
             </p>
           </div>
-
-          <h4 className="text-lg font-semibold mb-4 text-[#55b576]">
-            Register for this event
-          </h4>
-          <form onSubmit={handleRegister} className="space-y-4 max-w-md">
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleFormChange}
-                placeholder="Your Name"
-                className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-[#55b576]"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Phone <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleFormChange}
-                placeholder="0234123123"
-                className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-[#55b576]"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="bg-[#55b576] text-white font-semibold px-6 py-2.5 rounded transition hover:bg-[#459a60]"
-            >
-              Register
-            </button>
-          </form>
         </div>
+      )}
+
+      {registeringEvent && (
+        <Register event={registeringEvent} onClose={() => setRegisteringEvent(null)} />
       )}
     </>
   );

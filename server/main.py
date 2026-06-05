@@ -1,7 +1,8 @@
+from datetime import datetime
 import json
 import os
-import asyncio
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from module.NewCrawl import crawl_irace_news 
 from module.tip_and_trick import crawl_irace_triathlon 
@@ -9,6 +10,10 @@ from module.utilities import getPost
 from module.crawl_article import crawl_single_article
 app = FastAPI()
 outputPath = "/output"
+
+class Registration(BaseModel):
+    name: str
+    phone: str
 
 canAccess = [
     "http://localhost:2007",
@@ -75,6 +80,34 @@ async def blog(url: str = ""):
         output_dir = f"{os.getcwd()}{outputPath}/"
         data = crawl_single_article(url, output_dir=output_dir)
         return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/register")
+async def register(data: Registration):
+    try:
+        reg_dir = f"{os.getcwd()}{outputPath}"
+        os.makedirs(reg_dir, exist_ok=True)
+        reg_file = f"{reg_dir}/registrations.json"
+
+        registrations = []
+        if os.path.exists(reg_file):
+            with open(reg_file, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                if content:
+                    registrations = json.loads(content)
+
+        registrations.append({
+            "name": data.name,
+            "phone": data.phone,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        with open(reg_file, "w", encoding="utf-8") as f:
+            json.dump(registrations, f, indent=2, ensure_ascii=False)
+
+        return {"status": "ok", "message": "Registration successful"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
