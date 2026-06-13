@@ -2,8 +2,8 @@ import Breadcrumbs from "../components/ui/Breadcrumbs";
 import "../style/Rank.css";
 
 const Rank = () => {
-  const avatar = "/src/assets/Avatar";
-  const flag = "/src/assets/Flags";
+  const avatar = "/Avatar";
+  const flag = "/Flags";
   return (
     <>
       <div className="leaderboard-style">

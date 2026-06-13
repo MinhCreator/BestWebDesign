@@ -1,4 +1,4 @@
-import runner from "/public/video/runner.mp4";
+import runner from "/video/runner.mp4";
 import { Link } from "react-router";
 const Hero = () => {
   return (

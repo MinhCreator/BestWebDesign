@@ -1,4 +1,5 @@
 import React from 'react';
+import jogging from "@/assets/image/jogging.png";
 const RaceSlider = () => {
   const races = [
     {
@@ -18,7 +19,7 @@ const RaceSlider = () => {
       title: "TRAINING",
       promo: "Training Plan",
       date: "02/02/2026",
-      image: "src/assets/image/jogging.png",
+      image: jogging,
       isTraining: true,
     },
   ];

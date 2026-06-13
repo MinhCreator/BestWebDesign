@@ -10,7 +10,7 @@ const mockEvents = [
     date: "27/07/2026",
     route: "",
     organizer: "Endurance hub",
-    image: "src/assets/image/nhatrang.jpg",
+    image: "/image/nhatrang.jpg",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const mockEvents = [
     date: "12/08/2026",
     route: "",
     organizer: "Endurance hub",
-    image: "src/assets/image/caurong.jpg",
+    image: "/image/caurong.jpg",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const mockEvents = [
     date: "05/09/2026",
     route: "",
     organizer: "Endurance hub",
-    image: "src/assets/image/halongbay.jpg",
+    image: "/image/halongbay.jpg",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const mockEvents = [
     date: "22/10/2026",
     route: "",
     organizer: "Endurance Hub",
-    image: "src/assets/image/hue.jpg",
+    image: "/image/hue.jpg",
   },
 ];
 

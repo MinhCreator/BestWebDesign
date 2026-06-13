@@ -4,6 +4,7 @@ import "../../style/Navbar.css";
 import { ClassN } from "../../utility/utils";
 import { Bell } from "lucide-react";
 import { AppConfig } from "../../config/app.config";
+import crossIcon from "@/assets/icon/cross.svg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = () => {
         {/* Desktop Logo */}
         <div className="flex items-center gap-2">
           <Link to="/" className="max-sm:hidden">
-            <img src="public/brand-logo.svg" alt="logo" className="w-15" />
+            <img src="/brand-logo.svg" alt="logo" className="w-15" />
           </Link>
           <span className="max-sm:hidden font-bold">
             <a href="/">
@@ -34,7 +35,7 @@ const Navbar = () => {
         </div>
         {/* Mobile Logo */}
         <Link to="/" className="sm:hidden md:hidden lg:hidden max-sm:block">
-          <img src="public/brand-logo.svg" alt="logo" className="w-9" />
+          <img src="/brand-logo.svg" alt="logo" className="w-9" />
         </Link>
 
         <div
@@ -47,7 +48,10 @@ const Navbar = () => {
             onClick={toggleMenu}
             className="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border border-gray-200 cursor-pointer"
           >
-            <img src="src/assets/icon/cross.svg" alt="close" />
+            <img
+              // src="src/assets/icon/cross.svg"
+              src={crossIcon}
+              alt="close" />
           </button>
 
           <ul className="lg:flex gap-x-2 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
@@ -55,7 +59,7 @@ const Navbar = () => {
               <Link to="/">
                 <img
                   // src="src/assets/icon/logo_large.svg"
-                  src="public/brand-logo.svg"
+                  src="/brand-logo.svg"
                   alt="logo"
                   className="w-40"
                 />

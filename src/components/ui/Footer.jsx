@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import "../../style/footer.css";
+import facebookIcon from "@/assets/icon/facebook.svg";
+import instagramIcon from "@/assets/icon/instagram.svg";
+import youtubeIcon from "@/assets/icon/youtube.svg";
+import githubIcon from "@/assets/icon/github.svg";
+
 const Footer = () => {
   return (
     <footer className="footer-component">
       <div className="footer-container footer-content">
         <div className="footer-brand">
           <h2>
-            <img src="public/brand-logo.svg" width="15%" alt="Logo" />
+            <img src="/brand-logo.svg" width="15%" alt="Logo" />
             <span className="text-[#2194c1]"> ENDURANCE </span>|
             <span className="text-[#135261]">HUB</span>
           </h2>
@@ -45,7 +50,7 @@ const Footer = () => {
             <ul className="social-list">
               <li>
                 <img
-                  src="src/assets/icon/facebook.svg"
+                  src={facebookIcon}
                   alt="Facebook"
                   className="social-icon"
                 />
@@ -61,7 +66,7 @@ const Footer = () => {
               </li>
               <li>
                 <img
-                  src="src/assets/icon/instagram.svg"
+                  src={instagramIcon}
                   alt="Instagram"
                   className="social-icon"
                 />
@@ -69,7 +74,7 @@ const Footer = () => {
               </li>
               <li>
                 <img
-                  src="src/assets/icon/youtube.svg"
+                  src={youtubeIcon}
                   alt="Youtube"
                   className="social-icon"
                 />
@@ -85,7 +90,7 @@ const Footer = () => {
               </li>
               <li>
                 <img
-                  src="src/assets/icon/github.svg"
+                  src={githubIcon}
                   alt="Github"
                   className="social-icon github-icon"
                 />
