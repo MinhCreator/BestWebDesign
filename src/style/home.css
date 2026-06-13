@@ -101,7 +101,7 @@
   transition: 0.3s ease;
   animation: fadeUp 1.6s ease;
 }
-.home-btn::hover {
+.home-btn:hover {
   transform: translateY(-3px) scale(1.03);
 
   background: #45a564;

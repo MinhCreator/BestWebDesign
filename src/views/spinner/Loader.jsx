@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import "./Loader.css";
+import "./loader.css";
 export default function Loader() {
     return (
     <>
