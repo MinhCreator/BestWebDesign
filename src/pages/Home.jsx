@@ -2,7 +2,7 @@ import Hero from '../components/Home/Hero';
 import RaceSlider from '../components/Home/RaceSlider';
 import CommunitySection from '../components/Home/CommunitySection';
 import TrainingSection from '../components/Home/TrainingSection';
-import '../style/Home.css'
+import '../style/home.css'
 
 const Home = () => {
   return (
