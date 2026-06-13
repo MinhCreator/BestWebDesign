@@ -1,9 +1,9 @@
-import Breadcrumbs from "@components/ui/Breadcrumbs";
-import "@css/Rank.css";
+import Breadcrumbs from "../components/ui/Breadcrumbs";
+import "../style/Rank.css";
 
 const Rank = () => {
-  const avatar = "public/Avatar";
-  const flag = "public/Flags";
+  const avatar = "/src/assets/Avatar";
+  const flag = "/src/assets/Flags";
   return (
     <>
       <div className="leaderboard-style">

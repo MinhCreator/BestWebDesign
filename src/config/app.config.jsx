@@ -1,11 +1,6 @@
-import { lazy, React } from "react";
-import Loadable from '@shared/Loadable';
-import Home from "@pages/Home";
-import Rank from "@pages/Rank";
-import News from "@pages/News";
-import Team from "@pages/Team";
-import Event from "@pages/Event";
-import dotenv, { configDotenv } from "dotenv"
+import React, { lazy } from "react";
+import Loadable from '../shared/Loadable';
+
 
 export const AppConfig = {
   // place code here
@@ -14,42 +9,42 @@ export const AppConfig = {
     {
       name: "Home",
       path: "/",
-      component: Loadable(lazy(() => import("@pages/Home"))),
+      component: Loadable(lazy(() => import("../pages/Home"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "News",
       path: "/News",
-      component: Loadable(lazy(() => import("@pages/News"))),
+      component: Loadable(lazy(() => import("../pages/News"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "Events",
       path: "/Event",
-      component: Loadable(lazy(() => import("@pages/Event"))),
+      component: Loadable(lazy(() => import("../pages/Event"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "Leaderboard",
       path: "/Leaderboard",
-      component: Loadable(lazy(() => import("@pages/Rank"))),
+      component: Loadable(lazy(() => import("../pages/Rank"))),
       isDisableRoute: false,
       NavbarComp: true,
     },
     {
       name: "Team",
       path: "/Team",
-      component: Loadable(lazy(() => import("@pages/Team"))),
+      component: Loadable(lazy(() => import("../pages/Team"))),
       isDisableRoute: false,
       NavbarComp: false,
     },
     {
       name: "Testing",
       path: "/dev/Test",
-      component: Loadable(lazy(() => import("@pages/Testing"))),
+      component: Loadable(lazy(() => import("../pages/Testing"))),
       isDisableRoute: false,
       NavbarComp: false,
     },

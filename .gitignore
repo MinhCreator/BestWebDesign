@@ -30,3 +30,4 @@ dist/
 *.log   # Log files
 jsconfig.json
 skills-lock.json
+/server

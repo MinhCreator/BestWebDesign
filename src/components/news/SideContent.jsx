@@ -1,5 +1,5 @@
-import { React, useEffect, useState } from "react";
-import Loading from "@views/spinner/Loading";
+import { useEffect, useState } from "react";
+import Loading from "../../views/spinner/Loading";
 import Post from "../../api/Post";
 
 const SideContent = () => {

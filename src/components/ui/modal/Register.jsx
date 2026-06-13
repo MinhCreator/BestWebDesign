@@ -13,7 +13,8 @@ const Register = ({ event: selectedEvent, onClose }) => {
     e.preventDefault();
     setError(null);
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "";
+      
+      const apiUrl = import.meta.env.VITE_PRIVATE_SERVER || "";
       const res = await fetch(`${apiUrl}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

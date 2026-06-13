@@ -1,7 +1,6 @@
-import Breadcrumbs from "@components/ui/Breadcrumbs";
-import MainContent from "@components/news/MainContent";
-import SideContent from "@components/news/SideContent";
-import "@css/News.css";
+import MainContent from "../components/news/MainContent";
+import SideContent from "../components/news/SideContent";
+import "../style/News.css";
 
 const News = () => {
   return (

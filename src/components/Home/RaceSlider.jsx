@@ -18,7 +18,7 @@ const RaceSlider = () => {
       title: "TRAINING",
       promo: "Training Plan",
       date: "02/02/2026",
-      image: "public/image/jogging.png",
+      image: "src/assets/image/jogging.png",
       isTraining: true,
     },
   ];

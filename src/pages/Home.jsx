@@ -1,8 +1,8 @@
-import Hero from '@components/Home/Hero';
-import RaceSlider from '@components/Home/RaceSlider';
-import CommunitySection from '@components/Home/CommunitySection';
-import TrainingSection from '@components/Home/TrainingSection';
-import '@css/Home.css'
+import Hero from '../components/Home/Hero';
+import RaceSlider from '../components/Home/RaceSlider';
+import CommunitySection from '../components/Home/CommunitySection';
+import TrainingSection from '../components/Home/TrainingSection';
+import '../style/Home.css'
 
 const Home = () => {
   return (

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Loader from "@views/spinner/Loader";
+import Loader from "../../views/spinner/Loader";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { usePosts } from "@hooks/usePosts";
+import { usePosts } from "../../hooks/usePosts";
 
 const PaginatedList = () => {
   const [currentPage, setCurrentPage] = useState(1);

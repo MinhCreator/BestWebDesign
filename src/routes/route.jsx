@@ -1,6 +1,6 @@
-import { AppConfig } from "@config/app.config";
+import { AppConfig } from "../config/app.config";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "@layouts/Layout";
+import Layout from "../layouts/Layout";
 
 const RouterSupport = () => {
   const routers = AppConfig.Routes;

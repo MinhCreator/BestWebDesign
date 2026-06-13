@@ -1,5 +1,5 @@
 import React from 'react'
-import img from "@assets/Group 11.png"
+import img from "src/assets/Group11.png"
 
 export default function RightSide() {
   return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ClassN } from "@utils/utils";
+import { ClassN } from "../../utility/utils";
 
 const Dialog = ({ Component, CustomStyle, isOpen }) =>{
     useEffect(() => { 

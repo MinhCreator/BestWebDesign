@@ -1,4 +1,5 @@
-const BASE_URL = import.meta.env.VITE_API_URL || "/api";
+
+const BASE_URL = import.meta.env.VITE_PRIVATE_SERVER || "/api" || "";
 
 class ApiError extends Error {
   constructor(message, status) {
@@ -26,9 +27,9 @@ function toArray(obj) {
 }
 
 export function fetchArticles() {
-  return request("/articles").then(toArray);
+  return request("/api/articles").then(toArray);
 }
 
 export function fetchPosts(page = 1, limit = 4) {
-  return request(`/posts/?page=${page}&limit=${limit}`).then(toArray);
+  return request(`/api/posts/?start=${page}&end=${limit}`).then(toArray);
 }

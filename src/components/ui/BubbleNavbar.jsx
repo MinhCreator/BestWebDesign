@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { AppConfig } from "@config/app.config";
-import { ClassN } from "@utils/utils";
+import { AppConfig } from "../../config/app.config";
+import { ClassN } from "../../utility/utils";
 
 const BubbleNavbar = () => {
   const [visible, setVisible] = useState(false);
@@ -31,7 +31,7 @@ const BubbleNavbar = () => {
         >
           <div className="flex items-center gap-1 px-5 py-2 bg-white/80 backdrop-blur-xl rounded-full shadow-lg border border-white/20">
             <Link to="/" className="mr-3">
-              <img src="/brand-logo.svg" alt="logo" className="w-8 h-8" />
+              <img src="public/brand-logo.svg" alt="logo" className="w-8 h-8" />
             </Link>
             {AppConfig.Routes.map((router, index) => {
               if (router.NavbarComp === false) return null;

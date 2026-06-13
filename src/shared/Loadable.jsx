@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Spinner from "@views/spinner/Spinner";
+import Spinner from "../views/spinner/Spinner";
 
 const Loadable = (Component) => {
   return function LoadableComponent(props) {

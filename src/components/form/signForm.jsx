@@ -1,5 +1,5 @@
 import React from 'react'
-import correct from '@assets/icon-park-solid_correct.png'
+import correct from "src/assets/solid_correct.png";
 
 export default function SignForm({isVisible, error = null}) {
     if (isVisible){

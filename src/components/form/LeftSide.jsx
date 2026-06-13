@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SignForm from '@components/SignForm';
+import SignForm from './SignForm';
 
 export default function LeftSide() {
 

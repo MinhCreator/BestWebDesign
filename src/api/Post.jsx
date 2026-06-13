@@ -1,6 +1,6 @@
 import { React } from "react";
-import Loading from "@views/spinner/Loading";
-import { useArticles } from "@hooks/useArticles";
+import Loading from "../views/spinner/Loading";
+import { useArticles } from "../hooks/useArticles";
 
 const Post = () => {
   const { data: articles, isLoading, error } = useArticles();

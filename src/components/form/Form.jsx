@@ -1,7 +1,7 @@
-import LeftSide from '@components/form/LeftSide';
-import RightSide from '@components/form/RightSide';
-import SignForm from '@components/form/signForm';
-import '@css/Form.css'
+import LeftSide from './LeftSide';
+import RightSide from './RightSide';
+import SignForm from './signForm';
+import "../../style/Form.css";
 export default function Form() {
     return (
      <div  className="flex flex-col items-center w-full">

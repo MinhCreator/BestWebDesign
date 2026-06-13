@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Register from "@components/ui/modal/Register";
+import Register from "../ui/modal/Register";
+
 
 const EventList = ({ filters }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -15,7 +16,7 @@ const EventList = ({ filters }) => {
       date: "27/07/2026",
       route: "",
       organizer: "Endurance hub",
-      image: "public/image/danang.png",
+      image: "src/assets/image/danang.png",
     },
     {
       id: 2,
@@ -26,7 +27,7 @@ const EventList = ({ filters }) => {
       date: "12/08/2026",
       route: "",
       organizer: "Endurance hub",
-      image: "public/image/sontra.webp",
+      image: "src/assets/image/sontra.webp",
     },
     {
       id: 3,
@@ -37,7 +38,7 @@ const EventList = ({ filters }) => {
       date: "05/09/2026",
       route: "",
       organizer: "Endurance hub",
-      image: "public/image/mykhe.jpg",
+      image: "src/assets/image/mykhe.jpg",
     },
     {
       id: 4,
@@ -48,7 +49,7 @@ const EventList = ({ filters }) => {
       date: "22/10/2026",
       route: "",
       organizer: "Irace",
-      image: "public/image/haivan.jpg",
+      image: "src/assets/image/haivan.jpg",
     },
   ];
 

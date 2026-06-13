@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import "@css/Footer.css";
-
+import "../../style/Footer.css";
 const Footer = () => {
   return (
     <footer className="footer-component">
       <div className="footer-container footer-content">
         <div className="footer-brand">
           <h2>
-            <img src="/brand-logo.svg" width="15%" alt="Logo" />
+            <img src="public/brand-logo.svg" width="15%" alt="Logo" />
             <span className="text-[#2194c1]"> ENDURANCE </span>|
             <span className="text-[#135261]">HUB</span>
           </h2>
@@ -46,7 +45,7 @@ const Footer = () => {
             <ul className="social-list">
               <li>
                 <img
-                  src="/icon/facebook.svg"
+                  src="src/assets/icon/facebook.svg"
                   alt="Facebook"
                   className="social-icon"
                 />
@@ -62,7 +61,7 @@ const Footer = () => {
               </li>
               <li>
                 <img
-                  src="/icon/instagram.svg"
+                  src="src/assets/icon/instagram.svg"
                   alt="Instagram"
                   className="social-icon"
                 />
@@ -70,7 +69,7 @@ const Footer = () => {
               </li>
               <li>
                 <img
-                  src="/icon/youtube.svg"
+                  src="src/assets/icon/youtube.svg"
                   alt="Youtube"
                   className="social-icon"
                 />
@@ -86,7 +85,7 @@ const Footer = () => {
               </li>
               <li>
                 <img
-                  src="/icon/github.svg"
+                  src="src/assets/icon/github.svg"
                   alt="Github"
                   className="social-icon github-icon"
                 />

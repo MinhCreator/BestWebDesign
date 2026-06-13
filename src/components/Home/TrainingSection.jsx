@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import PaginatedList from "@components/Home/Pagination";
-import Dialog from "@components/ui/Dialog";
-import post from "@assets/poster.svg";
+import PaginatedList from "./Pagination";
+import Dialog from "../ui/Dialog";
+import post from "/src/assets/poster.svg";
 
 const TrainingSection = () => {
   const Mockup_articles = [
