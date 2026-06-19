@@ -81,7 +81,7 @@ export function createAdminUser(username, password, role, name) {
 // Management event via admin dashboard
 export function getAdminEvents(status) {
   const query = status ? `?status=${status}` : "";
-  return adminRequest(`/api/admin/events${query}`);
+  return adminRequest(`/api/admin/events${query}`).then(data => Array.isArray(data) ? data : Object.values(data || {}));
 }
 
 export function createEvent(eventData) {
