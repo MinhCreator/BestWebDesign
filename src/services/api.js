@@ -33,3 +33,7 @@ export function fetchArticles() {
 export function fetchPosts(page = 1, limit = 4) {
   return request(`/api/posts/?start=${page}&end=${limit}`).then(toArray);
 }
+
+export function fetchEvents() {
+  return request("/api/events").then(toArray);
+}

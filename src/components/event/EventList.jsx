@@ -1,64 +1,86 @@
 import React, { useState } from "react";
 import Register from "../ui/modal/Register";
-
+import { useEvents } from "../../hooks/useEvents";
+import Spinner from "../../views/spinner/Spinner";
 
 const EventList = ({ filters }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [registeringEvent, setRegisteringEvent] = useState(null);
 
-  const mockEvents = [
-    {
-      id: 1,
-      name: "Da Nang International Marathon",
-      type: "marathon",
-      location: "My Khe beach",
-      distance: "42km",
-      date: "27/07/2026",
-      route: "",
-      organizer: "Endurance hub",
-      image: "/image/danang.png",
-    },
-    {
-      id: 2,
-      name: "Son Tra Trail Challenge Terrain running tournament",
-      type: "trial",
-      location: "Son Tra Peninsula",
-      distance: "36km",
-      date: "12/08/2026",
-      route: "",
-      organizer: "Endurance hub",
-      image: "/image/sontra.webp",
-    },
-    {
-      id: 3,
-      name: "My Khe Beach Run - community race",
-      type: "marathon",
-      location: "Dragon Bridge",
-      distance: "10km",
-      date: "05/09/2026",
-      route: "",
-      organizer: "Endurance hub",
-      image: "/image/mykhe.jpg",
-    },
-    {
-      id: 4,
-      name: "Hai Van Pass Marathon - pass road Challenge",
-      type: "marathon",
-      location: "Hai Van Pass",
-      distance: "42km",
-      date: "22/10/2026",
-      route: "",
-      organizer: "Irace",
-      image: "/image/haivan.jpg",
-    },
-  ];
+  // const mockEvents = [
+  //   {
+  //     id: 1,
+  //     name: "Da Nang International Marathon",
+  //     type: "marathon",
+  //     location: "My Khe beach",
+  //     distance: "42km",
+  //     date: "27/07/2026",
+  //     route: "",
+  //     organizer: "Endurance hub",
+  //     image: "/image/danang.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Son Tra Trail Challenge Terrain running tournament",
+  //     type: "trial",
+  //     location: "Son Tra Peninsula",
+  //     distance: "36km",
+  //     date: "12/08/2026",
+  //     route: "",
+  //     organizer: "Endurance hub",
+  //     image: "/image/sontra.webp",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "My Khe Beach Run - community race",
+  //     type: "marathon",
+  //     location: "Dragon Bridge",
+  //     distance: "10km",
+  //     date: "05/09/2026",
+  //     route: "",
+  //     organizer: "Endurance hub",
+  //     image: "/image/mykhe.jpg",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Hai Van Pass Marathon - pass road Challenge",
+  //     type: "marathon",
+  //     location: "Hai Van Pass",
+  //     distance: "42km",
+  //     date: "22/10/2026",
+  //     route: "",
+  //     organizer: "Irace",
+  //     image: "/image/haivan.jpg",
+  //   },
+  // ];
+  const { data: events = [], isLoading, error } = useEvents();
 
-  const filteredEvents = mockEvents.filter((event) => {
-    if (filters.type !== "all" && event.type !== filters.type) return false;
-    if (filters.location && event.location !== filters.location) return false;
-    if (filters.distance && event.distance !== filters.distance) return false;
-    return true;
-  });
+  // handle loading and error
+  if (isLoading) return <Spinner />;
+  if (error)
+    return (
+      <div className="text-center text-red-500 ml-10">
+        Failed to load events. Please try again later.
+      </div>
+    );
+
+  const filteredEvents = events
+    .filter((event) => event.status === "running")
+    .filter((event) => {
+      if (filters.type !== "all" && event.type !== filters.type) return false;
+      if (filters.location && event.location !== filters.location) return false;
+      if (filters.distance && event.distance !== filters.distance) return false;
+
+      if (filters.searchQuery) {
+        const q = filters.searchQuery.toLowerCase();
+        const matches =
+          event.name.toLowerCase().includes(q) ||
+          event.organizer.toLowerCase().includes(q) ||
+          event.location.toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+      return true;
+    });
 
   const handleViewNow = (event) => {
     if (selectedEvent?.id === event.id) {
@@ -67,6 +89,12 @@ const EventList = ({ filters }) => {
       setSelectedEvent(event);
     }
   };
+
+  if (filteredEvents.length === 0 && !isLoading && !error) {
+    return (
+      <div className="ml-10 text-gray-500">No events match your filters.</div>
+    );
+  }
 
   return (
     <>
@@ -123,7 +151,10 @@ const EventList = ({ filters }) => {
       )}
 
       {registeringEvent && (
-        <Register event={registeringEvent} onClose={() => setRegisteringEvent(null)} />
+        <Register
+          event={registeringEvent}
+          onClose={() => setRegisteringEvent(null)}
+        />
       )}
     </>
   );

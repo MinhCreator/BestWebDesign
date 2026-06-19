@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
+import  SearchBar  from "../ui/SearchBar"
 const FilterSection = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
     type: "all",
     location: "",
     distance: "",
+    searchQuery: "",
   });
 
   const handleTypeChange = (type) => {
@@ -24,6 +25,12 @@ const FilterSection = ({ onFilterChange }) => {
     setFilters(newFilters);
     onFilterChange(newFilters);
   };
+
+  const handleSearchChange = (value) => {
+    const newFilters = { ...filters, searchQuery: value };
+    setFilters(newFilters);
+    onFilterChange(newFilters);
+  }
 
   return (
     <>
@@ -52,6 +59,13 @@ const FilterSection = ({ onFilterChange }) => {
               Trial
             </button>
           </div>
+          <SearchBar
+            value={filters.searchQuery}
+            classNameStyle=" w-full rounded border border-gray-200 py-2 pl-8 pr-3 text-sm focus:border-[#55b576] focus:ring-2 focus:ring-[#55b576]/20 focus:outline-none text-[#ffff]"
+            onChange={handleSearchChange}
+            placeholder="Search events"
+          />
+
           <div className="filter-dropdowns">
             <select
               onChange={handleLocationChange}

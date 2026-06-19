@@ -1,6 +1,5 @@
 import React, { lazy } from "react";
-import Loadable from '../shared/Loadable';
-
+import Loadable from "../shared/Loadable";
 
 export const AppConfig = {
   // place code here
@@ -45,6 +44,56 @@ export const AppConfig = {
       name: "Testing",
       path: "/dev/Test",
       component: Loadable(lazy(() => import("../pages/Testing"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    // Admin routes
+    {
+      name: "Admin Login",
+      path: "/admin/login",
+      component: Loadable(lazy(() => import("../pages/admin/Login"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Dashboard",
+      path: "/admin/dashboard",
+      component: Loadable(lazy(() => import("../pages/admin/Dashboard"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Registrations",
+      path: "/admin/registrations",
+      component: Loadable(lazy(() => import("../pages/admin/Registrations"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Content",
+      path: "/admin/content",
+      component: Loadable(lazy(() => import("../pages/admin/Content"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Health",
+      path: "/admin/health",
+      component: Loadable(lazy(() => import("../pages/admin/SystemHealth"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Users",
+      path: "/admin/users",
+      component: Loadable(lazy(() => import("../pages/admin/Users"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Events",
+      path: "/admin/events",
+      component: Loadable(lazy(() => import("../pages/admin/Events"))),
       isDisableRoute: false,
       NavbarComp: false,
     },
