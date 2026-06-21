@@ -1,23 +1,57 @@
-# ENDURANCE|HUB
+<p align="center">
+  <br>
+  <br>
+  <a href="https://best-web-design-two.vercel.app/" target="_blank" rel="noopener noreferrer" style="font-size: 75px;">
+    ENDURANCE|HUB
+  </a>
+  <br>
+  <br>
+  <br>
+</p>
+<p align="center">
+Community platform for endurance athletes — runners, cyclists, triathletes. Powered by vite
+<p>
+<p align="center">
+  <a href=""><img src="https://img.shields.io/badge/Vite-v8-ffffff?logo=vite&style=for-the-badge&color=646CFF&logoColor=646CFF" alt="current vite version badge"></a>
+  <a href=""><img src="https://img.shields.io/badge/React-v18-ffffff?logo=react&style=for-the-badge&color=ffffff&logoColor=61DAFB" alt="current react version badge"></a>
+  <a href=""><img src="https://img.shields.io/badge/React%20router-v7-ffffff?logo=reactrouter&style=for-the-badge&color=ffffff&logoColor=CA4245" alt="current react router version badge"></a>
+  <a href=""><img src="https://img.shields.io/badge/tailwindcss-v4-ffffff?logo=tailwindcss&style=for-the-badge&color=ffffff&logoColor=06B6D4" alt="current tailwindcss router version badge"></a>
+  <a href=""><img src="https://img.shields.io/badge/fastapi-ffffff?logo=fastapi&style=for-the-badge&color=ffffff&logoColor=009688" alt="current fastapi version badge"></a>
+  <a href='https://minhcreator.github.io/BestWebDesign/' target="_blank"><img alt='vite' src='https://img.shields.io/badge/Preview_Project-100000?style=for-the-badge&logo=vite&logoColor=FFD500&labelColor=B23BF7&color=078093'/></a>
+<p>
 
-Community platform for endurance athletes — runners, cyclists, triathletes. Built with React 18 + Vite 8 + Tailwind CSS v4 + DaisyUI v5. Python FastAPI backend scrapes running news. Deployed on Vercel.
+<p align="center">
+<a href="https://best-web-design-two.vercel.app/"><b>Get involved!</b></a>
+</p>
+<p align="center">
+ <a href="https://minhcreator.github.io/BestWebDesign/">Project Preview</a> | <a href="https://best-web-design-two.vercel.app/">Checkout our website</a> 
+</p>
+<br>
+</p>
+
+<p align="center">
+
+Built with React 18 + Vite 8 + Tailwind CSS v4 + DaisyUI v5. Python FastAPI backend scrapes running news. Deployed on Vercel.
+
+</p>
 
 ## Tech Stack
 
-| Layer | What |
-|-------|------|
-| **Framework** | React 18, React Router v7, TanStack Query 5, Motion 12 |
-| **Styling** | Tailwind CSS v4, DaisyUI v5, clsx, tailwind-merge |
-| **Icons** | Lucide React, Material Symbols (Google Fonts) |
-| **Fonts** | Inter, Outfit, Lexend (Google Fonts) |
-| **Build** | Vite 8 (tailwindcss/vite plugin), ESLint (JS + React + JSON + CSS) |
-| **HTTP** | Axios, native Fetch |
-| **Backend** | FastAPI, BeautifulSoup4, Requests (web scraper — private server) |
-| **Scraper test** | Express 5, Cheerio |
-| **Deploy** | Vercel (SPA rewrites) |
+| Layer            | What                                                               |
+| ---------------- | ------------------------------------------------------------------ |
+| **Framework**    | React 18, React Router v7, TanStack Query 5, Motion 12             |
+| **Styling**      | Tailwind CSS v4, DaisyUI v5, clsx, tailwind-merge                  |
+| **Icons**        | Lucide React, Material Symbols (Google Fonts)                      |
+| **Fonts**        | Inter, Outfit, Lexend (Google Fonts)                               |
+| **Build**        | Vite 8 (tailwindcss/vite plugin), ESLint (JS + React + JSON + CSS) |
+| **HTTP**         | Axios, native Fetch                                                |
+| **Backend**      | FastAPI, BeautifulSoup4, Requests (web scraper — private server)   |
+| **Scraper test** | Express 5, Cheerio                                                 |
+| **Deploy**       | Vercel (SPA rewrites)                                              |
 
-## Project visualized 
-<div style="position:center;"><a href='https://minhcreator.github.io/BestWebDesign/' target="_blank"><img alt='vite' src='https://img.shields.io/badge/Preview_Project-100000?style=for-the-badge&logo=vite&logoColor=FFD500&labelColor=B23BF7&color=078093'/></a></div>
+## Project visualized
+
+<div style="position:center;"></div>
 ## Project Structure
 
 ```
@@ -130,21 +164,21 @@ Vite proxies `/api/*` -> `http://127.0.0.1:8000`. Backend CORS allows the dev or
 
 ## Routes (13 total)
 
-| Path | Page | Access |
-|------|------|--------|
-| `/` | Home | public |
-| `/News` | News | public |
-| `/Event` | Events | public |
-| `/Leaderboard` | Rank | public |
-| `/Team` | Team | public |
-| `/dev/Test` | Testing | public |
-| `/admin/login` | Admin Login | public |
-| `/admin/dashboard` | Dashboard | admin |
-| `/admin/registrations` | Registrations | admin |
-| `/admin/content` | Content Management | admin |
-| `/admin/health` | System Health | admin |
-| `/admin/users` | User Management | superadmin |
-| `/admin/events` | Events (admin) | admin |
+| Path                   | Page               | Access     |
+| ---------------------- | ------------------ | ---------- |
+| `/`                    | Home               | public     |
+| `/News`                | News               | public     |
+| `/Event`               | Events             | public     |
+| `/Leaderboard`         | Rank               | public     |
+| `/Team`                | Team               | public     |
+| `/dev/Test`            | Testing            | public     |
+| `/admin/login`         | Admin Login        | public     |
+| `/admin/dashboard`     | Dashboard          | admin      |
+| `/admin/registrations` | Registrations      | admin      |
+| `/admin/content`       | Content Management | admin      |
+| `/admin/health`        | System Health      | admin      |
+| `/admin/users`         | User Management    | superadmin |
+| `/admin/events`        | Events (admin)     | admin      |
 
 ## Utilities
 
