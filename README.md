@@ -1,8 +1,8 @@
 <p align="center">
   <br>
   <br>
-  <a href="https://best-web-design-two.vercel.app/" target="_blank" rel="noopener noreferrer" style="font-size: 175px;">
-    ENDURANCE|HUB
+  <a href="https://best-web-design-two.vercel.app/" target="_blank" rel="noopener noreferrer" style="">
+    <img src="resource\web_icon.svg" alt="current vite version badge" height="60">
   </a>
   <br>
   <br>
