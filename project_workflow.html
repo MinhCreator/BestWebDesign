@@ -1,0 +1,688 @@
+<!-- ENDURANCE|HUB — architecture visualization -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENDURANCE|HUB — architecture · stack · features</title>
+<script>
+  (function() {
+    var t = localStorage.getItem('eh-theme');
+    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if (t === 'dark') { document.documentElement.classList.add('dark'); }
+  })();
+</script>
+<style>
+  :root {
+    --bg:      #FAF9F5;
+    --surface: #FFFFFF;
+    --text:    #141413;
+    --text2:   #3D3D3A;
+    --text3:   #87867F;
+    --line:    #D1CFC5;
+    --line2:   #F0EEE6;
+    --pine:    #1B4332;
+    --pine-l:  #2c694e;
+    --moss:    #56B685;
+    --cyan:    #06b6d4;
+    --ember:   #f97316;
+    --oat:     #E3DACC;
+    --serif:   ui-serif, Georgia, "Times New Roman", Times, serif;
+    --sans:    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono:    ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    --r:       12px;
+  }
+  html.dark {
+    --bg:      #12140F;
+    --surface: #1A1D17;
+    --text:    #E8E6DE;
+    --text2:   #C1C0B6;
+    --text3:   #7A7B72;
+    --line:    #2E3229;
+    --line2:   #25281F;
+    --oat:     #3A3F30;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    padding: 48px 24px 120px;
+    -webkit-font-smoothing: antialiased;
+    transition: background .2s, color .2s;
+  }
+  .page { max-width: 1120px; margin: 0 auto; }
+
+  /* theme toggle */
+  #theme-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 99;
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s;
+  }
+  #theme-btn:hover { border-color: var(--pine); }
+  html.dark #theme-btn:hover { border-color: var(--moss); }
+
+  /* header */
+  header.masthead { margin-bottom: 56px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 1.5px;
+    background: var(--cyan);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    margin: 0 0 8px;
+  }
+  h1 .accent { color: var(--ember); }
+  h1 .divider { color: var(--text3); }
+  .subtitle {
+    font-size: 16px;
+    color: var(--text2);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+  .badge-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--text2);
+  }
+  .badge.pine { border-color: var(--pine); color: var(--pine); }
+  .badge.cyan { border-color: var(--cyan); color: var(--cyan); }
+  .badge.ember { border-color: var(--ember); color: var(--ember); }
+  html.dark .badge.pine { border-color: var(--moss); color: var(--moss); }
+  html.dark .badge.cyan { border-color: var(--cyan); color: var(--cyan); }
+  html.dark .badge.ember { border-color: var(--ember); color: var(--ember); }
+
+  /* summary strip */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 56px;
+  }
+  .summary .cell {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 16px 18px;
+  }
+  .summary .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    margin-bottom: 5px;
+  }
+  .summary .v {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .summary .v.ember { color: var(--ember); }
+  .summary .v.cyan { color: var(--cyan); }
+
+  /* section chrome */
+  section { margin-bottom: 60px; }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .sec-head .idx {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cyan);
+    font-weight: 600;
+    width: 30px;
+    flex-shrink: 0;
+  }
+  .sec-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .sec-head .count {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text3);
+    background: var(--line2);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .sec-intro {
+    font-size: 14.5px;
+    color: var(--text2);
+    max-width: 700px;
+    margin: 0 0 24px 44px;
+  }
+  @media (max-width: 640px) { .sec-intro { margin-left: 0; } }
+
+  /* tech grid */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .tech-grid { margin-left: 0; } }
+  .tech-card {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: border-color .15s, transform .15s;
+  }
+  .tech-card:hover {
+    border-color: var(--pine);
+    transform: translateY(-2px);
+  }
+  html.dark .tech-card:hover { border-color: var(--moss); }
+  .tech-card .icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--line2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .tech-card .info { flex: 1; }
+  .tech-card .t {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .tech-card .d {
+    font-size: 12.5px;
+    color: var(--text3);
+  }
+
+  /* grid cards */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .grid { margin-left: 0; } }
+  .card {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 20px;
+    transition: border-color .15s, transform .15s;
+  }
+  .card:hover {
+    border-color: var(--pine);
+    transform: translateY(-2px);
+  }
+  html.dark .card:hover { border-color: var(--moss); }
+  .card .ct {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .card .cd {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .card .tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--line2);
+    color: var(--text3);
+  }
+
+  /* architecture diagram */
+  .arch {
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .arch { margin-left: 0; } }
+  .arch-svg {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 24px;
+    overflow-x: auto;
+  }
+  .arch-svg svg { display: block; min-width: 700px; }
+  .arch-svg text { font-family: var(--mono); }
+  .arch-cap {
+    font-size: 12.5px;
+    color: var(--text3);
+    margin-top: 10px;
+  }
+
+  /* route table */
+  .routes {
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    overflow: hidden;
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .routes { margin-left: 0; } }
+  .routes .row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 80px;
+    gap: 0;
+  }
+  @media (max-width: 720px) { .routes .row { grid-template-columns: 1fr; } }
+  .routes .row + .row { border-top: 1.5px solid var(--line); }
+  .routes .cell {
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+  .routes .cell + .cell { border-left: 1.5px solid var(--line); }
+  @media (max-width: 720px) { .routes .cell + .cell { border-left: none; border-top: 1px dashed var(--line); } }
+  .routes .head {
+    background: var(--line2);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text3);
+    font-weight: 600;
+  }
+  .routes .path {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--pine);
+  }
+  html.dark .routes .path { color: var(--moss); }
+  .routes .cell .pin { color: var(--text3); font-size: 11px; }
+
+  /* footer */
+  footer {
+    margin-top: 80px;
+    border-top: 1.5px solid var(--line);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text3);
+  }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    body { padding: 32px 16px 80px; }
+    .summary { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<button id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">☀</button>
+<script>
+  function toggleTheme() {
+    var d = document.documentElement;
+    d.classList.toggle('dark');
+    var isDark = d.classList.contains('dark');
+    localStorage.setItem('eh-theme', isDark ? 'dark' : 'light');
+    document.getElementById('theme-btn').textContent = isDark ? '☀' : '☾';
+  }
+  (function() {
+    var isDark = document.documentElement.classList.contains('dark');
+    document.getElementById('theme-btn').textContent = isDark ? '☀' : '☾';
+  })();
+</script>
+
+<header class="masthead">
+  <div class="eyebrow">Project visualization</div>
+  <h1>ENDURANCE<span class="divider">|</span><span class="accent">HUB</span></h1>
+  <p class="subtitle">Community platform for endurance athletes — runners, cyclists, triathletes. Built with React&nbsp;18, Vite&nbsp;8, Tailwind&nbsp;CSS&nbsp;v4, and a Python&nbsp;FastAPI scraper backend.</p>
+  <div class="badge-strip">
+    <span class="badge pine">React 18</span>
+    <span class="badge cyan">Vite 8</span>
+    <span class="badge ember">Tailwind v4</span>
+    <span class="badge pine">DaisyUI 5</span>
+    <span class="badge cyan">Motion 12</span>
+    <span class="badge ember">React Router 7</span>
+    <span class="badge pine">TanStack Query 5</span>
+    <span class="badge">Lucide React</span>
+    <span class="badge">FastAPI</span>
+    <span class="badge">Vercel</span>
+  </div>
+</header>
+
+<!-- ===== stats ===== -->
+<div class="summary">
+  <div class="cell"><div class="k">Frontend</div><div class="v ember">155+</div><div class="k" style="margin-top:3px">source files</div></div>
+  <div class="cell"><div class="k">Routes</div><div class="v">12</div><div class="k" style="margin-top:3px">6 public · 6 admin</div></div>
+  <div class="cell"><div class="k">Components</div><div class="v cyan">20+</div><div class="k" style="margin-top:3px">reusable UI</div></div>
+  <div class="cell"><div class="k">Pages</div><div class="v">7</div><div class="k" style="margin-top:3px">lazy-loaded</div></div>
+  <div class="cell"><div class="k">Backend</div><div class="v ember">FastAPI</div><div class="k" style="margin-top:3px">Python scraper</div></div>
+  <div class="cell"><div class="k">Deploy</div><div class="v cyan">Vercel</div><div class="k" style="margin-top:3px">SPA + proxied API</div></div>
+</div>
+
+<!-- ===== tech ===== -->
+<section id="tech">
+  <div class="sec-head"><span class="idx">01</span><h2>Tech stack</h2><span class="count">14 layers</span></div>
+  <p class="sec-intro">Every dependency, framework, and tool that makes ENDURANCE|HUB run — from bundler to animation engine.</p>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="icon">⚛</div><div class="info"><div class="t">React 18</div><div class="d">UI library · concurrent features · lazy loading</div></div></div>
+    <div class="tech-card"><div class="icon">⚡</div><div class="info"><div class="t">Vite 8</div><div class="d">Bundler · HMR · Tailwind plugin · proxy</div></div></div>
+    <div class="tech-card"><div class="icon">🌀</div><div class="info"><div class="t">React Router v7</div><div class="d">Client routing · nested layouts · lazy routes</div></div></div>
+    <div class="tech-card"><div class="icon">🎨</div><div class="info"><div class="t">Tailwind CSS v4</div><div class="d">Utility CSS · @theme tokens · dark variant</div></div></div>
+    <div class="tech-card"><div class="icon">💎</div><div class="info"><div class="t">DaisyUI v5</div><div class="d">Component library · light theme · custom tokens</div></div></div>
+    <div class="tech-card"><div class="icon">🏃</div><div class="info"><div class="t">Motion 12</div><div class="d">Animation · layout · enter/exit transitions</div></div></div>
+    <div class="tech-card"><div class="icon">🔍</div><div class="info"><div class="t">TanStack Query 5</div><div class="d">Server state · caching · background refetch</div></div></div>
+    <div class="tech-card"><div class="icon">📡</div><div class="info"><div class="t">Axios + Fetch</div><div class="d">HTTP clients · public + admin APIs</div></div></div>
+    <div class="tech-card"><div class="icon">🔤</div><div class="info"><div class="t">Lucide React</div><div class="d">Icon library · bell · user · search · cart</div></div></div>
+    <div class="tech-card"><div class="icon">🛤</div><div class="info"><div class="t">Express + Cheerio</div><div class="d">Test scraper · Node.js article extraction</div></div></div>
+    <div class="tech-card"><div class="icon">🐍</div><div class="info"><div class="t">FastAPI (backend)</div><div class="d">Python API · BeautifulSoup4 · uvicorn</div></div></div>
+    <div class="tech-card"><div class="icon">▲</div><div class="info"><div class="t">Vercel</div><div class="d">Deployment · SPA rewrites · serverless</div></div></div>
+  </div>
+</section>
+
+<!-- ===== architecture ===== -->
+<section id="arch">
+  <div class="sec-head"><span class="idx">02</span><h2>Architecture</h2></div>
+  <p class="sec-intro">Component tree, data flow, and how the pieces connect from the browser to the scraper backend.</p>
+  <div class="arch">
+    <div class="arch-svg">
+      <svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#87867F"/>
+          </marker>
+          <marker id="arrCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#06b6d4"/>
+          </marker>
+        </defs>
+
+        <!-- layer labels -->
+        <text x="430" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">BROWSER</text>
+        <text x="430" y="136" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">REACT SPA</text>
+        <text x="430" y="298" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">API LAYER</text>
+        <text x="430" y="368" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">BACKEND</text>
+
+        <!-- dashed layer separators -->
+        <line x1="30" y1="38" x2="830" y2="38" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="146" x2="830" y2="146" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="308" x2="830" y2="308" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="436" x2="830" y2="436" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+
+        <!-- browser: entry -->
+        <rect x="340" y="52" width="180" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="430" y="73" text-anchor="middle" font-size="12" fill="var(--text)" font-weight="600">index.html · Vite entry</text>
+
+        <path d="M430 86 L430 102" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- SPA: app shell -->
+        <rect x="340" y="102" width="180" height="36" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="430" y="124" text-anchor="middle" font-size="12" fill="var(--text)">App.jsx · main.jsx</text>
+
+        <path d="M430 138 L430 158" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- SPA: router + layout -->
+        <rect x="50" y="158" width="124" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="112" y="177" text-anchor="middle" font-size="11" fill="var(--text)">route.jsx</text>
+
+        <rect x="200" y="158" width="124" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="262" y="177" text-anchor="middle" font-size="11" fill="var(--text)">Layout.jsx</text>
+
+        <rect x="350" y="158" width="124" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="412" y="177" text-anchor="middle" font-size="11" fill="var(--text)">AuthContext</text>
+
+        <rect x="500" y="158" width="124" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="562" y="177" text-anchor="middle" font-size="11" fill="var(--text)">QueryClient</text>
+
+        <rect x="650" y="158" width="124" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="712" y="177" text-anchor="middle" font-size="11" fill="var(--text)">Loadable lazy</text>
+
+        <!-- connector lines: SPA children → pages -->
+        <path d="M112 186 L112 202" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M262 186 L262 202" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M412 186 L412 202" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M562 186 L562 202" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M712 186 L712 202" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+
+        <!-- pages -->
+        <rect x="50" y="202" width="98" height="26" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="99" y="219" text-anchor="middle" font-size="10" fill="var(--cyan)">Home</text>
+        <rect x="156" y="202" width="98" height="26" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="205" y="219" text-anchor="middle" font-size="10" fill="var(--cyan)">News</text>
+        <rect x="262" y="202" width="98" height="26" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="311" y="219" text-anchor="middle" font-size="10" fill="var(--cyan)">Event</text>
+        <rect x="368" y="202" width="98" height="26" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="417" y="219" text-anchor="middle" font-size="10" fill="var(--cyan)">Rank</text>
+        <rect x="474" y="202" width="98" height="26" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="523" y="219" text-anchor="middle" font-size="10" fill="var(--cyan)">Team</text>
+        <rect x="580" y="202" width="98" height="26" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="629" y="219" text-anchor="middle" font-size="10" fill="var(--cyan)">Testing</text>
+
+        <!-- connector lines: pages → UI components -->
+        <path d="M99 228 L99 244" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M205 228 L205 244" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M311 228 L311 244" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M417 228 L417 244" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M523 228 L523 244" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M629 228 L629 244" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+
+        <!-- UI components -->
+        <rect x="50" y="244" width="124" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="112" y="261" text-anchor="middle" font-size="9.5" fill="var(--text3)">Navbar · Footer</text>
+        <rect x="190" y="244" width="124" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="252" y="261" text-anchor="middle" font-size="9.5" fill="var(--text3)">Hero · RaceSlider</text>
+        <rect x="330" y="244" width="124" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="392" y="261" text-anchor="middle" font-size="9.5" fill="var(--text3)">EventList · Filter</text>
+        <rect x="470" y="244" width="124" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="532" y="261" text-anchor="middle" font-size="9.5" fill="var(--text3)">Form · Validation</text>
+        <rect x="610" y="244" width="124" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="672" y="261" text-anchor="middle" font-size="9.5" fill="var(--text3)">SearchBar · Dialog</text>
+
+        <!-- to API -->
+        <path d="M430 268 L430 318" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+
+        <!-- API layer -->
+        <rect x="230" y="318" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="310" y="339" text-anchor="middle" font-size="11.5" fill="var(--text)">services/api.js</text>
+        <text x="310" y="347" text-anchor="middle" font-size="9" fill="var(--text3)">public API (fetch)</text>
+
+        <rect x="440" y="318" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="520" y="339" text-anchor="middle" font-size="11.5" fill="var(--text)">services/adminApi.js</text>
+        <text x="520" y="347" text-anchor="middle" font-size="9" fill="var(--text3)">admin API (axios)</text>
+
+        <path d="M310 352 L310 380" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <path d="M520 352 L520 380" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- backend -->
+        <rect x="60" y="380" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--ember)" stroke-width="1.5"/>
+        <text x="140" y="401" text-anchor="middle" font-size="11" fill="var(--ember)">FastAPI server</text>
+        <text x="140" y="410" text-anchor="middle" font-size="9" fill="var(--text3)">REST · port 8000</text>
+
+        <rect x="260" y="380" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--ember)" stroke-width="1.5"/>
+        <text x="340" y="401" text-anchor="middle" font-size="11" fill="var(--ember)">Article scraper</text>
+        <text x="340" y="410" text-anchor="middle" font-size="9" fill="var(--text3)">BeautifulSoup · irace.vn</text>
+
+        <rect x="460" y="380" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--pine)" stroke-width="1.5"/>
+        <text x="540" y="401" text-anchor="middle" font-size="11" fill="var(--pine)">Admin endpoints</text>
+        <text x="540" y="410" text-anchor="middle" font-size="9" fill="var(--text3)">login · dashboard · crud</text>
+
+        html.dark text[fill="var(--pine)"] { fill: var(--moss); }
+        html.dark .arch-svg text[fill="var(--pine)"] { fill: var(--moss); }
+
+        <path d="M140 414 L140 446" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <path d="M340 414 L340 446" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <path d="M540 414 L540 446" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- data stores -->
+        <rect x="60" y="446" width="160" height="26" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="140" y="463" text-anchor="middle" font-size="10" fill="var(--text3)">PostgreSQL (private)</text>
+        <rect x="260" y="446" width="160" height="26" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="340" y="463" text-anchor="middle" font-size="10" fill="var(--text3)">Scraped articles</text>
+        <rect x="460" y="446" width="160" height="26" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="540" y="463" text-anchor="middle" font-size="10" fill="var(--text3)">Auth tokens · users</text>
+      </svg>
+    </div>
+    <p class="arch-cap">Solid = request/response. Dashed = lazy-loaded page. Vite proxies API calls to the FastAPI backend at <code>127.0.0.1:8000</code>.</p>
+  </div>
+</section>
+
+<!-- ===== features ===== -->
+<section id="features">
+  <div class="sec-head"><span class="idx">03</span><h2>Features</h2><span class="count">12 items</span></div>
+  <p class="sec-intro">Everything ENDURANCE|HUB does — from a video hero to an admin dashboard with real-time system health.</p>
+  <div class="grid">
+    <div class="card"><div class="ct">🎬 Video hero</div><div class="cd">Full-width background video with community stats overlay. Gradient overlay transitions from light to transparent.</div><div class="tags"><span class="tag">Home</span><span class="tag">Motion</span></div></div>
+    <div class="card"><div class="ct">🪟 Glassmorphism navbar</div><div class="cd">Sticky nav with backdrop blur, responsive hamburger menu, active-route highlighting with blue underline.</div><div class="tags"><span class="tag">UI</span><span class="tag">Responsive</span></div></div>
+    <div class="card"><div class="ct">🏆 Leaderboard</div><div class="cd">Top-3 podium with avatar, flag display, ranked table with trend arrows. Animated with Motion.</div><div class="tags"><span class="tag">Rank</span><span class="tag">Data</span></div></div>
+    <div class="card"><div class="ct">🗺 Event listing + map</div><div class="cd">Filterable event cards by type, distance, location. Embedded Google Map. Paginated grid view.</div><div class="tags"><span class="tag">Event</span><span class="tag">Map</span></div></div>
+    <div class="card"><div class="ct">📝 Registration form</div><div class="cd">Multi-section form with validation, left/right layout, dialog confirmation. Form components are reusable.</div><div class="tags"><span class="tag">Form</span><span class="tag">Validation</span></div></div>
+    <div class="card"><div class="ct">📰 News sidebar</div><div class="cd">Articles fetched from Python scraper (irace.vn). Main content + side panel layout. Auto-refresh.</div><div class="tags"><span class="tag">News</span><span class="tag">Scraper</span></div></div>
+    <div class="card"><div class="ct">💡 Paginated tips grid</div><div class="cd">Animated grid of training tips from <code>/api/posts/</code>. Pagination controls. TanStack Query caching.</div><div class="tags"><span class="tag">Tips</span><span class="tag">Query</span></div></div>
+    <div class="card"><div class="ct">👥 Community section</div><div class="cd">Club cards, forum link, activity feed. Connected to backend for dynamic content.</div><div class="tags"><span class="tag">Home</span><span class="tag">Social</span></div></div>
+    <div class="card"><div class="ct">🏋️ Training tools</div><div class="cd">Training plan poster, pace calculator, progress analysis. Interactive tools for athletes.</div><div class="tags"><span class="tag">Training</span><span class="tag">Tools</span></div></div>
+    <div class="card"><div class="ct">👤 Team page</div><div class="cd">4-member grid with avatars, roles, social links. Public-facing profiles for core team.</div><div class="tags"><span class="tag">Team</span><span class="tag">About</span></div></div>
+    <div class="card"><div class="ct">🔐 Admin dashboard</div><div class="cd">Protected login, dashboard stats, CRUD for registrations, events, content. Token-based auth.</div><div class="tags"><span class="tag">Admin</span><span class="tag">Auth</span></div></div>
+    <div class="card"><div class="ct">⚙️ System health</div><div class="cd">Admin panel with system health monitoring, cache controls, user management, and crawl triggers.</div><div class="tags"><span class="tag">Admin</span><span class="tag">Ops</span></div></div>
+  </div>
+</section>
+
+<!-- ===== routes ===== -->
+<section id="routes">
+  <div class="sec-head"><span class="idx">04</span><h2>Routes</h2><span class="count">12 paths</span></div>
+  <p class="sec-intro">All routes defined in <code>app.config.jsx</code>, lazy-loaded via <code>React.lazy</code> + <code>Suspense</code>.</p>
+  <div class="routes">
+    <div class="row"><div class="cell head">Path</div><div class="cell head">Page</div><div class="cell head">Access</div></div>
+    <div class="row"><div class="cell"><span class="path">/</span></div><div class="cell">Home</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/News</span></div><div class="cell">News</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Event</span></div><div class="cell">Event</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Rank</span></div><div class="cell">Rank</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Team</span></div><div class="cell">Team</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Testing</span></div><div class="cell">Testing</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/Login</span></div><div class="cell">Login</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/Dashboard</span></div><div class="cell">Dashboard</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/Registrations</span></div><div class="cell">Registrations</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/Events</span></div><div class="cell">Admin Events</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/Content</span></div><div class="cell">Content Mgmt</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/SystemHealth</span></div><div class="cell">System Health</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+  </div>
+</section>
+
+<!-- ===== project structure ===== -->
+<section id="structure">
+  <div class="sec-head"><span class="idx">05</span><h2>Project structure</h2></div>
+  <p class="sec-intro">Colocated by feature. Assets, components, pages, and services are organized under <code>src/</code> with per-page CSS modules.</p>
+  <div class="arch">
+    <div class="arch-svg">
+      <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg">
+        <g font-family="ui-monospace, monospace" font-size="12" fill="var(--text)">
+          <text x="30" y="30" font-weight="600" fill="var(--cyan)">src/</text>
+          <text x="50" y="52" fill="var(--text2)">├── api/</text>
+          <text x="50" y="70" fill="var(--text2)">├── assets/</text>
+          <text x="70" y="88" fill="var(--text3)">├── icon/ · image/</text>
+          <text x="50" y="106" fill="var(--text2)">├── components/</text>
+          <text x="70" y="124" fill="var(--text3)">├── ui/ · Home/ · event/ · form/ · news/</text>
+          <text x="50" y="142" fill="var(--text2)">├── config/</text>
+          <text x="70" y="160" fill="var(--text3)">├── app.config.jsx</text>
+          <text x="50" y="178" fill="var(--text2)">├── hooks/</text>
+          <text x="70" y="196" fill="var(--text3)">├── useArticles · usePosts · useEvents</text>
+
+          <text x="290" y="30" font-weight="600" fill="var(--cyan)">src/ (cont.)</text>
+          <text x="310" y="52" fill="var(--text2)">├── layouts/</text>
+          <text x="330" y="70" fill="var(--text3)">├── Layout.jsx · AdminLayout.jsx</text>
+          <text x="310" y="88" fill="var(--text2)">├── pages/</text>
+          <text x="330" y="106" fill="var(--text3)">├── Home · News · Event · Rank · Team</text>
+          <text x="330" y="124" fill="var(--text3)">├── admin/ (Login · Dashboard · ...)</text>
+          <text x="310" y="142" fill="var(--text2)">├── services/</text>
+          <text x="330" y="160" fill="var(--text3)">├── api.js · adminApi.js</text>
+          <text x="310" y="178" fill="var(--text2)">├── style/</text>
+          <text x="330" y="196" fill="var(--text3)">├── home.css · Navbar.css · Event.css · ...</text>
+          <text x="310" y="214" fill="var(--text2)">├── utility/</text>
+          <text x="330" y="232" fill="var(--text3)">├── utils.js (clsx + tailwind-merge)</text>
+          <text x="310" y="250" fill="var(--text2)">├── shared/ · views/ · context/</text>
+          <text x="310" y="268" fill="var(--text2)">├── global.css · main.jsx · App.jsx</text>
+
+          <text x="560" y="30" font-weight="600" fill="var(--cyan)">root/</text>
+          <text x="580" y="52" fill="var(--text2)">├── public/</text>
+          <text x="600" y="70" fill="var(--text3)">├── brand-logo.svg · video/</text>
+          <text x="580" y="88" fill="var(--text2)">├── dist/</text>
+          <text x="600" y="106" fill="var(--text3)">├── production build</text>
+          <text x="580" y="124" fill="var(--text2)">├── vite.config.js</text>
+          <text x="580" y="142" fill="var(--text2)">├── vercel.json</text>
+          <text x="580" y="160" fill="var(--text2)">├── package.json</text>
+          <text x="580" y="178" fill="var(--text2)">├── eslint.config.js</text>
+          <text x="580" y="196" fill="var(--text2)">├── setup-build.py</text>
+          <text x="580" y="214" fill="var(--text2)">├── setup-development.py</text>
+          <text x="580" y="250" fill="var(--text3)">Backend (private server):</text>
+          <text x="600" y="268" fill="var(--text3)">FastAPI · BeautifulSoup</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== design tokens ===== -->
+<section id="tokens">
+  <div class="sec-head"><span class="idx">06</span><h2>Design tokens</h2></div>
+  <p class="sec-intro">Brand colors, typography, and key visual properties extracted from <code>global.css</code> and component styles.</p>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="icon" style="background:#1B4332;color:#fff">A</div><div class="info"><div class="t">Primary · #1B4332</div><div class="d">Forest green — nav, buttons, links</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#56B685;color:#fff">A</div><div class="info"><div class="t">Accent · #56B685</div><div class="d">Mint green — highlights, active states</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#f97316;color:#fff">A</div><div class="info"><div class="t">Orange · #f97316</div><div class="d">Secondary accent — CTAs, glow effects</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#06b6d4;color:#fff">A</div><div class="info"><div class="t">Cyan · #06b6d4</div><div class="d">Tech accent — gradients, icons</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#f8fafc;color:#141413;border:1px solid var(--line)">A</div><div class="info"><div class="t">Surface · #f9faf6</div><div class="d">Light page background (DaisyUI surface)</div></div></div>
+    <div class="tech-card"><div class="icon" style="font-family:serif">T</div><div class="info"><div class="t">Fonts</div><div class="d">Inter (body), Outfit (headings), Lexend</div></div></div>
+    <div class="tech-card"><div class="icon">↕</div><div class="info"><div class="t">Spacing</div><div class="d">Tailwind scale · container 1280px</div></div></div>
+    <div class="tech-card"><div class="icon">⬜</div><div class="info"><div class="t">Radii</div><div class="d">4px–48px · cards 12px· buttons 8px</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>ENDURANCE|HUB · <span style="font-family:var(--serif);font-style:italic">Pace Your Way</span></span>
+  <span><a href="https://github.com/MinhCreator/BestWebDesign" style="color:var(--cyan);text-underline-offset:3px;text-decoration-color:var(--line)">GitHub →</a></span>
+</footer>
+
+</div>
+</body>
+</html>
