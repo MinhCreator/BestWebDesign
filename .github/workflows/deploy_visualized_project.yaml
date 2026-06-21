@@ -1,0 +1,47 @@
+name: Deploy Custom HTML to Pages
+
+on:
+  push:
+    branches: ["main"] # Triggers on push to the main branch
+  workflow_dispatch: # Allows manual triggers from the Actions tab
+
+# Set permissions required for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Avoid concurrent deployments running at the same time
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # CRITICAL STEP: Creates a staging folder, copies your custom file as index.html,
+      # and copies any associated assets (like CSS/images) into it.
+      - name: Prepare Site Artifact
+        run: |
+          mkdir _site
+          cp project_workflow.html _site/index.html
+          
+          # Optional: Copy images/CSS if you have them (uncomment if needed)
+          # cp -r css/ _site/
+          # cp -r images/ _site/
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_site' # Instructs the action to look specifically inside our staging folder
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
