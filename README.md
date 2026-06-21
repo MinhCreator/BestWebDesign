@@ -1,7 +1,7 @@
 <p align="center">
   <br>
   <br>
-  <a href="https://best-web-design-two.vercel.app/" target="_blank" rel="noopener noreferrer" style="font-size: 75px;">
+  <a href="https://best-web-design-two.vercel.app/" target="_blank" rel="noopener noreferrer" style="font-size: 175px;">
     ENDURANCE|HUB
   </a>
   <br>
