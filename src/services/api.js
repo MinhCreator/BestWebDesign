@@ -1,3 +1,4 @@
+import 'dotenv/config';
 
 const BASE_URL = process.env.VITE_PRIVATE_SERVER || "/api" || "";
 
