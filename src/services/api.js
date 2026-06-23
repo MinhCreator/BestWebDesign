@@ -1,4 +1,5 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config({ path: './.env' });
 
 const BASE_URL = process.env.VITE_PRIVATE_SERVER || "/api" || "";
 
