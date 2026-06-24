@@ -28,7 +28,7 @@ async function adminRequest(endpoint, options = {}) {
     const body = await res.json().catch(() => ({}));
     throw new ApiError(body.detail || `Request failed: ${res.status}`, res.status);
   }
-  return res.json();
+  return res.json().catch(() => { throw new ApiError("Invalid server response", res.status); });
 }
 
 export function adminLogin(username, password) {

@@ -5,7 +5,10 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "PRIVATE_SERVER not configured" });
   }
 
-  const url = `${target}${req.url}`;
+  const apiPath = req.query.path || req.url.replace('/api/proxy', '/api');
+  const queryString = req.url.includes('?') ? req.url.split('?').slice(1).join('?') : '';
+  const url = `${target.replace(/\/+$/, '')}/${apiPath.replace(/^\/+/, '')}${queryString ? '?' + queryString : ''}`;
+
   const body = req.method !== "GET" && req.method !== "HEAD" ? JSON.stringify(req.body) : undefined;
 
   try {
@@ -15,10 +18,12 @@ export default async function handler(req, res) {
       body,
     });
 
-    const data = resp.headers.get("content-type")?.includes("application/json")
+    const contentType = resp.headers.get("content-type") || "";
+    const data = contentType.includes("application/json")
       ? await resp.json()
       : await resp.text();
 
+    res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(resp.status).json(data);
   } catch (err) {
     return res.status(502).json({ error: "Bad Gateway", detail: err.message });

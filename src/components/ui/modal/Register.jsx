@@ -23,7 +23,7 @@ const Register = ({ event: selectedEvent, onClose }) => {
         body: JSON.stringify(formData),
       });
       const body = res.ok
-        ? await res.json()
+        ? await res.json().catch(() => ({ detail: "Invalid server response" }))
         : { detail: "Registration failed" };
       if (res.ok) {
         setSubmitted(true);
