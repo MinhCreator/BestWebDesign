@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
 
   const apiPath = req.query.path || req.url.replace('/api/proxy', '/api');
-  const url = `${target}/${apiPath}`;
+  const url = `${target}${apiPath}`;
 
   const resp = await fetch(url, {
     method: req.method,
