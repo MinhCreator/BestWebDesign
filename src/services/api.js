@@ -1,5 +1,3 @@
-
-
 const BASE_URL = "";
 
 class ApiError extends Error {
@@ -37,4 +35,8 @@ export function fetchPosts(page = 1, limit = 4) {
 
 export function fetchEvents() {
   return request("/api/events").then(toArray);
+}
+
+export function fetchResults(eventId) {
+  return request(`/api/results?event_id=${eventId}`).then(toArray);
 }

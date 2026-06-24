@@ -10,6 +10,7 @@ const adminPaths = [
   "/admin/dashboard",
   "/admin/registrations",
   "/admin/events",
+  "/admin/results",
   "/admin/content",
   "/admin/health",
   "/admin/users",

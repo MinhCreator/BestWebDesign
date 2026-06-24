@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Register from "../ui/modal/Register";
 import { useEvents } from "../../hooks/useEvents";
 import Spinner from "../../views/spinner/Spinner";
 
 const EventList = ({ filters }) => {
+  const navigate = useNavigate();
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [registeringEvent, setRegisteringEvent] = useState(null);
 
@@ -104,7 +106,7 @@ const EventList = ({ filters }) => {
             key={event.id}
             className={`card ${selectedEvent?.id === event.id ? "ring-2 ring-[#55b576]" : ""}`}
           >
-            <div className="card-image">
+            <div className="card-image bg-cover">
               <img src={event.image} alt="" />
             </div>
             <div className="card-content font-bold text-md">
@@ -116,6 +118,12 @@ const EventList = ({ filters }) => {
                 <div className="flex gap-2">
                   <button onClick={() => handleViewNow(event)}>
                     {selectedEvent?.id === event.id ? "Close" : "View now"}
+                  </button>
+                  <button
+                    onClick={() => navigate(`/Leaderboard/${event.id}`)}
+                    className="rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-primary-content transition-all hover:brightness-110 active:scale-95"
+                  >
+                    Leaderboard
                   </button>
                   <button
                     onClick={() => setRegisteringEvent(event)}

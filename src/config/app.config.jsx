@@ -34,6 +34,13 @@ export const AppConfig = {
       NavbarComp: true,
     },
     {
+      name: "Event Leaderboard",
+      path: "/Leaderboard/:eventId",
+      component: Loadable(lazy(() => import("../pages/Rank"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
       name: "Team",
       path: "/Team",
       component: Loadable(lazy(() => import("../pages/Team"))),
@@ -94,6 +101,13 @@ export const AppConfig = {
       name: "Admin Events",
       path: "/admin/events",
       component: Loadable(lazy(() => import("../pages/admin/Events"))),
+      isDisableRoute: false,
+      NavbarComp: false,
+    },
+    {
+      name: "Admin Results",
+      path: "/admin/results",
+      component: Loadable(lazy(() => import("../pages/admin/Results"))),
       isDisableRoute: false,
       NavbarComp: false,
     },

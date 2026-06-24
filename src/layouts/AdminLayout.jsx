@@ -11,13 +11,15 @@ import {
   Menu,
   X,
   Shield,
-  Calendar
+  Calendar,
+  Trophy
 } from "lucide-react";
 
 const navItems = [
   { name: "Dashboard", path: "/admin/dashboard", icon: LayoutDashboard },
   { name: "Registrations", path: "/admin/registrations", icon: ClipboardList },
   { name: "Events", path: "/admin/events", icon: Calendar },
+  { name: "Results", path: "/admin/results", icon: Trophy },
   { name: "Content", path: "/admin/content", icon: FileText },
   { name: "System Health", path: "/admin/health", icon: HeartPulse },
 ];

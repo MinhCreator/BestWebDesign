@@ -101,3 +101,30 @@ export function updateEvent(eventId, eventData) {
 export function deleteEvent(eventId) {
   return adminRequest(`/api/admin/events/${eventId}`, { method: "DELETE" });
 }
+
+export function getAdminResults(eventId) {
+  const query = eventId ? `?event_id=${eventId}` : "";
+  return adminRequest(`/api/admin/results${query}`).then(data =>
+    Array.isArray(data) ? data : Object.values(data || {})
+  );
+}
+
+export function createResult(resultData) {
+  return adminRequest("/api/admin/results", {
+    method: "POST",
+    body: JSON.stringify(resultData),
+  });
+}
+
+export function updateResult(resultId, resultData) {
+  return adminRequest(`/api/admin/results/${resultId}`, {
+    method: "PUT",
+    body: JSON.stringify(resultData),
+  });
+}
+
+export function deleteResult(resultId) {
+  return adminRequest(`/api/admin/results/${resultId}`, { method: "DELETE" });
+}
+
+

@@ -69,11 +69,11 @@ src/                        # React application source (62 files)
 │                           #   Modal/Register (direct POST form)
 ├── config/                 # app.config.jsx (13 route definitions)
 ├── context/                # AuthContext.jsx (login/logout/token)
-├── hooks/                  # useArticles, usePosts, useEvents (TanStack Query)
+├── hooks/                  # useArticles, usePosts, useEvents, useResults (TanStack Query)
 ├── layouts/                # Layout (public shell), AdminLayout (sidebar)
 ├── pages/                  # 6 public + 7 admin = 13 pages
 │   ├── Home, News, Event, Rank, Team, Testing
-│   └── admin/              # Login, Dashboard, Registrations, Events,
+│   └── admin/              # Login, Dashboard, Registrations, Events, Results,
 │                           # Content, SystemHealth, Users
 ├── routes/                 # BrowserRouter + auth-aware routing
 ├── services/               # api.js (public fetch), adminApi.js (admin fetch + bearer)
@@ -127,7 +127,7 @@ backend/
 - **Bubble navbar** — Floating mini-nav appears on desktop scroll
 - **Search bar** — Quick search across the platform
 - **Running events** — Filter by type/distance/location. Embedded Google Map. Registration modal with validation.
-- **Leaderboard** — Top-3 podium (avatars, flags) + ranked table (points, trend arrows)
+- **Leaderboard** — Per-event dynamic leaderboard. Top-3 podium with avatars + flags + ranked table, sorted by time. Accessible from event cards or via `/Leaderboard/:eventId`. Built with TanStack Query (`useResults` hook).
 - **News sidebar** — Tabbed sidebar: Latest News (from API) + Upcoming Races (static). Main content uses mock data.
 - **Paginated tips** — Animated grid from `/api/posts/` (TanStack Query + Motion)
 - **Community section** — Club cards, forum, activity feed
@@ -139,29 +139,32 @@ backend/
   - Dashboard with stats (articles, posts, events, registrations, users, cache status)
   - Registrations CRUD (search, delete)
   - Events CRUD (create, read, update, delete, status toggle)
+  - Results management (CRUD per-event runner results with time, nationality, avatar)
   - Content management (view articles, trigger re-crawl by type)
   - System health monitoring (endpoint status, clear cache)
   - User management (superadmin role, create admin users)
 - **Vercel proxy** — Serverless function (`api/proxy.js`) parses raw body, forwards `Authorization`, uses `VITE_API_KEY` env
 - **Dark mode support** — CSS variables + `@variant dark` in `global.css`
 
-## Routes (13 total)
+## Routes (15 total)
 
 | Path                   | Page               | Access     | Component            |
 | ---------------------- | ------------------ | ---------- | -------------------- |
 | `/`                    | Home               | public     | `pages/Home`         |
 | `/News`                | News               | public     | `pages/News`         |
 | `/Event`               | Events             | public     | `pages/Event`        |
-| `/Leaderboard`         | Rank               | public     | `pages/Rank`         |
+| `/Leaderboard`         | Rank (all events)  | public     | `pages/Rank`         |
+| `/Leaderboard/:eventId`| Rank (per event)   | public     | `pages/Rank`         |
 | `/Team`                | Team               | public     | `pages/Team`         |
 | `/dev/Test`            | Testing            | public     | `pages/Testing`      |
 | `/admin/login`         | Admin Login        | public     | `pages/admin/Login`  |
 | `/admin/dashboard`     | Dashboard          | admin      | `pages/admin/Dashboard` |
 | `/admin/registrations` | Registrations      | admin      | `pages/admin/Registrations` |
+| `/admin/events`        | Events (admin)     | admin      | `pages/admin/Events` |
+| `/admin/results`       | Results Manager    | admin      | `pages/admin/Results` |
 | `/admin/content`       | Content Management | admin      | `pages/admin/Content` |
 | `/admin/health`        | System Health      | admin      | `pages/admin/SystemHealth` |
 | `/admin/users`         | User Management    | superadmin | `pages/admin/Users`  |
-| `/admin/events`        | Events (admin)     | admin      | `pages/admin/Events` |
 
 ## API Endpoints (proxied via Vercel)
 
@@ -182,10 +185,15 @@ All requests use relative `/api/*` paths. Vercel rewrites `api/proxy.js` forward
 | `/api/admin/cache/clear`     | POST     | Clear backend cache              | Bearer   |
 | `/api/admin/health`          | GET      | System health check              | Bearer   |
 | `/api/admin/users`           | GET/POST | List / create admin users        | Bearer   |
+| `/api/results`               | GET      | Fetch results (?event_id= filter)| —        |
 | `/api/admin/events`          | GET      | List events (?status= filter)    | Bearer   |
 | `/api/admin/events`          | POST     | Create event                     | Bearer   |
 | `/api/admin/events/{id}`     | PUT      | Update event                     | Bearer   |
 | `/api/admin/events/{id}`     | DELETE   | Delete event                     | Bearer   |
+| `/api/admin/results`         | GET      | List results (?event_id= filter) | Bearer   |
+| `/api/admin/results`         | POST     | Create result entry              | Bearer   |
+| `/api/admin/results/{id}`    | PUT      | Update result                    | Bearer   |
+| `/api/admin/results/{id}`    | DELETE   | Delete result                    | Bearer   |
 
 ## Setup
 
