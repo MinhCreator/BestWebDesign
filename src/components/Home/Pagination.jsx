@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { usePosts } from "../../hooks/usePosts";
 
 const PaginatedList = () => {
+  const PER_PAGE = 3;
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: items, isLoading, error } = usePosts(currentPage, currentPage + 2);
+  const { data: items, isLoading, error } = usePosts(currentPage, PER_PAGE);
 
   if (isLoading)
     return (

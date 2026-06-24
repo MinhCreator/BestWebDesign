@@ -30,7 +30,9 @@ export function fetchArticles() {
 }
 
 export function fetchPosts(page = 1, limit = 4) {
-  return request(`/api/posts/?start=${page}&end=${limit}`).then(toArray);
+  const start = (page - 1) * limit + 1;
+  const end = page * limit;
+  return request(`/api/posts/?start=${start}&end=${end}`).then(toArray);
 }
 
 export function fetchEvents() {
