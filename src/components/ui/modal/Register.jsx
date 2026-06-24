@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 
 const Register = ({ event: selectedEvent, onClose }) => {
-  const [formData, setFormData] = useState({ name: "", phone: "", event: selectedEvent.name });
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    event: selectedEvent.name,
+  });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
@@ -13,13 +17,14 @@ const Register = ({ event: selectedEvent, onClose }) => {
     e.preventDefault();
     setError(null);
     try {
-      
       const res = await fetch(`/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      const body = await res.json();
+      const body = res.ok
+        ? await res.json()
+        : { detail: "Registration failed" };
       if (res.ok) {
         setSubmitted(true);
         setFormData({ name: "", phone: "", event: "" });
@@ -112,7 +117,9 @@ const Register = ({ event: selectedEvent, onClose }) => {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <p className="font-outfit text-headline-md text-on-surface">You're in!</p>
+            <p className="font-outfit text-headline-md text-on-surface">
+              You're in!
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -146,9 +153,7 @@ const Register = ({ event: selectedEvent, onClose }) => {
               />
             </div>
 
-            {error && (
-              <p className="text-body-md text-destructive">{error}</p>
-            )}
+            {error && <p className="text-body-md text-destructive">{error}</p>}
 
             <button
               type="submit"
