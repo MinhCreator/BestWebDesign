@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "../../views/spinner/Loading";
-import Post from "../../api/Post";
+import Post from "../../components/news/Post";
 
 const SideContent = () => {
   const [activeTab, setActiveTab] = useState("news");
