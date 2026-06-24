@@ -15,7 +15,11 @@ export default async function handler(req, res) {
   const apiPath = req.query.path || req.url.replace('/api/proxy', '/api');
   const base = target.replace(/\/+$/, '');
   const path = apiPath.startsWith('/') ? apiPath : '/' + apiPath;
-  const url = `${base}${path}`;
+  const qs = Object.entries(req.query)
+  .filter(([k]) => k !== "path")
+  .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+  .join("&");
+  const url = `${base}${path}${qs ? "?" + qs : ""}`;
 
   try {
     const resp = await fetch(url, {
