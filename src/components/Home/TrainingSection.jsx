@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PaginatedList from "./Pagination";
 import Dialog from "../ui/Dialog";
+import PaceCalculator from "../ui/PaceCalculator";
 import post from "/src/assets/poster.svg";
 
 const TrainingSection = () => {
@@ -27,6 +28,7 @@ const TrainingSection = () => {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isPaceOpen, setIsPaceOpen] = useState(false);
 
   return (
     <section className="pb-24 max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -65,7 +67,10 @@ const TrainingSection = () => {
               </div>
             </button>
           </div>
-          <div className="flex items-center justify-between bg-gradient-to-r from-[#206649] to-[#4EB086] rounded-2xl p-6 h-24 shadow-md cursor-pointer hover:opacity-95 transition-all">
+          <button
+            onClick={() => setIsPaceOpen(true)}
+            className="flex items-center justify-between bg-gradient-to-r from-[#206649] to-[#4EB086] rounded-2xl p-6 h-24 shadow-md cursor-pointer hover:opacity-95 transition-all w-full text-left"
+          >
             <div className="text-white">
               <h4 className="font-bold text-base leading-tight">
                 Pace Calculator
@@ -79,8 +84,8 @@ const TrainingSection = () => {
                 calculate
               </span>
             </div>
-          </div>
-          <div className="flex items-center justify-between bg-gradient-to-r from-[#145341] to-[#3B927B] rounded-2xl p-6 h-24 shadow-md cursor-pointer hover:opacity-95 transition-all">
+          </button>
+          {/* <div className="flex items-center justify-between bg-gradient-to-r from-[#145341] to-[#3B927B] rounded-2xl p-6 h-24 shadow-md cursor-pointer hover:opacity-95 transition-all">
             <div className="text-white">
               <h4 className="font-bold text-base leading-tight">
                 Progress Analysis
@@ -94,7 +99,7 @@ const TrainingSection = () => {
                 analytics
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -107,6 +112,30 @@ const TrainingSection = () => {
         </div>
         <PaginatedList />
       </div>
+
+      {/* Pace Calculator Modal */}
+      {isPaceOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={() => setIsPaceOpen(false)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b px-6 py-4">
+              <h2 className="text-lg font-bold">Pace Calculator</h2>
+              <button
+                className="btn btn-ghost btn-sm btn-circle"
+                onClick={() => setIsPaceOpen(false)}
+              >
+                ✕
+              </button>
+            </div>
+            <PaceCalculator />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
