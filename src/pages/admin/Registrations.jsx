@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { getRegistrations, deleteRegistration } from "../../services/adminApi";
 import { Trash2, Search } from "lucide-react";
+import { NationMetadata } from "../../shared/nationalMetadata";
+
+const Nationalities = NationMetadata.NationInfor;
 
 export default function AdminRegistrations() {
   const [registrations, setRegistrations] = useState([]);
@@ -33,7 +36,8 @@ export default function AdminRegistrations() {
   const filtered = registrations.filter(
     (r) =>
       r.name?.toLowerCase().includes(search.toLowerCase()) ||
-      r.phone?.includes(search) || r.event?.includes(search),
+      r.phone?.includes(search) || r.event?.includes(search) ||
+      r.nationality?.toLowerCase().includes(search.toLowerCase()),
   );
 
   if (loading) {
@@ -78,6 +82,7 @@ export default function AdminRegistrations() {
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Event</th>
+                <th>Nation</th>
                 <th>Timestamp</th>
                 <th>Actions</th>
               </tr>
@@ -85,7 +90,7 @@ export default function AdminRegistrations() {
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-8 text-gray-400">
+                  <td colSpan={7} className="text-center py-8 text-gray-400">
                     No registrations found
                   </td>
                 </tr>
@@ -96,6 +101,21 @@ export default function AdminRegistrations() {
                     <td className="font-medium">{reg.name}</td>
                     <td>{reg.phone}</td>
                     <td className="font-medium">{reg.event}</td>
+                    <td>
+                      {reg.nationality ? (
+                        <div className="flex items-center gap-2">
+                          {(() => {
+                            const nat = Nationalities.find((n) => n.name === reg.nationality);
+                            return nat?.image_url ? (
+                              <img src={nat.image_url} alt="" className="w-6 h-4 rounded object-cover" />
+                            ) : null;
+                          })()}
+                          {reg.nationality}
+                        </div>
+                      ) : (
+                        <span className="text-gray-400">—</span>
+                      )}
+                    </td>
                     <td className="text-sm text-gray-500">
                       {reg.timestamp
                         ? new Date(reg.timestamp).toLocaleString()

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { NationMetadata } from "../../../shared/nationalMetadata";
+
+const Nationalities = NationMetadata.NationInfor;
 
 const Register = ({ event: selectedEvent, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     event: `${selectedEvent.name}`,
+    nationality: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
@@ -151,6 +155,35 @@ const Register = ({ event: selectedEvent, onClose }) => {
                 className="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-2.5 text-body-md text-on-surface placeholder:text-outline transition-all duration-200 focus:border-primary focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/15"
                 required
               />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="font-inter text-label-bold text-on-surface/80">
+                Nationality
+              </label>
+              <div className="relative">
+                <select
+                  name="nationality"
+                  value={formData.nationality}
+                  onChange={handleChange}
+                  className="w-full appearance-none rounded-xl border border-outline-variant bg-surface-container-low pl-10 pr-4 py-2.5 text-body-md text-on-surface transition-all duration-200 focus:border-primary focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/15"
+                >
+                  <option value="">Select nationality</option>
+                  {Nationalities.map((n) => (
+                    <option key={n.code} value={n.name}>{n.name}</option>
+                  ))}
+                </select>
+                {formData.nationality && (() => {
+                  const nat = Nationalities.find((n) => n.name === formData.nationality);
+                  return nat?.image_url ? (
+                    <img
+                      src={nat.image_url}
+                      alt=""
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-3.5 rounded object-cover pointer-events-none"
+                    />
+                  ) : null;
+                })()}
+              </div>
             </div>
 
             {error && <p className="text-body-md text-destructive">{error}</p>}
