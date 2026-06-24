@@ -6,7 +6,7 @@ import { usePosts } from "../../hooks/usePosts";
 
 const PaginatedList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data: items, isLoading, error } = usePosts(currentPage, currentPage + 3);
+  const { data: items, isLoading, error } = usePosts(currentPage, currentPage + 2);
 
   if (isLoading)
     return (

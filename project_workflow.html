@@ -1,581 +1,707 @@
+<!-- ENDURANCE|HUB — architecture visualization -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Endurance Hub — Project Workflow</title>
+<title>ENDURANCE|HUB — architecture · stack · features</title>
 <script>
-  (function () {
-    const saved = localStorage.getItem('theme');
-    const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.classList.toggle('dark', dark);
+  (function() {
+    var t = localStorage.getItem('eh-theme');
+    if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if (t === 'dark') { document.documentElement.classList.add('dark'); }
   })();
 </script>
 <style>
   :root {
-    --bg: #FAF9F5; --surface: #FFFFFF; --surface2: #F0EEE6;
-    --ink: #141413; --body: #3D3D3A; --muted: #87867F;
-    --line: #D1CFC5; --line-soft: #E6E3DA;
-    --clay: #D97757; --clay-soft: rgba(217,119,87,0.10);
-    --olive: #788C5D; --olive-soft: rgba(120,140,93,0.12);
-    --gold: #C9A45C; --gold-soft: rgba(201,164,92,0.12);
-    --blue: #5B7E96; --blue-soft: rgba(91,126,150,0.10);
-    --red: #B04A3F; --red-soft: rgba(176,74,63,0.10);
-    --green: #5B8C5A; --green-soft: rgba(91,140,90,0.10);
-    --pine: #1B4332; --pine-soft: rgba(27,67,50,0.10);
-    --zone: rgba(20,20,19,0.025); --zone-line: #D1CFC5;
-    --serif: ui-serif, Georgia, "Times New Roman", serif;
-    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --bg:      #FAF9F5;
+    --surface: #FFFFFF;
+    --text:    #141413;
+    --text2:   #3D3D3A;
+    --text3:   #87867F;
+    --line:    #D1CFC5;
+    --line2:   #F0EEE6;
+    --pine:    #1B4332;
+    --pine-l:  #2c694e;
+    --moss:    #56B685;
+    --cyan:    #06b6d4;
+    --ember:   #f97316;
+    --oat:     #E3DACC;
+    --serif:   ui-serif, Georgia, "Times New Roman", Times, serif;
+    --sans:    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono:    ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
+    --r:       12px;
   }
   html.dark {
-    --bg: #141413; --surface: #1F1F1D; --surface2: #2A2A28;
-    --ink: #FAF9F5; --body: #D1CFC5; --muted: #87867F;
-    --line: #3D3D3A; --line-soft: #2A2A28;
-    --clay: #E48A6E; --clay-soft: rgba(228,138,110,0.14);
-    --olive: #9DB07C; --olive-soft: rgba(157,176,124,0.16);
-    --gold: #D4B36F; --gold-soft: rgba(212,179,111,0.14);
-    --blue: #7FA3BC; --blue-soft: rgba(127,163,188,0.12);
-    --red: #D46B5E; --red-soft: rgba(212,107,94,0.14);
-    --green: #7DAF7C; --green-soft: rgba(125,175,124,0.14);
-    --pine: #56B685; --pine-soft: rgba(86,182,133,0.14);
-    --zone: rgba(250,249,245,0.03); --zone-line: #3D3D3A;
+    --bg:      #12140F;
+    --surface: #1A1D17;
+    --text:    #E8E6DE;
+    --text2:   #C1C0B6;
+    --text3:   #7A7B72;
+    --line:    #2E3229;
+    --line2:   #25281F;
+    --oat:     #3A3F30;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
   body {
-    background: var(--bg); color: var(--body); font-family: var(--sans);
-    -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    padding: 48px 24px 120px;
+    -webkit-font-smoothing: antialiased;
+    transition: background .2s, color .2s;
+  }
+  .page { max-width: 1120px; margin: 0 auto; }
+
+  /* theme toggle */
+  #theme-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 99;
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 17px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s;
+  }
+  #theme-btn:hover { border-color: var(--pine); }
+  html.dark #theme-btn:hover { border-color: var(--moss); }
+
+  /* header */
+  header.masthead { margin-bottom: 56px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px; height: 1.5px;
+    background: var(--cyan);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    margin: 0 0 8px;
+  }
+  h1 .accent { color: var(--ember); }
+  h1 .divider { color: var(--text3); }
+  .subtitle {
+    font-size: 16px;
+    color: var(--text2);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+  .badge-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    color: var(--text2);
+  }
+  .badge.pine { border-color: var(--pine); color: var(--pine); }
+  .badge.cyan { border-color: var(--cyan); color: var(--cyan); }
+  .badge.ember { border-color: var(--ember); color: var(--ember); }
+  html.dark .badge.pine { border-color: var(--moss); color: var(--moss); }
+  html.dark .badge.cyan { border-color: var(--cyan); color: var(--cyan); }
+  html.dark .badge.ember { border-color: var(--ember); color: var(--ember); }
+
+  /* summary strip */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 56px;
+  }
+  .summary .cell {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 16px 18px;
+  }
+  .summary .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    margin-bottom: 5px;
+  }
+  .summary .v {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .summary .v.ember { color: var(--ember); }
+  .summary .v.cyan { color: var(--cyan); }
+
+  /* section chrome */
+  section { margin-bottom: 60px; }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .sec-head .idx {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cyan);
+    font-weight: 600;
+    width: 30px;
+    flex-shrink: 0;
+  }
+  .sec-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .sec-head .count {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text3);
+    background: var(--line2);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .sec-intro {
+    font-size: 14.5px;
+    color: var(--text2);
+    max-width: 700px;
+    margin: 0 0 24px 44px;
+  }
+  @media (max-width: 640px) { .sec-intro { margin-left: 0; } }
+
+  /* tech grid */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .tech-grid { margin-left: 0; } }
+  .tech-card {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: border-color .15s, transform .15s;
+  }
+  .tech-card:hover {
+    border-color: var(--pine);
+    transform: translateY(-2px);
+  }
+  html.dark .tech-card:hover { border-color: var(--moss); }
+  .tech-card .icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--line2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .tech-card .info { flex: 1; }
+  .tech-card .t {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .tech-card .d {
+    font-size: 12.5px;
+    color: var(--text3);
   }
 
-  .bar {
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-    padding: 12px 20px; border-bottom: 1px solid var(--line-soft); flex: none;
+  /* grid cards */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-left: 44px;
   }
-  .bar h1 { font-family: var(--serif); font-weight: 500; font-size: 19px; color: var(--ink); letter-spacing: -0.01em; }
-  .bar .sub { font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-  .spacer { flex: 1; }
-  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
-  .chip {
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
-    padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px;
-    background: transparent; color: var(--muted); cursor: pointer; transition: all .15s ease;
-  }
-  .chip:hover { color: var(--ink); border-color: var(--muted); }
-  .chip.on { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-  #themeToggle {
-    font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 5px 10px; border: 1px solid var(--line); border-radius: 6px;
-    background: transparent; color: var(--muted); cursor: pointer;
-  }
-  #themeToggle:hover { color: var(--ink); border-color: var(--muted); }
-
-  .stage { flex: 1; position: relative; min-height: 0; }
-  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-
-  .zone rect { fill: var(--zone); stroke: var(--zone-line); stroke-width: 1; stroke-dasharray: 5 5; rx: 16; }
-  .zone .ztitle { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--muted); }
-  .zone .zsub { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); opacity: 0.75; }
-
-  .node { cursor: pointer; }
-  .node rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; rx: 10; transition: stroke .15s ease, filter .15s ease; }
-  .node:hover rect { stroke: var(--muted); }
-  .node.sel rect { stroke: var(--clay) !important; stroke-width: 2; }
-  .node .t  { font-family: var(--sans); font-size: 14px; font-weight: 600; fill: var(--ink); pointer-events: none; }
-  .node .m  { font-family: var(--mono); font-size: 11px; fill: var(--muted); pointer-events: none; }
-  .node .k  { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--clay); pointer-events: none; }
-  .node.gate rect { fill: var(--clay-soft); stroke: var(--clay); }
-  .node.store rect { fill: var(--surface2); }
-  .node.do rect { fill: var(--olive-soft); stroke: var(--olive); }
-  .node.ext rect { stroke-dasharray: 6 3; }
-  .node.auth rect { fill: var(--gold-soft); stroke: var(--gold); }
-  .node.api rect { fill: var(--blue-soft); stroke: var(--blue); }
-  .node.bad rect { fill: var(--red-soft); stroke: var(--red); }
-  .node.primary rect { fill: var(--pine-soft); stroke: var(--pine); }
-
-  .edge { stroke: var(--muted); stroke-width: 1.6; fill: none; marker-end: url(#a-mut); transition: opacity .2s ease, stroke .2s ease; }
-  .edge.dash { stroke-dasharray: 5 4; }
-  .edge.ws { stroke-width: 2; }
-  .elbl { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); transition: opacity .2s ease; }
-
-  .stage.flowing .edge { opacity: 0.13; }
-  .stage.flowing .elbl { opacity: 0.13; }
-  .stage.flowing .node { opacity: 0.30; }
-  .stage.flowing .zone { opacity: 0.45; }
-  .stage.flowing .edge.lit {
-    opacity: 1; stroke: var(--clay); marker-end: url(#a-clay);
-    stroke-dasharray: 7 5; animation: march 0.9s linear infinite;
-  }
-  .stage.flowing .edge.lit.alt { stroke: var(--blue); marker-end: url(#a-blue); }
-  .stage.flowing .edge.lit.alt2 { stroke: var(--olive); marker-end: url(#a-olive); }
-  .stage.flowing .edge.lit.alt3 { stroke: var(--gold); marker-end: url(#a-gold); }
-  .stage.flowing .edge.lit.alt4 { stroke: var(--pine); marker-end: url(#a-pine); }
-  .stage.flowing .elbl.lit { opacity: 1; fill: var(--clay); }
-  .stage.flowing .elbl.lit.alt { fill: var(--blue); }
-  .stage.flowing .elbl.lit.alt2 { fill: var(--olive); }
-  .stage.flowing .elbl.lit.alt3 { fill: var(--gold); }
-  .stage.flowing .elbl.lit.alt4 { fill: var(--pine); }
-  .stage.flowing .node.lit { opacity: 1; }
-  .stage.flowing .node.lit rect { stroke: var(--clay); }
-  .stage.flowing .node.lit.alt rect { stroke: var(--blue); }
-  .stage.flowing .node.lit.alt2 rect { stroke: var(--olive); }
-  .stage.flowing .node.lit.alt3 rect { stroke: var(--gold); }
-  .stage.flowing .node.lit.alt4 rect { stroke: var(--pine); }
-  @keyframes march { to { stroke-dashoffset: -12; } }
-  @media (prefers-reduced-motion: reduce) { .stage.flowing .edge.lit { animation: none; } }
-
+  @media (max-width: 640px) { .grid { margin-left: 0; } }
   .card {
-    position: absolute; max-width: 360px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
-    padding: 14px 16px; box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 20px;
+    transition: border-color .15s, transform .15s;
   }
-  #detail { right: 16px; bottom: 16px; width: 340px; }
-  #detail h3 { font-family: var(--serif); font-weight: 500; font-size: 17px; color: var(--ink); margin-bottom: 2px; }
-  #detail .meta { font-family: var(--mono); font-size: 10.5px; color: var(--muted); margin-bottom: 8px; }
-  #detail p { font-size: 12.5px; line-height: 1.55; }
-  #detail p code, #flowcap code { font-family: var(--mono); font-size: 11px; color: var(--clay); }
-  #flowcap { left: 16px; bottom: 16px; max-width: 460px; display: none; }
-  #flowcap.show { display: block; }
-  #flowcap .fname { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--clay); margin-bottom: 6px; }
-  #flowcap ol { margin-left: 18px; }
-  #flowcap li { font-size: 12.5px; line-height: 1.55; }
+  .card:hover {
+    border-color: var(--pine);
+    transform: translateY(-2px);
+  }
+  html.dark .card:hover { border-color: var(--moss); }
+  .card .ct {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .card .cd {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .card .tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--line2);
+    color: var(--text3);
+  }
 
-  @media (max-width: 880px) {
-    body { overflow: auto; }
-    .stage { min-height: 70vh; }
-    #detail { position: static; width: auto; margin: 10px 16px; }
-    #flowcap { position: static; margin: 0 16px 16px; }
+  /* architecture diagram */
+  .arch {
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .arch { margin-left: 0; } }
+  .arch-svg {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    padding: 24px;
+    overflow-x: auto;
+  }
+  .arch-svg svg { display: block; min-width: 700px; }
+  .arch-svg text { font-family: var(--mono); }
+  .arch-cap {
+    font-size: 12.5px;
+    color: var(--text3);
+    margin-top: 10px;
+  }
+
+  /* route table */
+  .routes {
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    overflow: hidden;
+    margin-left: 44px;
+  }
+  @media (max-width: 640px) { .routes { margin-left: 0; } }
+  .routes .row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 80px;
+    gap: 0;
+  }
+  @media (max-width: 720px) { .routes .row { grid-template-columns: 1fr; } }
+  .routes .row + .row { border-top: 1.5px solid var(--line); }
+  .routes .cell {
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+  .routes .cell + .cell { border-left: 1.5px solid var(--line); }
+  @media (max-width: 720px) { .routes .cell + .cell { border-left: none; border-top: 1px dashed var(--line); } }
+  .routes .head {
+    background: var(--line2);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text3);
+    font-weight: 600;
+  }
+  .routes .path {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--pine);
+  }
+  html.dark .routes .path { color: var(--moss); }
+  .routes .cell .pin { color: var(--text3); font-size: 11px; }
+
+  /* footer */
+  footer {
+    margin-top: 80px;
+    border-top: 1.5px solid var(--line);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text3);
+  }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    body { padding: 32px 16px 80px; }
+    .summary { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="bar">
-  <div>
-    <h1>ENDURANCE|HUB — project workflow</h1>
-    <div class="sub">React 18 · Vite 8 · Tailwind v4 · DaisyUI · Vercel proxy · Private backend</div>
-  </div>
-  <div class="spacer"></div>
-  <div class="chips" id="chips">
-    <button class="chip on" data-flow="all">Everything</button>
-    <button class="chip" data-flow="home">Home Browse</button>
-    <button class="chip" data-flow="register">Register</button>
-    <button class="chip" data-flow="login">Admin Login</button>
-    <button class="chip" data-flow="dashboard">Admin Dashboard</button>
-    <button class="chip" data-flow="events">Event Management</button>
-    <button class="chip" data-flow="news">News Feed</button>
-  </div>
-  <button id="themeToggle">Theme</button>
-</div>
-
-<div class="stage" id="stage">
-<svg viewBox="0 0 1560 980" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Endurance Hub project workflow diagram">
-  <defs>
-    <marker id="a-mut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--muted)"/>
-    </marker>
-    <marker id="a-clay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--clay)"/>
-    </marker>
-    <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--blue)"/>
-    </marker>
-    <marker id="a-olive" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--olive)"/>
-    </marker>
-    <marker id="a-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--gold)"/>
-    </marker>
-    <marker id="a-pine" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" style="fill: var(--pine)"/>
-    </marker>
-  </defs>
-
-  <!-- ── zones ─────────────────────────────── -->
-  <g class="zone" id="z-browser">
-    <rect x="40" y="120" width="280" height="720"/>
-    <text class="ztitle" x="60" y="150">Browser</text>
-    <text class="zsub" x="60" y="168">React 18 · Vite 8 · Tailwind v4 · DaisyUI</text>
-  </g>
-  <g class="zone" id="z-vercel">
-    <rect x="360" y="120" width="440" height="720"/>
-    <text class="ztitle" x="380" y="150">Vercel</text>
-    <text class="zsub" x="380" y="168">Edge network · Serverless function (api/proxy.js)</text>
-  </g>
-  <g class="zone" id="z-backend">
-    <rect x="840" y="120" width="680" height="720"/>
-    <text class="ztitle" x="860" y="150">Private Backend API</text>
-    <text class="zsub" x="860" y="168">FastAPI · Source of truth · process.env.VITE_API_KEY</text>
-  </g>
-
-  <!-- ── edges: public data flow ─────────────── -->
-  <path class="edge" id="e-spa-load"      d="M295,195 C 335,195 347,205 375,205"/>
-  <path class="edge" id="e-nav-home"      d="M295,240 C 330,240 340,245 375,250"/>
-  <path class="edge" id="e-fetch-art"     d="M565,250 C 660,250 670,320 715,300"/>
-  <path class="edge" id="e-fetch-post"    d="M565,270 C 660,270 670,340 715,320"/>
-  <path class="edge" id="e-fetch-ev"      d="M565,290 C 660,290 670,360 715,340"/>
-  <path class="edge" id="e-proxy-fwd"     d="M740,320 C 790,320 805,300 855,300"/>
-  <path class="edge" id="e-back-resp"     d="M855,340 C 805,340 790,340 740,340"/>
-  <path class="edge" id="e-vercel-resp"   d="M375,290 C 350,290 320,290 295,290"/>
-
-  <!-- Register modal flow -->
-  <path class="edge" id="e-reg-modal"     d="M295,430 C 330,430 345,435 375,440"/>
-  <path class="edge" id="e-reg-post"      d="M565,440 C 660,440 680,455 715,445"/>
-  <path class="edge" id="e-reg-fwd"       d="M740,445 C 790,445 805,440 855,440"/>
-  <path class="edge" id="e-reg-resp"      d="M855,480 C 805,480 790,480 740,480"/>
-  <path class="edge" id="e-reg-vercel"    d="M565,480 C 490,480 470,480 375,480"/>
-
-  <!-- Admin login flow -->
-  <path class="edge" id="e-admin-login"   d="M295,560 C 330,560 345,565 375,565"/>
-  <path class="edge" id="e-login-api"     d="M565,565 C 660,565 680,550 715,555"/>
-  <path class="edge" id="e-login-fwd"     d="M740,555 C 790,555 805,540 855,540"/>
-  <path class="edge" id="e-login-back"    d="M855,580 C 805,580 790,580 740,580"/>
-  <path class="edge" id="e-login-resp"    d="M565,605 C 490,605 470,605 375,605"/>
-
-  <!-- Admin dashboard flow -->
-  <path class="edge" id="e-admin-dash"    d="M295,670 C 330,670 345,675 375,675"/>
-  <path class="edge" id="e-dash-api"      d="M565,675 C 660,675 680,655 715,660"/>
-  <path class="edge" id="e-dash-fwd"      d="M740,660 C 790,660 805,640 855,640"/>
-  <path class="edge" id="e-dash-back"     d="M855,700 C 805,700 790,700 740,700"/>
-  <path class="edge" id="e-dash-resp"     d="M565,715 C 490,715 470,715 375,715"/>
-
-  <!-- Auth token persistence -->
-  <path class="edge dash" id="e-auth-store" d="M470,635 C 505,670 505,700 470,735"/>
-  <path class="edge dash" id="e-token-use"  d="M470,755 C 495,755 495,720 520,695"/>
-
-  <!-- Admin data CRUD -->
-  <path class="edge" id="e-content-fwd"   d="M740,500 C 790,500 805,500 855,500"/>
-  <path class="edge" id="e-content-back"  d="M855,530 C 805,530 790,530 740,530"/>
-  <path class="edge" id="e-events-fwd"    d="M740,620 C 790,620 805,620 855,620"/>
-  <path class="edge" id="e-events-back"   d="M855,660 C 805,660 790,660 740,660"/>
-
-  <!-- Superadmin -->
-  <path class="edge" id="e-users-fwd"     d="M740,740 C 790,740 805,740 855,740"/>
-
-  <!-- ── edge labels ────────────────────────── -->
-  <text class="elbl" data-e="e-spa-load" x="315" y="182">loads app shell</text>
-  <text class="elbl" data-e="e-nav-home" x="315" y="228">navigates / /News /Event /Leaderboard</text>
-  <text class="elbl" data-e="e-fetch-art" x="620" y="290">GET /api/articles</text>
-  <text class="elbl" data-e="e-fetch-post" x="620" y="310">GET /api/posts?start=&amp;end=</text>
-  <text class="elbl" data-e="e-fetch-ev" x="620" y="330">GET /api/events</text>
-  <text class="elbl" data-e="e-proxy-fwd" x="780" y="306">rewrite → /api/proxy?path=</text>
-  <text class="elbl" data-e="e-back-resp" x="780" y="356">200 JSON array</text>
-  <text class="elbl" data-e="e-vercel-resp" x="320" y="308">renders via React components</text>
-
-  <text class="elbl" data-e="e-reg-modal" x="310" y="416">Register modal opens</text>
-  <text class="elbl" data-e="e-reg-post" x="620" y="431">POST /api/register</text>
-  <text class="elbl" data-e="e-reg-fwd" x="780" y="432">forwarded with body</text>
-  <text class="elbl" data-e="e-reg-resp" x="780" y="496">201 / error</text>
-
-  <text class="elbl" data-e="e-admin-login" x="310" y="546">Login form submit</text>
-  <text class="elbl" data-e="e-login-api" x="620" y="546">POST /api/admin/login</text>
-  <text class="elbl" data-e="e-login-fwd" x="780" y="526">forwards {username, password}</text>
-  <text class="elbl" data-e="e-login-back" x="780" y="596">{token, user} JSON</text>
-  <text class="elbl" data-e="e-login-resp" x="460" y="624">stored in localStorage</text>
-
-  <text class="elbl" data-e="e-admin-dash" x="310" y="656">ProtectedRoute passes</text>
-  <text class="elbl" data-e="e-dash-api" x="620" y="638">GET /api/admin/dashboard</text>
-  <text class="elbl" data-e="e-dash-fwd" x="780" y="628">Authorization forwarded</text>
-  <text class="elbl" data-e="e-dash-back" x="780" y="716">200 stats + cache</text>
-
-  <text class="elbl" data-e="e-auth-store" x="530" y="700">saved to localStorage</text>
-  <text class="elbl" data-e="e-token-use" x="530" y="745">Bearer token attached</text>
-
-  <text class="elbl" data-e="e-content-fwd" x="780" y="486">GET /api/admin/articles</text>
-  <text class="elbl" data-e="e-content-back" x="780" y="546">article list</text>
-  <text class="elbl" data-e="e-events-fwd" x="780" y="606">CRUD /api/admin/events</text>
-  <text class="elbl" data-e="e-events-back" x="780" y="676">events + status</text>
-
-  <text class="elbl" data-e="e-users-fwd" x="780" y="726">GET/POST /api/admin/users</text>
-
-  <!-- ── nodes: browser (zone 1) ────────────── -->
-  <g class="node" data-k="browser">
-    <rect x="65" y="178" width="230" height="80"/>
-    <text class="t" x="85" y="208">Browser</text>
-    <text class="m" x="85" y="228">React 18 · Vite 8 · Tailwind v4</text>
-    <text class="m" x="85" y="246">TanStack Query · DaisyUI</text>
-  </g>
-  <g class="node primary" data-k="layout">
-    <rect x="65" y="290" width="230" height="55"/>
-    <text class="t" x="85" y="315">Public Layout</text>
-    <text class="m" x="85" y="333">Navbar · BubbleNavbar · Footer</text>
-  </g>
-  <g class="node" data-k="register-modal">
-    <rect x="65" y="390" width="230" height="55"/>
-    <text class="t" x="85" y="417">Register Modal</text>
-    <text class="m" x="85" y="435">POST /api/register directly</text>
-  </g>
-  <g class="node auth" data-k="login-page">
-    <rect x="65" y="520" width="230" height="55"/>
-    <text class="t" x="85" y="547">Admin Login Page</text>
-    <text class="m" x="85" y="565">username + password → AuthContext</text>
-  </g>
-  <g class="node" data-k="admin-pages">
-    <rect x="65" y="640" width="230" height="70"/>
-    <text class="t" x="85" y="667">Admin Pages</text>
-    <text class="m" x="85" y="687">Dashboard · Registrations · Events</text>
-    <text class="m" x="85" y="703">Content · Health · Users</text>
-  </g>
-
-  <!-- ── nodes: vercel (zone 2) ─────────────── -->
-  <g class="node" data-k="spa">
-    <rect x="375" y="178" width="190" height="55"/>
-    <text class="t" x="395" y="203">Static Assets</text>
-    <text class="m" x="395" y="223">SPA shell · edge-cached</text>
-  </g>
-  <g class="node primary" data-k="public-routes">
-    <rect x="375" y="250" width="190" height="60"/>
-    <text class="t" x="395" y="275">Public Routes</text>
-    <text class="m" x="395" y="293">/ /News /Event</text>
-    <text class="m" x="395" y="307">/Leaderboard /Team</text>
-  </g>
-  <g class="node api" data-k="public-hooks">
-    <rect x="375" y="345" width="190" height="65"/>
-    <text class="t" x="395" y="370">Public Hooks</text>
-    <text class="m" x="395" y="390">useArticles · usePosts</text>
-    <text class="m" x="395" y="406">useEvents</text>
-  </g>
-  <g class="node primary" data-k="admin-layout">
-    <rect x="375" y="445" width="190" height="55"/>
-    <text class="t" x="395" y="470">Admin Layout</text>
-    <text class="m" x="395" y="488">Sidebar · ProtectedRoute wrapper</text>
-  </g>
-  <g class="node gate" data-k="protected-route">
-    <rect x="375" y="535" width="190" height="50"/>
-    <text class="t" x="395" y="560">ProtectedRoute</text>
-    <text class="k" x="395" y="574">gate</text>
-  </g>
-  <g class="node api" data-k="admin-api-svc">
-    <rect x="375" y="440" width="190" height="0"/>
-  </g>
-  <g class="node store" data-k="localstorage">
-    <rect x="375" y="725" width="190" height="50"/>
-    <text class="t" x="395" y="750">localStorage</text>
-    <text class="m" x="395" y="765">admin_token · admin_user</text>
-  </g>
-  <g class="node api" data-k="context">
-    <rect x="375" y="620" width="190" height="55"/>
-    <text class="t" x="395" y="645">AuthContext</text>
-    <text class="m" x="395" y="663">login · logout · isAuthenticated</text>
-    <text class="k" x="395" y="677">isSuperAdmin</text>
-  </g>
-
-  <g class="node ext" data-k="vercel-proxy">
-    <rect x="715" y="280" width="55" height="480" rx="8"/>
-    <text class="t" x="730" y="370" text-anchor="middle">V</text>
-    <text class="t" x="730" y="386" text-anchor="middle">e</text>
-    <text class="t" x="730" y="402" text-anchor="middle">r</text>
-    <text class="t" x="730" y="418" text-anchor="middle">c</text>
-    <text class="t" x="730" y="434" text-anchor="middle">e</text>
-    <text class="t" x="730" y="450" text-anchor="middle">l</text>
-    <text class="m" x="730" y="510" text-anchor="middle">rewrite</text>
-    <text class="k" x="730" y="528" text-anchor="middle">→</text>
-    <text class="k" x="730" y="544" text-anchor="middle">proxy</text>
-    <text class="m" x="730" y="640" text-anchor="middle">reads</text>
-    <text class="m" x="730" y="656" text-anchor="middle">rawBody</text>
-    <text class="m" x="730" y="672" text-anchor="middle">forwards</text>
-    <text class="m" x="730" y="688" text-anchor="middle">Authorization</text>
-  </g>
-
-  <g class="node api" data-k="admin-api">
-    <rect x="565" y="445" width="150" height="90"/>
-    <text class="t" x="585" y="472">Admin API Service</text>
-    <text class="m" x="585" y="492">adminLogin · getDashboard</text>
-    <text class="m" x="585" y="510">CRUD events · registrations</text>
-    <text class="k" x="585" y="528">Bearer token in header</text>
-  </g>
-  <g class="node api" data-k="public-api">
-    <rect x="565" y="275" width="150" height="75"/>
-    <text class="t" x="585" y="302">API Service</text>
-    <text class="m" x="585" y="322">fetchArticles · fetchPosts</text>
-    <text class="m" x="585" y="340">fetchEvents</text>
-  </g>
-
-  <!-- ── nodes: backend (zone 3) ────────────── -->
-  <g class="node do" data-k="articles">
-    <rect x="855" y="260" width="200" height="50"/>
-    <text class="t" x="875" y="285">GET /api/articles</text>
-    <text class="m" x="875" y="303">news articles</text>
-  </g>
-  <g class="node do" data-k="posts">
-    <rect x="1090" y="260" width="200" height="50"/>
-    <text class="t" x="1110" y="285">GET /api/posts</text>
-    <text class="m" x="1110" y="303">paginated blog posts</text>
-  </g>
-  <g class="node do" data-k="events">
-    <rect x="1320" y="260" width="170" height="50"/>
-    <text class="t" x="1340" y="285">GET /api/events</text>
-    <text class="m" x="1340" y="303">upcoming events</text>
-  </g>
-  <g class="node do" data-k="register">
-    <rect x="855" y="410" width="200" height="50"/>
-    <text class="t" x="875" y="435">POST /api/register</text>
-    <text class="m" x="875" y="453">registration form</text>
-  </g>
-  <g class="node do" data-k="admin-login-ep">
-    <rect x="855" y="510" width="200" height="50"/>
-    <text class="t" x="875" y="535">POST /api/admin/login</text>
-    <text class="m" x="875" y="553">returns {token, user}</text>
-  </g>
-  <g class="node do" data-k="admin-dash-ep">
-    <rect x="1090" y="510" width="200" height="50"/>
-    <text class="t" x="1110" y="535">GET /api/admin/dashboard</text>
-    <text class="m" x="1110" y="553">stats · articles · registrations</text>
-  </g>
-  <g class="node do" data-k="admin-reg-ep">
-    <rect x="855" y="590" width="200" height="50"/>
-    <text class="t" x="875" y="615">GET /api/admin/registrations</text>
-    <text class="m" x="875" y="633">search · delete</text>
-  </g>
-  <g class="node do" data-k="admin-articles-ep">
-    <rect x="1090" y="590" width="200" height="50"/>
-    <text class="t" x="1110" y="615">GET /api/admin/articles</text>
-    <text class="m" x="1110" y="633">view · crawl</text>
-  </g>
-  <g class="node do" data-k="admin-events-ep">
-    <rect x="855" y="670" width="200" height="50"/>
-    <text class="t" x="875" y="695">/api/admin/events</text>
-    <text class="m" x="875" y="713">CRUD · status filter</text>
-  </g>
-  <g class="node do" data-k="admin-users-ep">
-    <rect x="1090" y="670" width="200" height="50"/>
-    <text class="t" x="1110" y="695">/api/admin/users</text>
-    <text class="m" x="1110" y="713">superadmin only</text>
-  </g>
-  <g class="node do" data-k="admin-health-ep">
-    <rect x="1320" y="590" width="170" height="50"/>
-    <text class="t" x="1340" y="615">GET /api/admin/health</text>
-    <text class="m" x="1340" y="633">status + cache</text>
-  </g>
-  <g class="node do" data-k="admin-crawl-ep">
-    <rect x="1320" y="670" width="170" height="50"/>
-    <text class="t" x="1340" y="695">POST /api/admin/crawl</text>
-    <text class="m" x="1340" y="713">articles · posts</text>
-  </g>
-</svg>
-
-  <div class="card" id="flowcap">
-    <div class="fname" id="f-name"></div>
-    <ol id="f-steps"></ol>
-  </div>
-
-  <div class="card" id="detail">
-    <h3 id="d-title">Click anything</h3>
-    <div class="meta" id="d-meta">node detail</div>
-    <p id="d-body">Every box is clickable. Chips up top animate request paths. Built from the actual source — every file was scanned.</p>
-  </div>
-</div>
-
+<button id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">☀</button>
 <script>
-const DETAIL = {
-  browser:       { t:"Browser", m:"client · React 18 SPA", b:"React 18 with Vite 8. Uses <code>@tanstack/react-query</code> for data fetching. All API calls use relative <code>/api/*</code> paths. Tailwind CSS v4 with DaisyUI for theming. Portal view at port 2007." },
-  layout:        { t:"Public Layout", m:"Layout.jsx · common shell", b:"Wraps all public pages: <code>Navbar</code> + <code>BubbleNavbar</code> + <code>&lt;Outlet /&gt;</code> + <code>Footer</code>. Handles responsive mobile menu with hamburger toggle." },
-  "register-modal": { t:"Register Modal", m:"Register.jsx · direct fetch", b:"Opens when user clicks 'Register' on an event. POSTs directly to <code>/api/register</code> with <code>{name, phone, event}</code>. Does NOT go through the admin API service — raw fetch." },
-  "login-page":  { t:"Admin Login Page", m:"/admin/login", b:"Collects username + password. Calls <code>AuthContext.login()</code> → <code>adminApi.adminLogin()</code> → <code>POST /api/admin/login</code>. On success stores token + user in localStorage and redirects to <code>/admin/dashboard</code>. On error shows message." },
-  "admin-pages": { t:"Admin Pages", m:"6 pages under /admin/*", b:"<b>Dashboard</b> — stats cards + cache status<br><b>Registrations</b> — searchable table + delete<br><b>Events</b> — full CRUD with status filter<br><b>Content</b> — view articles + trigger re-crawl<br><b>System Health</b> — endpoint status + clear cache<br><b>Users</b> — list + create (superadmin only)" },
-  spa:           { t:"Static Assets", m:"Vite build output", b:"<code>npm run build</code> → <code>vite build</code> produces static bundle. Deployed to Vercel. All <code>/api/*</code> requests rewritten to the serverless proxy via <code>vercel.json</code>." },
-  "public-routes":{ t:"Public Routes", m:"React Router · Layout wrapper", b:"<b>/</b> — Home (Hero, RaceSlider, Community, Training)<br><b>/News</b> — MainContent (mock data) + SideContent (useArticles hook)<br><b>/Event</b> — EventList (useEvents hook) + filter + map<br><b>/Leaderboard</b> — Rank page<br><b>/Team</b> — Team page" },
-  "public-hooks":{ t:"Public Hooks", m:"TanStack Query", b:"<code>useArticles</code> — fetches <code>/api/articles</code>, staleTime 5min<br><code>usePosts</code> — fetches <code>/api/posts?start=&amp;end=</code>, paginated<br><code>useEvents</code> — fetches <code>/api/events</code>, staleTime 5min<br><br>All backed by <code>api.js</code> service with <code>BASE_URL = \"\"</code>." },
-  "admin-layout":{ t:"Admin Layout", m:"AdminLayout.jsx", b:"Responsive sidebar with navigation links to all admin pages. Shows user avatar, name, and role. Logout button. Mobile overlay. Navigation items: Dashboard, Registrations, Events, Content, System Health. Users shown only for superadmin." },
-  "protected-route":{ t:"ProtectedRoute", m:"gate component", b:"<b>The auth gate.</b> Reads token from localStorage via <code>useAuth()</code>.<br>If no token → redirect to <code>/admin/login</code>.<br>If <code>requiredRole === 'superadmin'</code> and user role is 'admin' → shows 'Access denied'." },
-  localstorage:  { t:"localStorage", m:"browser storage", b:"Stores <code>admin_token</code> (JWT string) and <code>admin_user</code> (JSON with name, role, username). Persists across reloads. Cleared on 401 response or explicit logout." },
-  context:       { t:"AuthContext", m:"React Context", b:"Provides <code>login()</code>, <code>logout()</code>, <code>user</code>, <code>token</code>, <code>loading</code>, <code>isAuthenticated</code>, <code>isAdmin</code>, <code>isSuperAdmin</code>. <code>isSuperAdmin = user?.role === 'superadmin'</code>. Initialized from localStorage on mount." },
-  "vercel-proxy":{ t:"Vercel Proxy", m:"api/proxy.js (HANDLER)", b:"<b>The critical bridge.</b> Vercel rewrites <code>/api/(.*)</code> → <code>/api/proxy?path=/api/$1</code>. The proxy:<br>• Reads raw body via <code>req.on('data')</code> (✓ fixed)<br>• Forwards <code>Authorization</code> header (✓ fixed)<br>• Uses <code>process.env.VITE_API_KEY</code> for backend URL<br>• Returns 502 if backend unreachable" },
-  "admin-api":   { t:"Admin API Service", m:"adminApi.js", b:"All admin endpoints go through <code>adminRequest()</code> which attaches the Bearer token from localStorage. On 401 → clears storage + redirects to login. Endpoints: login, dashboard, registrations, articles, events (CRUD), users, health, crawl, cache clear." },
-  "public-api":  { t:"Public API Service", m:"api.js", b:"Simple fetch wrapper with <code>BASE_URL = \"\"</code>. Three methods: <code>fetchArticles()</code>, <code>fetchPosts(page, limit)</code>, <code>fetchEvents()</code>. All results pass through <code>toArray()</code> — converts object responses to arrays via <code>Object.values()</code>." },
-  articles:      { t:"GET /api/articles", m:"news articles", b:"Returns array of articles with image_url, title, date, link. Used by <code>useArticles</code> hook → <code>Post.jsx</code> component in the news sidebar. Empty image_url items replaced with Loading spinner." },
-  posts:         { t:"GET /api/posts", m:"paginated blog posts", b:"Accepts <code>?start=&amp;end=</code> query params. Used by <code>usePosts</code> hook → <code>Pagination.jsx</code> on the Home page. Rendered with <code>motion</code> animations (<code>AnimatePresence</code>)." },
-  events:        { t:"GET /api/events", m:"upcoming events", b:"Returns events list. Used by <code>useEvents</code> hook → <code>EventList.jsx</code> on the Event page. Supports client-side filtering by type, location, distance." },
-  register:      { t:"POST /api/register", m:"registration endpoint", b:"Accepts <code>{name, phone, event}</code>. Called from the <code>Register.jsx</code> modal component via raw <code>fetch</code> — not through any service wrapper. Returns 201 on success." },
-  "admin-login-ep":{ t:"POST /api/admin/login", m:"authentication", b:"Validates username + password. Returns <code>{token, user}</code> on success. Token is stored in localStorage and sent as <code>Authorization: Bearer {token}</code> on all subsequent admin requests." },
-  "admin-dash-ep":{ t:"GET /api/admin/dashboard", m:"dashboard stats", b:"Returns stats object: articles count, posts count, events count, registrations count, admin_users count, and cache status object. Rendered as stat cards in the admin Dashboard." },
-  "admin-reg-ep":{ t:"GET /api/admin/registrations", m:"registration list", b:"Returns registration entries with name, phone, event, timestamp. Supports client-side search by name or phone. Each entry can be deleted." },
-  "admin-articles-ep":{ t:"GET /api/admin/articles", m:"article management", b:"Returns all articles for admin viewing. Has endpoint to trigger re-crawl for 'articles' or 'posts' type. Crawl sends POST to <code>/api/admin/crawl/{type}</code>." },
-  "admin-events-ep":{ t:"/api/admin/events", m:"CRUD with status filter", b:"Full CRUD: GET (with <code>?status=running|past</code>), POST (create), PUT (update), DELETE. Toggle event status between running/past. Form fields: name, type, location, distance, date, organizer, image, route, status." },
-  "admin-users-ep":{ t:"/api/admin/users", m:"superadmin only", b:"Protected by <code>requiredRole='superadmin'</code> in ProtectedRoute. GET lists all admin users. POST creates new admin user with username, password, role (admin/superadmin), display name." },
-  "admin-health-ep":{ t:"GET /api/admin/health", m:"system check", b:"Returns endpoint status for all API routes plus cache status. Shows green/red badges per endpoint. Has 'Clear All Cache' button that POSTs to <code>/api/admin/cache/clear</code>." },
-  "admin-crawl-ep":{ t:"POST /api/admin/crawl", m:"news scraping", b:"Accepts type param: 'articles' or 'posts'. Triggers backend news scraping/crawling. Called from the Content management page with 'Re-crawl' buttons." },
-};
-
-const FLOWS = {
-  home: {
-    name: "Home Browse — public visit with live data + mock content",
-    edges: ["e-spa-load","e-nav-home","e-fetch-art","e-fetch-post","e-fetch-ev","e-proxy-fwd","e-back-resp","e-vercel-resp"],
-    nodes: ["browser","layout","public-routes","public-hooks","public-api","vercel-proxy","articles","posts","events"],
-    steps: ["User loads app → SPA shell from Vercel edge cache","Navigates to <code>/</code> → Hero, RaceSlider, CommunitySection, TrainingSection render","<code>Pagination.jsx</code> on Home calls <code>usePosts()</code> hook","<code>useArticles</code>, <code>usePosts</code>, <code>useEvents</code> fire via TanStack Query","<code>GET /api/articles</code> / <code>/api/posts</code> / <code>/api/events</code> through proxy","Vercel rewrites <code>/api/(.*)</code> → <code>/api/proxy?path=/api/$1</code>","Proxy reads raw body, forwards <code>Authorization</code>, calls backend","Backend returns JSON → flows back to browser → components render"]
-  },
-  register: {
-    name: "Event Registration — modal form POSTs directly",
-    edges: ["e-reg-modal","e-reg-post","e-reg-fwd","e-reg-resp","e-reg-vercel"],
-    nodes: ["browser","register-modal","public-api","vercel-proxy","register"],
-    steps: ["User clicks 'Register' on an event card → modal opens","Modal form collects name + phone. Event name pre-filled from selected event","<code>fetch('/api/register', { method:'POST', body: JSON })</code> directly (not through adminApi)","Vercel rewrites to proxy — raw body parsed and forwarded","Backend processes registration — returns 201 on success","User sees success confirmation in modal (auto-closes after 3s)"]
-  },
-  login: {
-    name: "Admin Login — token-based auth flow",
-    edges: ["e-admin-login","e-login-api","e-login-fwd","e-login-back","e-login-resp","e-auth-store"],
-    nodes: ["browser","login-page","context","admin-api","vercel-proxy","admin-login-ep","localstorage"],
-    steps: ["Admin enters username + password on <code>/admin/login</code>","<code>AuthContext.login()</code> → <code>adminApi.adminLogin()</code>","<code>POST /api/admin/login</code> with <code>{username, password}</code>","Vercel proxy forwards request — raw body now correctly parsed","Backend validates credentials — returns <code>{token, user}</code>","Token + user saved to <code>localStorage</code> → AuthContext updates","Redirected to <code>/admin/dashboard</code> (or previous location)"]
-  },
-  dashboard: {
-    name: "Admin Dashboard — protected authenticated request",
-    edges: ["e-admin-dash","e-dash-api","e-dash-fwd","e-auth-store","e-token-use","e-dash-back","e-dash-resp"],
-    nodes: ["browser","admin-pages","admin-layout","protected-route","admin-api","localstorage","vercel-proxy","admin-dash-ep"],
-    steps: ["Admin navigates to <code>/admin/dashboard</code>","<code>ProtectedRoute</code> checks localStorage for token — found → renders","<code>AdminLayout</code> renders sidebar with nav items + user avatar","<code>adminApi.getDashboard()</code> called — token attached as <code>Authorization: Bearer</code>","<code>GET /api/admin/dashboard</code> through Vercel proxy","Proxy forwards <code>Authorization</code> header (✓ fixed)","Backend verifies token → returns stats: articles, posts, events, regs, users, cache","Dashboard renders stat cards + cache status table"]
-  },
-  events: {
-    name: "Event Management — admin CRUD",
-    edges: ["e-admin-dash","e-dash-api","e-events-fwd","e-events-back"],
-    nodes: ["browser","admin-pages","admin-layout","protected-route","admin-api","vercel-proxy","admin-events-ep"],
-    steps: ["Admin navigates to <code>/admin/events</code> → ProtectedRoute passes","GET request fetches events with optional <code>?status=running|past</code> filter","CRUD operations: create (POST), edit (PUT), delete (DELETE), toggle status","All requests go through Vercel proxy with Bearer token","Backend processes and returns updated event list"]
-  },
-  news: {
-    name: "News Feed — sidebar uses API, main content uses mock",
-    edges: ["e-spa-load","e-nav-home","e-fetch-art","e-proxy-fwd","e-back-resp","e-vercel-resp"],
-    nodes: ["browser","layout","public-routes","public-hooks","public-api","vercel-proxy","articles"],
-    steps: ["User opens <code>/News</code> page","<code>MainContent.jsx</code> renders — uses <b>hardcoded mock data</b> (not API)","<code>SideContent.jsx</code> renders — has tabs for 'Latest News' and 'Upcoming Races'","'Latest News' tab renders <code>Post.jsx</code> which calls <code>useArticles()</code>","<code>GET /api/articles</code> through proxy → backend","Articles rendered as sidebar list with image thumbnail + title + date"]
+  function toggleTheme() {
+    var d = document.documentElement;
+    d.classList.toggle('dark');
+    var isDark = d.classList.contains('dark');
+    localStorage.setItem('eh-theme', isDark ? 'dark' : 'light');
+    document.getElementById('theme-btn').textContent = isDark ? '☀' : '☾';
   }
-};
-
-const stage = document.getElementById('stage');
-const nodes = document.querySelectorAll('.node');
-const edges = document.querySelectorAll('.edge');
-const elbls = document.querySelectorAll('.elbl');
-const chips = document.querySelectorAll('.chip');
-const fcap = document.getElementById('flowcap');
-
-function setFlow(key) {
-  chips.forEach(c => c.classList.toggle('on', c.dataset.flow === key));
-  edges.forEach(e => e.classList.remove('lit'));
-  elbls.forEach(l => l.classList.remove('lit'));
-  nodes.forEach(n => n.classList.remove('lit'));
-  if (key === 'all') { stage.classList.remove('flowing'); fcap.classList.remove('show'); return; }
-  const f = FLOWS[key];
-  if (!f) return;
-  stage.classList.add('flowing');
-  f.edges.forEach(id => document.getElementById(id)?.classList.add('lit'));
-  elbls.forEach(l => { if (f.edges.includes(l.dataset.e)) l.classList.add('lit'); });
-  f.nodes.forEach(k => document.querySelector(`.node[data-k="${k}"]`)?.classList.add('lit'));
-  document.getElementById('f-name').textContent = f.name;
-  document.getElementById('f-steps').innerHTML = f.steps.map(s => `<li>${s}</li>`).join('');
-  fcap.classList.add('show');
-}
-chips.forEach(c => c.addEventListener('click', () => setFlow(c.dataset.flow)));
-
-nodes.forEach(n => n.addEventListener('click', () => {
-  nodes.forEach(x => x.classList.remove('sel'));
-  n.classList.add('sel');
-  const d = DETAIL[n.dataset.k];
-  if (!d) return;
-  document.getElementById('d-title').textContent = d.t;
-  document.getElementById('d-meta').textContent = d.m;
-  document.getElementById('d-body').innerHTML = d.b;
-}));
-
-document.getElementById('themeToggle').addEventListener('click', () => {
-  const dark = !document.documentElement.classList.contains('dark');
-  document.documentElement.classList.toggle('dark', dark);
-  localStorage.setItem('theme', dark ? 'dark' : 'light');
-});
+  (function() {
+    var isDark = document.documentElement.classList.contains('dark');
+    document.getElementById('theme-btn').textContent = isDark ? '☀' : '☾';
+  })();
 </script>
+
+<header class="masthead">
+  <div class="eyebrow">Project visualization</div>
+  <h1>ENDURANCE<span class="divider">|</span><span class="accent">HUB</span></h1>
+  <p class="subtitle">Community platform for endurance athletes — runners, cyclists, triathletes. Built with React&nbsp;18, Vite&nbsp;8, Tailwind&nbsp;CSS&nbsp;v4, DaisyUI&nbsp;5, and a Vercel serverless proxy backend.</p>
+  <div class="badge-strip">
+    <span class="badge pine">React 18</span>
+    <span class="badge cyan">Vite 8</span>
+    <span class="badge ember">Tailwind v4</span>
+    <span class="badge pine">DaisyUI 5</span>
+    <span class="badge cyan">Motion 12</span>
+    <span class="badge ember">React Router 7</span>
+    <span class="badge pine">TanStack Query 5</span>
+    <span class="badge">Lucide React</span>
+    <span class="badge">Axios</span>
+    <span class="badge">styled-components</span>
+    <span class="badge">Express+Cheerio</span>
+    <span class="badge">Vercel</span>
+  </div>
+</header>
+
+<!-- ===== stats ===== -->
+<div class="summary">
+  <div class="cell"><div class="k">Frontend</div><div class="v ember">62+</div><div class="k" style="margin-top:3px">source files</div></div>
+  <div class="cell"><div class="k">Routes</div><div class="v">14</div><div class="k" style="margin-top:3px">7 public · 7 admin</div></div>
+  <div class="cell"><div class="k">Components</div><div class="v cyan">30+</div><div class="k" style="margin-top:3px">reusable UI</div></div>
+  <div class="cell"><div class="k">Pages</div><div class="v">13</div><div class="k" style="margin-top:3px">lazy-loaded</div></div>
+  <div class="cell"><div class="k">Backend</div><div class="v ember">Vercel proxy</div><div class="k" style="margin-top:3px">serverless · private API</div></div>
+  <div class="cell"><div class="k">Deploy</div><div class="v cyan">Vercel</div><div class="k" style="margin-top:3px">SPA + serverless proxy</div></div>
+</div>
+
+<!-- ===== tech ===== -->
+<section id="tech">
+  <div class="sec-head"><span class="idx">01</span><h2>Tech stack</h2><span class="count">15 layers</span></div>
+  <p class="sec-intro">Every dependency, framework, and tool that makes ENDURANCE|HUB run — from bundler to animation engine.</p>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="icon">⚛</div><div class="info"><div class="t">React 18</div><div class="d">UI library · concurrent features · lazy loading</div></div></div>
+    <div class="tech-card"><div class="icon">⚡</div><div class="info"><div class="t">Vite 8</div><div class="d">Bundler · HMR · Tailwind plugin · proxy · path aliases</div></div></div>
+    <div class="tech-card"><div class="icon">🌀</div><div class="info"><div class="t">React Router v7</div><div class="d">Client routing · nested layouts · lazy routes · auth guards</div></div></div>
+    <div class="tech-card"><div class="icon">🎨</div><div class="info"><div class="t">Tailwind CSS v4</div><div class="d">Utility CSS · @theme tokens · @plugin daisyui · dark variant</div></div></div>
+    <div class="tech-card"><div class="icon">💎</div><div class="info"><div class="t">DaisyUI v5</div><div class="d">Component library · light theme · custom design tokens</div></div></div>
+    <div class="tech-card"><div class="icon">🏃</div><div class="info"><div class="t">Motion 12</div><div class="d">Animation · layout · enter/exit transitions</div></div></div>
+    <div class="tech-card"><div class="icon">🔍</div><div class="info"><div class="t">TanStack Query 5</div><div class="d">Server state · caching · background refetch · retry config</div></div></div>
+    <div class="tech-card"><div class="icon">📡</div><div class="info"><div class="t">Axios + Fetch</div><div class="d">HTTP clients · public API (fetch) · admin API (axios with auth)</div></div></div>
+    <div class="tech-card"><div class="icon">🔤</div><div class="info"><div class="t">Lucide React</div><div class="d">Icon library · bell · user · search · cart · cross</div></div></div>
+    <div class="tech-card"><div class="icon">💅</div><div class="info"><div class="t">styled-components</div><div class="d">CSS-in-JS · dynamic styling · component-level styles</div></div></div>
+    <div class="tech-card"><div class="icon">🧩</div><div class="info"><div class="t">clsx + tailwind-merge</div><div class="d">Conditional class merging · utility composition</div></div></div>
+    <div class="tech-card"><div class="icon">🛤</div><div class="info"><div class="t">Express + Cheerio</div><div class="d">Test scraper · Node.js article extraction</div></div></div>
+    <div class="tech-card"><div class="icon">🐍</div><div class="info"><div class="t">Python scripts</div><div class="d">Build setup · SVG generation · dev environment</div></div></div>
+    <div class="tech-card"><div class="icon">🔗</div><div class="info"><div class="t">Vercel proxy</div><div class="d">api/proxy.js · forwards to private backend · bearer auth</div></div></div>
+    <div class="tech-card"><div class="icon">▲</div><div class="info"><div class="t">Vercel</div><div class="d">Deployment · SPA rewrites · serverless proxy · edge</div></div></div>
+  </div>
+</section>
+
+<!-- ===== architecture ===== -->
+<section id="arch">
+  <div class="sec-head"><span class="idx">02</span><h2>Architecture</h2></div>
+  <p class="sec-intro">Component tree, data flow, and how the pieces connect from the browser to the serverless proxy and private backend.</p>
+  <div class="arch">
+    <div class="arch-svg">
+      <svg viewBox="0 0 860 560" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#87867F"/>
+          </marker>
+          <marker id="arrCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#06b6d4"/>
+          </marker>
+        </defs>
+
+        <!-- layer labels -->
+        <text x="430" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">BROWSER</text>
+        <text x="430" y="136" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">REACT SPA</text>
+        <text x="430" y="310" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">API LAYER</text>
+        <text x="430" y="390" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">VERCEL PROXY</text>
+        <text x="430" y="470" text-anchor="middle" font-size="13" font-weight="600" fill="var(--text3)" font-family="var(--mono)">PRIVATE BACKEND</text>
+
+        <!-- dashed layer separators -->
+        <line x1="30" y1="38" x2="830" y2="38" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="146" x2="830" y2="146" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="320" x2="830" y2="320" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="400" x2="830" y2="400" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+        <line x1="30" y1="478" x2="830" y2="478" stroke="var(--line)" stroke-width="1" stroke-dasharray="6 4"/>
+
+        <!-- browser: entry -->
+        <rect x="340" y="52" width="180" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="430" y="73" text-anchor="middle" font-size="12" fill="var(--text)" font-weight="600">index.html · Vite entry</text>
+
+        <path d="M430 86 L430 102" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- SPA: app shell -->
+        <rect x="340" y="102" width="180" height="36" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="430" y="124" text-anchor="middle" font-size="12" fill="var(--text)">App.jsx · main.jsx</text>
+
+        <path d="M430 138 L430 158" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- SPA: router + layout -->
+        <rect x="30" y="158" width="114" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="87" y="177" text-anchor="middle" font-size="11" fill="var(--text)">route.jsx</text>
+
+        <rect x="160" y="158" width="114" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="217" y="177" text-anchor="middle" font-size="11" fill="var(--text)">Layout.jsx</text>
+
+        <rect x="290" y="158" width="114" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="347" y="177" text-anchor="middle" font-size="11" fill="var(--text)">AuthContext</text>
+
+        <rect x="420" y="158" width="114" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="477" y="177" text-anchor="middle" font-size="11" fill="var(--text)">QueryClient</text>
+
+        <rect x="550" y="158" width="114" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="607" y="177" text-anchor="middle" font-size="11" fill="var(--text)">AdminLayout</text>
+
+        <rect x="680" y="158" width="114" height="28" rx="7" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="737" y="177" text-anchor="middle" font-size="11" fill="var(--text)">Loadable lazy</text>
+
+        <!-- connector lines: SPA children → pages -->
+        <path d="M87 186 L87 204" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M217 186 L217 204" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M347 186 L347 204" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M477 186 L477 204" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M607 186 L607 204" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M737 186 L737 204" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+
+        <!-- public pages -->
+        <rect x="30" y="204" width="80" height="24" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="70" y="219" text-anchor="middle" font-size="9.5" fill="var(--cyan)">Home</text>
+        <rect x="118" y="204" width="80" height="24" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="158" y="219" text-anchor="middle" font-size="9.5" fill="var(--cyan)">News</text>
+        <rect x="206" y="204" width="80" height="24" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="246" y="219" text-anchor="middle" font-size="9.5" fill="var(--cyan)">Event</text>
+        <rect x="294" y="204" width="90" height="24" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="339" y="219" text-anchor="middle" font-size="9.5" fill="var(--cyan)">Leaderboard</text>
+        <rect x="392" y="204" width="80" height="24" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="432" y="219" text-anchor="middle" font-size="9.5" fill="var(--cyan)">Team</text>
+        <rect x="480" y="204" width="90" height="24" rx="6" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="525" y="219" text-anchor="middle" font-size="9.5" fill="var(--cyan)">dev/Test</text>
+
+        <!-- admin pages -->
+        <rect x="588" y="204" width="90" height="24" rx="6" fill="var(--surface)" stroke="var(--ember)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="633" y="219" text-anchor="middle" font-size="9.5" fill="var(--ember)">Login</text>
+        <rect x="686" y="204" width="96" height="24" rx="6" fill="var(--surface)" stroke="var(--ember)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="734" y="219" text-anchor="middle" font-size="9.5" fill="var(--ember)">Dashboard</text>
+
+        <!-- connector lines: pages → UI components -->
+        <path d="M70 228 L70 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M158 228 L158 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M246 228 L246 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M339 228 L339 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M432 228 L432 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M525 228 L525 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M633 228 L633 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M734 228 L734 246" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+
+        <!-- UI components -->
+        <rect x="30" y="246" width="110" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="85" y="262" text-anchor="middle" font-size="9.5" fill="var(--text3)">Navbar · BubbleNav</text>
+        <rect x="150" y="246" width="110" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="205" y="262" text-anchor="middle" font-size="9.5" fill="var(--text3)">Hero · RaceSlider</text>
+        <rect x="270" y="246" width="110" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="325" y="262" text-anchor="middle" font-size="9.5" fill="var(--text3)">EventList · Filter</text>
+        <rect x="390" y="246" width="110" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="445" y="262" text-anchor="middle" font-size="9.5" fill="var(--text3)">Form · Validation</text>
+        <rect x="510" y="246" width="120" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="570" y="262" text-anchor="middle" font-size="9.5" fill="var(--text3)">SearchBar · Dialog</text>
+        <rect x="640" y="246" width="120" height="24" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+        <text x="700" y="262" text-anchor="middle" font-size="9.5" fill="var(--text3)">Footer · Breadcrumbs</text>
+
+        <!-- SPA → API layer -->
+        <path d="M430 270 L430 340" stroke="var(--text3)" stroke-width="1" marker-end="url(#arr)"/>
+
+        <!-- API layer -->
+        <rect x="230" y="340" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="310" y="361" text-anchor="middle" font-size="11.5" fill="var(--text)">services/api.js</text>
+        <text x="310" y="369" text-anchor="middle" font-size="9" fill="var(--text3)">public API (fetch)</text>
+
+        <rect x="440" y="340" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+        <text x="520" y="361" text-anchor="middle" font-size="11.5" fill="var(--text)">services/adminApi.js</text>
+        <text x="520" y="369" text-anchor="middle" font-size="9" fill="var(--text3)">admin API (axios + token)</text>
+
+        <path d="M310 374 L310 410" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <path d="M520 374 L520 410" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- Vercel proxy -->
+        <rect x="270" y="410" width="240" height="34" rx="8" fill="var(--surface)" stroke="var(--cyan)" stroke-width="1.5"/>
+        <text x="390" y="431" text-anchor="middle" font-size="11" fill="var(--cyan)">api/proxy.js (Vercel)</text>
+        <text x="390" y="439" text-anchor="middle" font-size="9" fill="var(--text3)">rewrites · bearer auth · CORS</text>
+
+        <path d="M390 444 L390 490" stroke="var(--text3)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- Private backend -->
+        <rect x="230" y="490" width="200" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="330" y="511" text-anchor="middle" font-size="11" fill="var(--text3)">Private FastAPI server</text>
+        <text x="330" y="519" text-anchor="middle" font-size="9" fill="var(--text3)">REST · PostgreSQL · scraper</text>
+
+        <rect x="460" y="490" width="160" height="34" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="540" y="511" text-anchor="middle" font-size="11" fill="var(--text3)">External data</text>
+        <text x="540" y="519" text-anchor="middle" font-size="9" fill="var(--text3)">irace.vn · articles</text>
+      </svg>
+    </div>
+    <p class="arch-cap">Solid = request/response. Dashed = lazy-loaded page or external system. Vite dev server proxies <code>/api</code> to <code>127.0.0.1:8000</code>; Vercel uses <code>api/proxy.js</code> for production.</p>
+  </div>
+</section>
+
+<!-- ===== features ===== -->
+<section id="features">
+  <div class="sec-head"><span class="idx">03</span><h2>Features</h2><span class="count">16 items</span></div>
+  <p class="sec-intro">Everything ENDURANCE|HUB does — from a video hero to an admin dashboard with user management and system health.</p>
+  <div class="grid">
+    <div class="card"><div class="ct">🎬 Video hero</div><div class="cd">Full-width background video with community stats overlay. Gradient overlay transitions from light to transparent.</div><div class="tags"><span class="tag">Home</span><span class="tag">Motion</span></div></div>
+    <div class="card"><div class="ct">🪟 Glassmorphism navbar</div><div class="cd">Sticky nav with backdrop blur, responsive hamburger menu, active-route highlighting with blue underline.</div><div class="tags"><span class="tag">UI</span><span class="tag">Responsive</span></div></div>
+    <div class="card"><div class="ct">🫧 Bubble navbar</div><div class="cd">Secondary floating navigation with pill-style bubbles for quick access to key sections.</div><div class="tags"><span class="tag">UI</span><span class="tag">Navigation</span></div></div>
+    <div class="card"><div class="ct">🏆 Leaderboard</div><div class="cd">Top-3 podium with avatar, flag display, ranked table with trend arrows. Animated with Motion.</div><div class="tags"><span class="tag">Rank</span><span class="tag">Data</span></div></div>
+    <div class="card"><div class="ct">🗺 Event listing + map</div><div class="cd">Filterable event cards by type, distance, location. Embedded Google Map. Paginated grid view.</div><div class="tags"><span class="tag">Event</span><span class="tag">Map</span></div></div>
+    <div class="card"><div class="ct">📝 Registration form</div><div class="cd">Multi-section form with validation, left/right layout, dialog confirmation. Form components are reusable.</div><div class="tags"><span class="tag">Form</span><span class="tag">Validation</span></div></div>
+    <div class="card"><div class="ct">📰 News sidebar</div><div class="cd">Articles fetched from Python scraper (irace.vn). Main content + side panel layout. Auto-refresh.</div><div class="tags"><span class="tag">News</span><span class="tag">Scraper</span></div></div>
+    <div class="card"><div class="ct">💡 Paginated tips grid</div><div class="cd">Animated grid of training tips from <code>/api/posts/</code>. Pagination controls. TanStack Query caching.</div><div class="tags"><span class="tag">Tips</span><span class="tag">Query</span></div></div>
+    <div class="card"><div class="ct">👥 Community section</div><div class="cd">Club cards, forum link, activity feed. Connected to backend for dynamic content.</div><div class="tags"><span class="tag">Home</span><span class="tag">Social</span></div></div>
+    <div class="card"><div class="ct">🏋️ Training tools</div><div class="cd">Training plan poster, pace calculator, progress analysis. Interactive tools for athletes.</div><div class="tags"><span class="tag">Training</span><span class="tag">Tools</span></div></div>
+    <div class="card"><div class="ct">👤 Team page</div><div class="cd">4-member grid with avatars, roles, social links. Public-facing profiles for core team.</div><div class="tags"><span class="tag">Team</span><span class="tag">About</span></div></div>
+    <div class="card"><div class="ct">🔐 Admin dashboard</div><div class="cd">Protected login, dashboard stats, CRUD for registrations, events, content. Token-based auth with ProtectedRoute guard.</div><div class="tags"><span class="tag">Admin</span><span class="tag">Auth</span></div></div>
+    <div class="card"><div class="ct">👥 Admin users</div><div class="cd">User management panel with role-based access (superadmin required).</div><div class="tags"><span class="tag">Admin</span><span class="tag">Users</span></div></div>
+    <div class="card"><div class="ct">📋 Admin events</div><div class="cd">CRUD management for events from the admin panel.</div><div class="tags"><span class="tag">Admin</span><span class="tag">CRUD</span></div></div>
+    <div class="card"><div class="ct">⚙️ System health</div><div class="cd">Admin panel with system health monitoring, cache controls, user management, and crawl triggers.</div><div class="tags"><span class="tag">Admin</span><span class="tag">Ops</span></div></div>
+    <div class="card"><div class="ct">📱 Responsive design</div><div class="cd">Mobile-first responsive layout with glass cards, gradient text, and consistent design system throughout.</div><div class="tags"><span class="tag">UI</span><span class="tag">Design</span></div></div>
+  </div>
+</section>
+
+<!-- ===== routes ===== -->
+<section id="routes">
+  <div class="sec-head"><span class="idx">04</span><h2>Routes</h2><span class="count">14 paths</span></div>
+  <p class="sec-intro">All routes defined in <code>src/config/app.config.jsx</code>, lazy-loaded via <code>Loadable</code> + <code>Suspense</code>. Admin routes protected by <code>ProtectedRoute</code> with role checks.</p>
+  <div class="routes">
+    <div class="row"><div class="cell head">Path</div><div class="cell head">Page</div><div class="cell head">Access</div></div>
+    <div class="row"><div class="cell"><span class="path">/</span></div><div class="cell">Home</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/News</span></div><div class="cell">News</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Event</span></div><div class="cell">Event</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Leaderboard</span></div><div class="cell">Leaderboard</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/Team</span></div><div class="cell">Team</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/dev/Test</span></div><div class="cell">Testing</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin</span></div><div class="cell"><span style="font-style:italic">redirect → /admin/dashboard</span></div><div class="cell"><span class="pin">—</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/login</span></div><div class="cell">Admin Login</div><div class="cell"><span class="pin">public</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/dashboard</span></div><div class="cell">Dashboard</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/registrations</span></div><div class="cell">Registrations</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/events</span></div><div class="cell">Admin Events</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/content</span></div><div class="cell">Content Mgmt</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/health</span></div><div class="cell">System Health</div><div class="cell"><span class="pin" style="color:var(--ember)">admin</span></div></div>
+    <div class="row"><div class="cell"><span class="path">/admin/users</span></div><div class="cell">User Mgmt</div><div class="cell"><span class="pin" style="color:var(--ember)">admin (superadmin)</span></div></div>
+  </div>
+</section>
+
+<!-- ===== project structure ===== -->
+<section id="structure">
+  <div class="sec-head"><span class="idx">05</span><h2>Project structure</h2></div>
+  <p class="sec-intro">Colocated by feature. Components, pages, services, and configuration are organized under <code>src/</code> with per-feature CSS modules.</p>
+  <div class="arch">
+    <div class="arch-svg">
+      <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+        <g font-family="ui-monospace, monospace" font-size="12" fill="var(--text)">
+          <text x="30" y="30" font-weight="600" fill="var(--cyan)">src/</text>
+          <text x="50" y="52" fill="var(--text2)">├── api/</text>
+          <text x="50" y="70" fill="var(--text2)">├── assets/</text>
+          <text x="70" y="88" fill="var(--text3)">├── icon/ · image/ · svg/</text>
+          <text x="50" y="106" fill="var(--text2)">├── components/</text>
+          <text x="70" y="124" fill="var(--text3)">├── ui/ · Home/ · event/ · form/ · news/ · admin/</text>
+          <text x="50" y="142" fill="var(--text2)">├── config/</text>
+          <text x="70" y="160" fill="var(--text3)">├── app.config.jsx (routes)</text>
+          <text x="50" y="178" fill="var(--text2)">├── context/</text>
+          <text x="70" y="196" fill="var(--text3)">├── AuthContext.jsx</text>
+
+          <text x="290" y="30" font-weight="600" fill="var(--cyan)">src/ (cont.)</text>
+          <text x="310" y="52" fill="var(--text2)">├── hooks/</text>
+          <text x="330" y="70" fill="var(--text3)">├── useArticles · usePosts · useEvents</text>
+          <text x="310" y="88" fill="var(--text2)">├── layouts/</text>
+          <text x="330" y="106" fill="var(--text3)">├── Layout.jsx · AdminLayout.jsx</text>
+          <text x="310" y="124" fill="var(--text2)">├── pages/</text>
+          <text x="330" y="142" fill="var(--text3)">├── Home · News · Event · Rank · Team</text>
+          <text x="330" y="160" fill="var(--text3)">├── admin/ (Login · Dashboard · ...)</text>
+          <text x="310" y="178" fill="var(--text2)">├── routes/</text>
+          <text x="330" y="196" fill="var(--text3)">├── route.jsx (router wiring)</text>
+
+          <text x="560" y="30" font-weight="600" fill="var(--cyan)">src/ (cont.)</text>
+          <text x="580" y="52" fill="var(--text2)">├── services/</text>
+          <text x="600" y="70" fill="var(--text3)">├── api.js · adminApi.js</text>
+          <text x="580" y="88" fill="var(--text2)">├── shared/</text>
+          <text x="600" y="106" fill="var(--text3)">├── Loadable.jsx</text>
+          <text x="580" y="124" fill="var(--text2)">├── style/</text>
+          <text x="600" y="142" fill="var(--text3)">├── home.css · Navbar.css · Event.css · ...</text>
+          <text x="580" y="160" fill="var(--text2)">├── utility/</text>
+          <text x="600" y="178" fill="var(--text3)">├── utils.js (clsx + tailwind-merge)</text>
+          <text x="580" y="196" fill="var(--text2)">├── views/</text>
+          <text x="600" y="214" fill="var(--text3)">├── spinner/ (Spinner · Loader · Loading)</text>
+          <text x="580" y="232" fill="var(--text2)">├── global.css · main.jsx · App.jsx</text>
+
+          <text x="30" y="250" font-weight="600" fill="var(--cyan)">root/</text>
+          <text x="50" y="268" fill="var(--text2)">├── api/</text>
+          <text x="70" y="286" fill="var(--text3)">├── proxy.js (Vercel serverless)</text>
+          <text x="50" y="304" fill="var(--text2)">├── public/</text>
+          <text x="70" y="322" fill="var(--text3)">├── brand assets · video/</text>
+          <text x="50" y="340" fill="var(--text2)">├── vite.config.js · vercel.json · package.json</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== design tokens ===== -->
+<section id="tokens">
+  <div class="sec-head"><span class="idx">06</span><h2>Design tokens</h2></div>
+  <p class="sec-intro">Brand colors, typography, spacing, and radii defined in <code>global.css</code> via Tailwind <code>@theme</code> and DaisyUI theme plugin.</p>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="icon" style="background:#1B4332;color:#fff">A</div><div class="info"><div class="t">Primary · #1B4332</div><div class="d">Forest green — nav, buttons, links</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#56B685;color:#fff">A</div><div class="info"><div class="t">Accent · #56B685</div><div class="d">Mint green — highlights, active states</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#f97316;color:#fff">A</div><div class="info"><div class="t">Orange · #f97316</div><div class="d">Secondary accent — CTAs, glow effects</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#06b6d4;color:#fff">A</div><div class="info"><div class="t">Cyan · #06b6d4</div><div class="d">Tech accent — gradients, icons</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#f9faf6;color:#1a1c1a;border:1px solid var(--line)">A</div><div class="info"><div class="t">Surface · #f9faf6</div><div class="d">Light page background (DaisyUI surface)</div></div></div>
+    <div class="tech-card"><div class="icon" style="font-family:serif">T</div><div class="info"><div class="t">Fonts</div><div class="d">Inter (body), Outfit (headings), Lexend (alt)</div></div></div>
+    <div class="tech-card"><div class="icon">↕</div><div class="info"><div class="t">Spacing</div><div class="d">Tailwind scale · container 1280px</div></div></div>
+    <div class="tech-card"><div class="icon">⬜</div><div class="info"><div class="t">Radii</div><div class="d">4px–48px · cards 12px · buttons 8px · modals 24px</div></div></div>
+    <div class="tech-card"><div class="icon" style="background:#2c694e;color:#fff">A</div><div class="info"><div class="t">Secondary · #2c694e</div><div class="d">Deep green — secondary surfaces</div></div></div>
+    <div class="tech-card"><div class="icon">🌓</div><div class="info"><div class="t">Dark mode</div><div class="d">CSS custom properties · prefers-color-scheme · localStorage toggle</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>ENDURANCE|HUB · <span style="font-family:var(--serif);font-style:italic">Pace Your Way</span></span>
+  <span><a href="https://github.com/MinhCreator/BestWebDesign" style="color:var(--cyan);text-underline-offset:3px;text-decoration-color:var(--line)">GitHub →</a></span>
+</footer>
+
+</div>
 </body>
 </html>
