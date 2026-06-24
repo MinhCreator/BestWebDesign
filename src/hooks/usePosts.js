@@ -3,7 +3,7 @@ import { fetchPosts } from "../services/api";
 
 export function usePosts(page, limit = 3) {
   return useQuery({
-    queryKey: ["posts", page],
+    queryKey: ["posts", page, limit],
     queryFn: () => fetchPosts(page, limit),
     staleTime: 0,
   });
