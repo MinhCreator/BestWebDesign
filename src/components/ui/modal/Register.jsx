@@ -4,7 +4,7 @@ const Register = ({ event: selectedEvent, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    event: selectedEvent.name,
+    event: `${selectedEvent.name}`,
   });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
