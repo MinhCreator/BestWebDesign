@@ -6,18 +6,24 @@ export default async function handler(req, res) {
   }
 
   const apiPath = req.query.path || req.url.replace('/api/proxy', '/api');
-  const url = `${target}${apiPath}`;
+  const base = target.replace(/\/+$/, '');
+  const path = apiPath.startsWith('/') ? apiPath : '/' + apiPath;
+  const url = `${base}${path}`;
 
-  const resp = await fetch(url, {
-    method: req.method,
-    headers: { "Content-Type": "application/json" },
-    body:  req.body ? JSON.stringify(req.body) : undefined,
-  });
+  try {
+    const resp = await fetch(url, {
+      method: req.method,
+      headers: { "Content-Type": "application/json" },
+      body: req.method !== 'GET' ? JSON.stringify(req.body) : undefined,
+    });
 
-  const data = resp.headers.get("content-type")?.includes("application/json")
-    ? await resp.json()
-    : await resp.text();
+    const contentType = resp.headers.get("content-type") || "";
+    const data = contentType.includes("application/json")
+      ? await resp.json()
+      : await resp.text();
 
-  // forward response back to the browser
-  return res.status(resp.status).json(data);
+    return res.status(resp.status).json(data);
+  } catch (err) {
+    return res.status(502).json({ error: "Backend unreachable", detail: err.message });
+  }
 }
