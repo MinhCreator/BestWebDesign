@@ -5,6 +5,13 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "PRIVATE_SERVER not configured" });
   }
 
+  // Read raw body from the incoming request
+  const rawBody = await new Promise((resolve) => {
+    let body = "";
+    req.on("data", (chunk) => (body += chunk));
+    req.on("end", () => resolve(body));
+  });
+
   const apiPath = req.query.path || req.url.replace('/api/proxy', '/api');
   const base = target.replace(/\/+$/, '');
   const path = apiPath.startsWith('/') ? apiPath : '/' + apiPath;
@@ -13,8 +20,13 @@ export default async function handler(req, res) {
   try {
     const resp = await fetch(url, {
       method: req.method,
-      headers: { "Content-Type": "application/json" },
-      body: req.method !== 'GET' ? JSON.stringify(req.body) : undefined,
+      headers: {
+        "Content-Type": "application/json",
+        ...(req.headers.authorization
+          ? { Authorization: req.headers.authorization }
+          : {}),
+      },
+      body: req.method !== "GET" ? rawBody || undefined : undefined,
     });
 
     const contentType = resp.headers.get("content-type") || "";
