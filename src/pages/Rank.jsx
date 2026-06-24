@@ -50,7 +50,7 @@ const Rank = () => {
   return (
     <div className="leaderboard-style">
       <section className="leaderboard">
-        <Breadcrumbs />
+        {/* <Breadcrumbs /> */}
         <h1>{currentEvent ? currentEvent.name : "Leaderboard"}</h1>
 
         {sorted.length === 0 ? (
