@@ -54,7 +54,7 @@ Built with React 18 + Vite 8 + Tailwind CSS v4 + DaisyUI v5. Python FastAPI back
 ## Project Structure
 
 ```
-src/                        # React application source (62 files)
+src/                        # React application source (103 files)
 ├── assets/                 # Icons (19 SVGs), images (4), illustrations
 │   ├── icon/               #   18 SVG icons + 2 PNG logos
 │   └── image/              #   4 PNG images (hero, cycling, footwear, jogging)
@@ -67,17 +67,17 @@ src/                        # React application source (62 files)
 │   └── ui/                 #   Navbar, BubbleNavbar, Footer, SearchBar,
 │                           #   Breadcrumbs, Dialog, Loader, ProductCard,
 │                           #   Modal/Register (direct POST form)
-├── config/                 # app.config.jsx (13 route definitions)
+├── config/                 # app.config.jsx (15 route definitions)
 ├── context/                # AuthContext.jsx (login/logout/token)
 ├── hooks/                  # useArticles, usePosts, useEvents, useResults (TanStack Query)
 ├── layouts/                # Layout (public shell), AdminLayout (sidebar)
-├── pages/                  # 6 public + 7 admin = 13 pages
+├── pages/                  # 6 public + 8 admin = 14 pages
 │   ├── Home, News, Event, Rank, Team, Testing
 │   └── admin/              # Login, Dashboard, Registrations, Events, Results,
 │                           # Content, SystemHealth, Users
 ├── routes/                 # BrowserRouter + auth-aware routing
 ├── services/               # api.js (public fetch), adminApi.js (admin fetch + bearer)
-├── shared/                 # Loadable (lazy-loaded HOC wrapper)
+├── shared/                 # Loadable (lazy-loaded HOC wrapper), nationalMetadata (240+ countries)
 ├── style/                  # 7 per-page CSS files
 ├── utility/                # ClassN() — clsx + tailwind-merge helper
 └── views/                  # Spinner components (5 loading variants)
@@ -109,14 +109,15 @@ root level
 └── project_workflow.html   # Interactive architecture diagram
 ```
 
-**Backend** (`private server` — git-ignored, create locally):
+**Backend** (`private_server/` — git-ignored, runs separately):
 
 ```
-backend/
-├── main.py           # FastAPI app
-├── scraper.py        # BeautifulSoup (irace.vn)
-├── database.py       # SQLAlchemy + PostgreSQL
-├── models.py         # ORM models
+private_server/
+├── main.py           # FastAPI app (article crawl, post crawl, events CRUD, results CRUD, registrations, admin auth, health)
+├── config/            # admin.json (JWT user store)
+├── module/            # auth.py, crawl_article.py, tip_and_trick.py, utilities.py
+├── output/            # File-based JSON storage (events.json, results.json, registrations.json, articles.json, post.json)
+├── .env               # JWT_SECRET
 └── requirements.txt
 ```
 
@@ -146,55 +147,6 @@ backend/
 - **Vercel proxy** — Serverless function (`api/proxy.js`) parses raw body, forwards `Authorization`, uses `VITE_API_KEY` env
 - **Dark mode support** — CSS variables + `@variant dark` in `global.css`
 
-## Routes (15 total)
-
-| Path                   | Page               | Access     | Component            |
-| ---------------------- | ------------------ | ---------- | -------------------- |
-| `/`                    | Home               | public     | `pages/Home`         |
-| `/News`                | News               | public     | `pages/News`         |
-| `/Event`               | Events             | public     | `pages/Event`        |
-| `/Leaderboard`         | Rank (all events)  | public     | `pages/Rank`         |
-| `/Leaderboard/:eventId`| Rank (per event)   | public     | `pages/Rank`         |
-| `/Team`                | Team               | public     | `pages/Team`         |
-| `/dev/Test`            | Testing            | public     | `pages/Testing`      |
-| `/admin/login`         | Admin Login        | public     | `pages/admin/Login`  |
-| `/admin/dashboard`     | Dashboard          | admin      | `pages/admin/Dashboard` |
-| `/admin/registrations` | Registrations      | admin      | `pages/admin/Registrations` |
-| `/admin/events`        | Events (admin)     | admin      | `pages/admin/Events` |
-| `/admin/results`       | Results Manager    | admin      | `pages/admin/Results` |
-| `/admin/content`       | Content Management | admin      | `pages/admin/Content` |
-| `/admin/health`        | System Health      | admin      | `pages/admin/SystemHealth` |
-| `/admin/users`         | User Management    | superadmin | `pages/admin/Users`  |
-
-## API Endpoints (proxied via Vercel)
-
-All requests use relative `/api/*` paths. Vercel rewrites `api/proxy.js` forwards to the private backend.
-
-| Endpoint                     | Method   | Purpose                          | Auth     |
-| ---------------------------- | -------- | -------------------------------- | -------- |
-| `/api/articles`              | GET      | Fetch news articles              | —        |
-| `/api/posts`                 | GET      | Fetch paginated blog posts       | —        |
-| `/api/events`                | GET      | Fetch upcoming events            | —        |
-| `/api/register`              | POST     | Event registration               | —        |
-| `/api/admin/login`           | POST     | Admin authentication             | —        |
-| `/api/admin/dashboard`       | GET      | Dashboard stats + cache          | Bearer   |
-| `/api/admin/registrations`   | GET      | List registrations               | Bearer   |
-| `/api/admin/registrations/N` | DELETE   | Delete registration              | Bearer   |
-| `/api/admin/articles`        | GET      | List articles (admin)            | Bearer   |
-| `/api/admin/crawl/{type}`    | POST     | Trigger news crawl               | Bearer   |
-| `/api/admin/cache/clear`     | POST     | Clear backend cache              | Bearer   |
-| `/api/admin/health`          | GET      | System health check              | Bearer   |
-| `/api/admin/users`           | GET/POST | List / create admin users        | Bearer   |
-| `/api/results`               | GET      | Fetch results (?event_id= filter)| —        |
-| `/api/admin/events`          | GET      | List events (?status= filter)    | Bearer   |
-| `/api/admin/events`          | POST     | Create event                     | Bearer   |
-| `/api/admin/events/{id}`     | PUT      | Update event                     | Bearer   |
-| `/api/admin/events/{id}`     | DELETE   | Delete event                     | Bearer   |
-| `/api/admin/results`         | GET      | List results (?event_id= filter) | Bearer   |
-| `/api/admin/results`         | POST     | Create result entry              | Bearer   |
-| `/api/admin/results/{id}`    | PUT      | Update result                    | Bearer   |
-| `/api/admin/results/{id}`    | DELETE   | Delete result                    | Bearer   |
-
 ## Setup
 
 ### Frontend
@@ -208,7 +160,7 @@ npm run preview    # Preview prod build
 
 ### Backend (runs separately on private server)
 
-Not included in this repo. Python FastAPI with PostgreSQL, runs on a private server.
+Not included in this repo. Python FastAPI with file-based JSON storage, runs on a private server at `http://127.0.0.1:8000`.
 
 ### Dev proxy
 

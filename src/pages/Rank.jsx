@@ -4,7 +4,11 @@ import { useResults } from "../hooks/useResults";
 import Breadcrumbs from "../components/ui/Breadcrumbs";
 import Spinner from "../views/spinner/Spinner";
 import "../style/Rank.css";
+import { NationMetadata } from "../shared/nationalMetadata";
 
+const nationMap = Object.fromEntries(
+  NationMetadata.NationInfor.map((n) => [n.name.toLowerCase(), n]),
+);
 const avatarBase = "/Avatar";
 const flagBase = "/Flags";
 
@@ -20,7 +24,9 @@ const Rank = () => {
     return (
       <div className="leaderboard-style">
         <section className="leaderboard">
-          <p className="text-center text-red-500">Failed to load leaderboard.</p>
+          <p className="text-center text-red-500">
+            Failed to load leaderboard.
+          </p>
         </section>
       </div>
     );
@@ -34,11 +40,12 @@ const Rank = () => {
   const top3 = sorted.slice(0, 3);
   const rest = sorted.slice(3);
 
-  const podiumOrder = top3.length === 3
-    ? [top3[1], top3[0], top3[2]]
-    : top3.length === 2
-      ? [top3[1], top3[0]]
-      : top3;
+  const podiumOrder =
+    top3.length === 3
+      ? [top3[1], top3[0], top3[2]]
+      : top3.length === 2
+        ? [top3[1], top3[0]]
+        : top3;
 
   return (
     <div className="leaderboard-style">
@@ -87,17 +94,26 @@ const Rank = () => {
               {sorted.map((runner, i) => {
                 const rank = i + 1;
                 const rankClass =
-                  rank === 1 ? "gold" : rank === 2 ? "silver" : rank === 3 ? "bronze" : "";
-                const flagSrc = runner.nationality
-                  ? `${flagBase}/${runner.nationality.toLowerCase()}.svg`
+                  rank === 1
+                    ? "gold"
+                    : rank === 2
+                      ? "silver"
+                      : rank === 3
+                        ? "bronze"
+                        : "";
+                const entry = runner.nationality
+                  ? nationMap[runner.nationality.toLowerCase()]
                   : null;
+                const flagSrc = entry?.image_url || null;
                 return (
                   <div key={runner.id} className="table-row">
                     <span className={`rank ${rankClass}`}>{rank}</span>
                     <span>{runner.runner_name}</span>
                     <span className="nation">
                       {runner.nationality}
-                      {flagSrc && <img src={flagSrc} alt={runner.nationality} />}
+                      {flagSrc && (
+                        <img src={flagSrc} alt={runner.nationality} />
+                      )}
                     </span>
                     <span>{runner.time}</span>
                   </div>
