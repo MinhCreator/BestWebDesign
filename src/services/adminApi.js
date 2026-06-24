@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_PRIVATE_SERVER || "/api";
+const BASE_URL = "";
 
 class ApiError extends Error {
   constructor(message, status) {

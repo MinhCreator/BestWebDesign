@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Register = ({ event: selectedEvent, onClose }) => {
-  const [formData, setFormData] = useState({ name: "", phone: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", event: selectedEvent.name });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
@@ -14,8 +14,7 @@ const Register = ({ event: selectedEvent, onClose }) => {
     setError(null);
     try {
       
-      const apiUrl = import.meta.env.VITE_PRIVATE_SERVER || "";
-      const res = await fetch(`${apiUrl}/api/register`, {
+      const res = await fetch(`/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -23,7 +22,7 @@ const Register = ({ event: selectedEvent, onClose }) => {
       const body = await res.json();
       if (res.ok) {
         setSubmitted(true);
-        setFormData({ name: "", phone: "" });
+        setFormData({ name: "", phone: "", event: "" });
         setTimeout(() => setSubmitted(false), 3000);
       } else {
         setError(body.detail || "Registration failed");

@@ -33,7 +33,7 @@ export default function AdminRegistrations() {
   const filtered = registrations.filter(
     (r) =>
       r.name?.toLowerCase().includes(search.toLowerCase()) ||
-      r.phone?.includes(search),
+      r.phone?.includes(search) || r.event?.includes(search),
   );
 
   if (loading) {
@@ -77,6 +77,7 @@ export default function AdminRegistrations() {
                 <th>#</th>
                 <th>Name</th>
                 <th>Phone</th>
+                <th>Event</th>
                 <th>Timestamp</th>
                 <th>Actions</th>
               </tr>
@@ -94,6 +95,7 @@ export default function AdminRegistrations() {
                     <td>{i + 1}</td>
                     <td className="font-medium">{reg.name}</td>
                     <td>{reg.phone}</td>
+                    <td className="font-medium">{reg.event}</td>
                     <td className="text-sm text-gray-500">
                       {reg.timestamp
                         ? new Date(reg.timestamp).toLocaleString()
