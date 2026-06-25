@@ -1,6 +1,7 @@
 import React from "react";
 import { useEvents } from "../../hooks/useEvents";
 import Spinner from "../../views/spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 // const mockEvents = [
 //   {
 //     id: 1,
@@ -49,6 +50,7 @@ import Spinner from "../../views/spinner/Spinner";
 // ];
 
 function pastEventlist(isloading, Error, event) {
+  const navigate = useNavigate();
   if (isloading) {
     return <Spinner />;
   }
@@ -81,6 +83,12 @@ function pastEventlist(isloading, Error, event) {
             <div className="card-bottom">
               <span>{Card.distance}</span>
               <button className="past-btn">Completed</button>
+              <button
+                onClick={() => navigate(`/Leaderboard/${Card.id}`)}
+                className="rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-primary-content transition-all hover:brightness-110 active:scale-95"
+              >
+                Leaderboard
+              </button>
             </div>
           </div>
         </div>
