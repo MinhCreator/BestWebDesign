@@ -31,7 +31,7 @@ export const AppConfig = {
       path: "/Leaderboard",
       component: Loadable(lazy(() => import("../pages/Rank"))),
       isDisableRoute: false,
-      NavbarComp: true,
+      NavbarComp: false,
     },
     {
       name: "Event Leaderboard",
