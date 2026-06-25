@@ -1,7 +1,6 @@
 import React from "react";
 import { useEvents } from "../../hooks/useEvents";
 import Spinner from "../../views/spinner/Spinner";
-import { useNavigate } from "react-router-dom";
 // const mockEvents = [
 //   {
 //     id: 1,
@@ -68,7 +67,6 @@ function pastEventlist(isloading, Error, event) {
       </div>
     );
 
-  const navigate = useNavigate();
   return (
     <>
       {event.map((Card, index) => (
